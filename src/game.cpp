@@ -17,46 +17,60 @@ Game::Game() {
     mMenuWindow = newwin(mMenuWindowSize->y, mMenuWindowSize->x,
                          mMenuWindowPos->y, mMenuWindowPos->x);
 
-    mWinStack.push(mMenuWindow);
-    mWinStack.push(mBoardWindow);
+    // mWinStack.push(mMenuWindow);
+    // mWinStack.push(mBoardWindow);
+    mWindows["board"] = mBoardWindow;
+    mWindows["menu"] = mMenuWindow;
 
     mIsRunning = true;
 }
 
 Game::~Game() {
-    for (std::size_t i = 0; i < mWinStack.size(); i++) {
-        delwin(mWinStack.top());
-        mWinStack.pop();
-    }
+    // for (std::size_t i = 0; i < mWinStack.size(); i++) {
+    //     delwin(mWinStack.top());
+    //     mWinStack.pop();
+    // }
+    delwin(mBoardWindow);
+    delwin(mMenuWindow);
 }
 
-int Game::getStackSize() { return (int)mWinStack.size(); }
+// int Game::getStackSize() { return (int)mWinStack.size(); }
 
-void Game::refreshTopWindow() { wrefresh(mWinStack.top()); }
-
-void Game::pushWindow(WINDOW *win) { mWinStack.push(win); }
-
-WINDOW *Game::popWindow() {
-    WINDOW *temp = mWinStack.top();
-    mWinStack.pop();
-    return temp;
+// void Game::refreshTopWindow() { wrefresh(mWinStack.top()); }
+void Game::refreshWindow(std::string window) {
+    auto result = mWindows.find(window);
+    if (result != mWindows.end())
+        wrefresh(result->second);
 }
 
-WINDOW *Game::getTopWindow() { return mWinStack.top(); }
-
-void Game::getInput() {
-    int ch;
-    ch = wgetch(mWinStack.top());
-
-    switch (ch) {
-    case 'Q':
-        mIsRunning = false;
-        break;
-    case 'd':
-        mWinStack.pop();
-        break;
-    }
+WINDOW *Game::getWindow(std::string window) {
+    auto result = mWindows.find(window);
+    if (result != mWindows.end())
+        return result->second;
 }
+// void Game::pushWindow(WINDOW *win) { mWinStack.push(win); }
+
+// WINDOW *Game::popWindow() {
+//     WINDOW *temp = mWinStack.top();
+//     mWinStack.pop();
+//     return temp;
+// }
+
+// WINDOW *Game::getTopWindow() { return mWinStack.top(); }
+
+// void Game::getInput() {
+//     int ch;
+//     ch = wgetch(mWinStack.top());
+
+//     switch (ch) {
+//     case 'Q':
+//         mIsRunning = false;
+//         break;
+//     case 'd':
+//         mWinStack.pop();
+//         break;
+//     }
+// }
 
 bool Game::isRunning() { return mIsRunning; }
 

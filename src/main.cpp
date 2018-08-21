@@ -11,21 +11,19 @@
 int main(int argc, char *argv[]) {
     Render render;
     Game game;
+    WINDOW *board = game.getWindow("board");
 
-    box(game.getTopWindow(), 0, 0);
+    box(board, 0, 0);
 
-    wattron(game.getTopWindow(), COLOR_PAIR(Color::Red));
-    mvwprintw(game.getTopWindow(), 1, 1, "%p", game.getTopWindow());
-    wattroff(game.getTopWindow(), COLOR_PAIR(Color::Red));
-
-    game.refreshTopWindow();
+    wattron(board, COLOR_PAIR(Color::Red));
+    mvwprintw(board, 1, 1, "board");
+    wattroff(board, COLOR_PAIR(Color::Red));
 
     while (game.isRunning()) {
 
         game.getInput();
-        werase(game.getTopWindow());
-        mvwprintw(game.getTopWindow(), 1, 1, "%p", game.getTopWindow());
-        game.refreshTopWindow();
+        werase(board);
+        mvwprintw(board, 1, 1, "board");
     }
 
     return 0;

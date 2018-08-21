@@ -1,6 +1,7 @@
 #pragma once
 
-#include <stack>
+// #include <stack>
+#include <map>
 
 typedef struct _win WINDOW;
 class Point;
@@ -15,19 +16,23 @@ class Game {
     bool isRunning();
     void setRunning(bool state);
 
-    void refreshAllWindows();
-    void refreshTopWindow();
-    void pushWindow(WINDOW *win);
-    WINDOW *popWindow();
-    WINDOW *getTopWindow();
-    int getStackSize();
+    void refreshWindow(std::string window);
+    WINDOW *getWindow(std::string window);
+
+    // void refreshAllWindows();
+    // void refreshTopWindow();
+    // void pushWindow(WINDOW *win);
+    // WINDOW *popWindow();
+    // WINDOW *getTopWindow();
+    // int getStackSize();
 
   private:
     int mScore;
 
     bool mIsRunning;
 
-    std::stack<WINDOW *> mWinStack;
+    // std::stack<WINDOW *> mWinStack;
+    std::map<std::string, WINDOW *> mWindows;
 
     Point *mBoardSize;
     // Point *mScoreWindowSize;
