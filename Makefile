@@ -6,14 +6,14 @@ IDIR=./include
 # compiled .o files here
 ODIR=./src/obj
 
-CFLAGS=-I$(IDIR) -Wall -std=c++17 -fpermissive
+CFLAGS=-g -I$(IDIR) -Wall -std=c++17
 
 # Header files here
-_DEPS=player.hpp point.hpp entity.hpp render.hpp
+_DEPS=player.hpp point.hpp entity.hpp render.hpp game.hpp
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
 # Object files here
-_OBJ=main.o player.o point.o render.o
+_OBJ=main.o player.o point.o render.o game.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 # Required libraries here
