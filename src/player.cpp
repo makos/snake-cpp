@@ -1,27 +1,24 @@
-#include "player.hpp"
-#include "point.hpp"
+#include "Player.hpp"
 
-Player::Player() {
-    mPosition = new Point(0, 0);
-    mChar = '#';
-}
+// Class PlayerPart
+PlayerPart::PlayerPart(const Point &pos) : mPosition(pos) {}
 
-Player::Player(int y, int x) : mPosition(new Point(y, x)) { mChar = '#'; }
+Point &PlayerPart::getPosition() { return mPosition; }
 
-Player::Player(const Point &pos) : mPosition(new Point(pos)) { mChar = '#'; }
+// Class player
+Player::Player() : mPosition(0, 0), mFacing(0, -1), mChar('#') {}
 
-void Player::draw(const Point &pos) {
-    // std::cout << "player::draw pos(y,x)=" << pos.y << " " << pos.x <<
-    // std::endl;
-}
+Player::Player(int y, int x) : mPosition(y, x), mFacing(0, -1), mChar('#') {}
 
-void Player::move(const Point &dir) {
-    // std::cout << "player::move dir(y,x)=" << dir.y << " " << dir.x <<
-    // std::endl;
-}
+Player::Player(const Point &pos) : mPosition(pos), mFacing(0, -1), mChar('#') {}
 
-Point &Player::getPosition() { return *mPosition; }
+// TODO:
+void Player::move(const Point &dir) {}
+
+Point &Player::getPosition() { return mPosition; }
 
 char Player::getChar() { return mChar; }
 
 void Player::setChar(char ch) { mChar = ch; }
+
+Point &Player::facing() { return mFacing; }

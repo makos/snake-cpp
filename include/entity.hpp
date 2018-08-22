@@ -4,8 +4,8 @@ class Point;
 
 class IEntity {
   public:
-    virtual void draw(const Point &pos) = 0;
+    // virtual void draw(const Point &pos) = 0;
     virtual void move(const Point &dir) = 0;
     virtual Point &getPosition() = 0;
-    virtual char getChar() = 0;
+    // virtual char getChar() = 0;
 };

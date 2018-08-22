@@ -23,6 +23,11 @@ TEST_CASE("Player.hpp tests", "[player]") {
             defaultPlayer.setChar('@');
             REQUIRE(defaultPlayer.getChar() == '@');
         }
+
+        SECTION("Default constructor: facing()") {
+            Point temp(0, -1);
+            REQUIRE(defaultPlayer.facing() == temp);
+        }
     }
 
     SECTION("Testing (y, x) constructor") {
@@ -31,11 +36,20 @@ TEST_CASE("Player.hpp tests", "[player]") {
             REQUIRE(testPlayer.getPosition() == tempPoint);
         }
 
-        SECTION("Testing Point constructor") {
-            SECTION("Point constructor: getPosition()") {
-                REQUIRE(pointPlayer.getPosition().y == 30);
-                REQUIRE(pointPlayer.getPosition().x == 40);
-            }
+        SECTION("(y, x) constructor: getChar()") {
+            REQUIRE(testPlayer.getChar() == '#');
+        }
+
+        SECTION("(y, x) constructor: facing()") {
+            Point temp(0, -1);
+            REQUIRE(testPlayer.facing() == temp);
+        }
+    }
+
+    SECTION("Testing Point constructor") {
+        SECTION("Point constructor: getPosition()") {
+            REQUIRE(pointPlayer.getPosition().y == 30);
+            REQUIRE(pointPlayer.getPosition().x == 40);
         }
     }
 }
