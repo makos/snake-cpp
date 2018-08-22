@@ -12,6 +12,7 @@ class Player : public IEntity {
     void move(const Point &dir);
     Point &getPosition();
     char getChar();
+    void setChar(char ch);
 
   private:
     Point *mPosition;

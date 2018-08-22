@@ -23,3 +23,5 @@ void Player::move(const Point &dir) {
 Point &Player::getPosition() { return *mPosition; }
 
 char Player::getChar() { return mChar; }
+
+void Player::setChar(char ch) { mChar = ch; }
