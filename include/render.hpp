@@ -10,6 +10,7 @@ class Render {
     ~Render();
 
     int kpad(bool state);
+    void setBox(bool state);
 
     void print(int y, int x, std::string msg);
     void print(int y, int x, std::string msg, Color color);
@@ -20,7 +21,6 @@ class Render {
     int getKey();
 
   private:
-    // WINDOW *topWindow();
     WINDOW *mGameboard;
-    // std::stack<WINDOW *> mWinStack;
+    bool drawBox;
 };

@@ -11,6 +11,7 @@
 int main(int argc, char *argv[]) {
     Render render(10, 20);
     render.kpad(true);
+    render.setBox(true);
     int ch = ' ';
     int i = 0;
 
