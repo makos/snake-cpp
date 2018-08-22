@@ -1,5 +1,7 @@
 #pragma once
 #include "Render.hpp"
+#include "State.hpp"
+#include <memory>
 
 class Game {
   public:
@@ -13,8 +15,12 @@ class Game {
 
     Render &getScreen();
 
+    void setState(std::unique_ptr<State> state);
+    State &getState();
+
   private:
-    Render screen;
+    Render mScreen;
     int mScore;
     bool mIsRunning;
+    std::unique_ptr<State> mCurrentState;
 };

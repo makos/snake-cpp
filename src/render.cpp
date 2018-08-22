@@ -35,14 +35,24 @@ void Render::setBox(bool state) {
 // Stop ncurses to return to default terminal mode.
 Render::~Render() { endwin(); }
 
+void Render::print(WINDOW *win, int y, int x, std::string msg) {
+    mvwprintw(win, y, x, msg.c_str());
+}
+
+void Render::print(WINDOW *win, int y, int x, std::string msg, Color color) {
+    wattron(win, COLOR_PAIR(color));
+    mvwprintw(win, y, x, msg.c_str());
+    wattron(win, COLOR_PAIR(color));
+}
+
 void Render::print(int y, int x, std::string msg) {
-    mvwprintw(mGameboard, y, x, msg.c_str());
+    mvprintw(y, x, msg.c_str());
 }
 
 void Render::print(int y, int x, std::string msg, Color color) {
-    wattron(mGameboard, COLOR_PAIR(color));
-    mvwprintw(mGameboard, y, x, msg.c_str());
-    wattroff(mGameboard, COLOR_PAIR(color));
+    attron(COLOR_PAIR(color));
+    mvprintw(y, x, msg.c_str());
+    attroff(COLOR_PAIR(color));
 }
 
 void Render::update() {

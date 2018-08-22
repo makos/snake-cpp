@@ -6,9 +6,9 @@ class StateMenu : public State {
   public:
     StateMenu(Game &game);
 
-    void update();
-    void input();
-    void render(Render &render);
+    void input() override;
+    void update() override;
+    void render(Render &render) override;
 
   private:
     Game *mGame;

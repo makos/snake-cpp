@@ -12,6 +12,8 @@ class Render {
     int kpad(bool state);
     void setBox(bool state);
 
+    void print(WINDOW *win, int y, int x, std::string msg);
+    void print(WINDOW *win, int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg);
     void print(int y, int x, std::string msg, Color color);
 
