@@ -9,13 +9,17 @@
 #include <curses.h>
 
 int main(int argc, char *argv[]) {
-    int ch = '';
+    Render render(10, 20);
+    render.kpad(true);
+    int ch = ' ';
+    int i = 0;
 
-    Render render;
     while (ch != 'q') {
-        render.print(3, 3, "Dupa szatana");
+        render.print(3, 3, std::string("Loop count: ") + std::to_string(i));
         render.print(4, 3, "Tęcza szatana", Color::Green);
-        ch = render.getInput();
+        ch = render.getKey();
+        render.update();
+        i++;
     }
 
     return 0;
