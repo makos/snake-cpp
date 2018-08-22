@@ -2,16 +2,9 @@ cmake_minimum_required(VERSION 3.0.0)
 
 project(snake)
 
-file(GLOB_RECURSE SOURCE src/*.cpp)
-file(GLOB_RECURSE TESTSRC tests/*.cpp)
-include_directories(include)
-target_include_directories(test PUBLIC tests)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
-add_executable(snake ${SOURCE})
-add_executable(test ${TESTSRC})
-link_libraries(ncurses)
-# target_link_libraries(snake ncurses)
-
-# target_include_directories(snake PUBLIC include/)
-
-# install(TARGETS snake DESTINATION bin)
+add_subdirectory(src)
+add_subdirectory(tests)
