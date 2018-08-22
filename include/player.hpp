@@ -1,18 +1,8 @@
 #pragma once
-
 #include "Entity.hpp"
+#include "PlayerPart.hpp"
 #include "Point.hpp"
 #include <vector>
-
-class PlayerPart {
-  public:
-    PlayerPart(const Point &pos);
-
-    Point &getPosition();
-
-  private:
-    Point mPosition;
-};
 
 class Player : public IEntity {
   public:

@@ -11,6 +11,8 @@ class Game {
     bool isRunning();
     void setRunning(bool state);
 
+    Render &getScreen();
+
   private:
     Render screen;
     int mScore;

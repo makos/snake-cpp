@@ -16,7 +16,7 @@ _DEPS=Entity.hpp Game.hpp Player.hpp PlayerPart.hpp Point.hpp Render.hpp State.h
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
 # Object files here
-_OBJ=main.o Entity.o Game.o Player.o PlayerPart.o Point.o Render.o StateMenu.o StatePlaying.o
+_OBJ=main.o Game.o Player.o PlayerPart.o Point.o Render.o StateMenu.o StatePlaying.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _TESTOBJ=test_Main.o test_Point.o test_Player.o Player.o Point.o

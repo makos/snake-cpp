@@ -10,3 +10,5 @@ void Game::run() {}
 bool Game::isRunning() { return mIsRunning; }
 
 void Game::setRunning(bool state) { mIsRunning = state; }
+
+Render &Game::getScreen() { return screen; }
