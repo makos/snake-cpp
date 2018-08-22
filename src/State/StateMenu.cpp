@@ -30,9 +30,14 @@ void StateMenu::input() {
 
 void StateMenu::render(Render &render) {
     erase();
+    int i = 0;
+    for (auto const &item : mMenu->items()) {
+        mvprintw(i, 1, item.first.c_str());
+        i++;
+    }
     refresh();
 }
 
 void StateMenu::newClicked() {}
 
-void StateMenu::exitClicked() {}
+void StateMenu::exitClicked() { mGame->setRunning(false); }

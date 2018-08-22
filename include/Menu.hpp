@@ -1,8 +1,9 @@
 #pragma once
 #include "MenuItem.hpp"
 #include "Point.hpp"
+#include <map>
 #include <string>
-#include <vector>
+// #include <vector>
 
 class Menu {
   public:
@@ -10,7 +11,9 @@ class Menu {
     // ~Menu();
 
     void addItem(const char text[], fpCallback cb);
+    std::map<std::string, MenuItem> &items();
 
   private:
-    std::vector<MenuItem> mItems;
+    // std::vector<MenuItem> mItems;
+    std::map<std::string, MenuItem> mItems;
 };

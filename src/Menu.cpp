@@ -5,5 +5,8 @@ void newClickEvent() {}
 Menu::Menu() : mItems() {}
 
 void Menu::addItem(const char text[], fpCallback cb) {
-    mItems.push_back(MenuItem(text, cb));
+    mItems[std::string(text)] = MenuItem(text, cb);
+    // mItems.push_back(MenuItem(text, cb));
 }
+
+std::map<std::string, MenuItem> &Menu::items() { return mItems; }

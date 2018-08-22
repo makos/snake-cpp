@@ -4,6 +4,13 @@
 class Game;
 class Menu;
 
+namespace Callback {
+
+void newClicked(Game &game);
+void exitClicked(Game &game);
+
+} // namespace Callback
+
 class StateMenu : public State {
   public:
     StateMenu(Game &game);
@@ -12,9 +19,6 @@ class StateMenu : public State {
     void input() override;
     void update() override;
     void render(Render &render) override;
-
-    void newClicked();
-    void exitClicked();
 
   private:
     // Game *mGame;
