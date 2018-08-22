@@ -1,7 +1,7 @@
-#include "StateMenu.hpp"
+#include "State/StateMenu.hpp"
 #include "Game.hpp"
 #include "Render.hpp"
-#include "StatePlaying.hpp"
+#include "State/StatePlaying.hpp"
 #include <curses.h>
 
 StateMenu::StateMenu(Game &game) : mGame(&game) {}

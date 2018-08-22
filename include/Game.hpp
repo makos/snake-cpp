@@ -1,6 +1,6 @@
 #pragma once
 #include "Render.hpp"
-#include "State.hpp"
+#include "State/State.hpp"
 #include <memory>
 
 class Game {

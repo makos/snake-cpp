@@ -12,4 +12,5 @@ class StateMenu : public State {
 
   private:
     Game *mGame;
+    int mItemSelected;
 };

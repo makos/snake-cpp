@@ -1,6 +1,6 @@
 #include "Game.hpp"
-#include "StateMenu.hpp"
-#include "StatePlaying.hpp"
+#include "State/StateMenu.hpp"
+#include "State/StatePlaying.hpp"
 
 Game::Game()
     : mScreen(20, 20), mScore(0), mIsRunning(true),
