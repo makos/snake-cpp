@@ -11,13 +11,13 @@ class Game {
     Game();
     ~Game();
 
-    void getInput();
+    // void getInput();
 
     bool isRunning();
     void setRunning(bool state);
 
-    void refreshWindow(std::string window);
-    WINDOW *getWindow(std::string window);
+    // void refreshWindow(std::string window);
+    // WINDOW *getWindow(std::string window);
 
     // void refreshAllWindows();
     // void refreshTopWindow();
@@ -32,17 +32,17 @@ class Game {
     bool mIsRunning;
 
     // std::stack<WINDOW *> mWinStack;
-    std::map<std::string, WINDOW *> mWindows;
+    // std::map<std::string, WINDOW *> mWindows;
 
-    Point *mBoardSize;
+    // Point *mBoardSize;
     // Point *mScoreWindowSize;
-    Point *mMenuWindowSize;
+    // Point *mMenuWindowSize;
 
-    Point *mBoardPos;
+    // Point *mBoardPos;
     // Point *mScoreWindowPos;
-    Point *mMenuWindowPos;
+    // Point *mMenuWindowPos;
 
-    WINDOW *mBoardWindow;
-    WINDOW *mScoreWindow;
-    WINDOW *mMenuWindow;
+    // WINDOW *mBoardWindow;
+    // WINDOW *mScoreWindow;
+    // WINDOW *mMenuWindow;
 };

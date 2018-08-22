@@ -3,24 +3,24 @@
 #include <curses.h>
 
 Game::Game() {
-    mBoardSize = new Point(10, 20);
+    // mBoardSize = new Point(10, 20);
     // mScoreWindowSize = new Point(1, 10);
-    mMenuWindowSize = new Point(10, 10);
-    mBoardPos = new Point(1, 1);
+    // mMenuWindowSize = new Point(10, 10);
+    // mBoardPos = new Point(1, 1);
     // mScoreWindowPos = new Point(0, 1);
-    mMenuWindowPos = new Point(0, 0);
+    // mMenuWindowPos = new Point(0, 0);
 
-    mBoardWindow =
-        newwin(mBoardSize->y, mBoardSize->x, mBoardPos->y, mBoardPos->x);
+    // mBoardWindow =
+    //     newwin(mBoardSize->y, mBoardSize->x, mBoardPos->y, mBoardPos->x);
     // mScoreWindow = newwin(mScoreWindowSize->y, mScoreWindowSize->x,
     //                       mScoreWindowPos->y, mScoreWindowPos->x);
-    mMenuWindow = newwin(mMenuWindowSize->y, mMenuWindowSize->x,
-                         mMenuWindowPos->y, mMenuWindowPos->x);
+    // mMenuWindow = newwin(mMenuWindowSize->y, mMenuWindowSize->x,
+    //                      mMenuWindowPos->y, mMenuWindowPos->x);
 
     // mWinStack.push(mMenuWindow);
     // mWinStack.push(mBoardWindow);
-    mWindows["board"] = mBoardWindow;
-    mWindows["menu"] = mMenuWindow;
+    // mWindows["board"] = mBoardWindow;
+    // mWindows["menu"] = mMenuWindow;
 
     mIsRunning = true;
 }
@@ -30,24 +30,24 @@ Game::~Game() {
     //     delwin(mWinStack.top());
     //     mWinStack.pop();
     // }
-    delwin(mBoardWindow);
-    delwin(mMenuWindow);
+    // delwin(mBoardWindow);
+    // delwin(mMenuWindow);
 }
 
 // int Game::getStackSize() { return (int)mWinStack.size(); }
 
 // void Game::refreshTopWindow() { wrefresh(mWinStack.top()); }
-void Game::refreshWindow(std::string window) {
-    auto result = mWindows.find(window);
-    if (result != mWindows.end())
-        wrefresh(result->second);
-}
+// void Game::refreshWindow(std::string window) {
+//     auto result = mWindows.find(window);
+//     if (result != mWindows.end())
+//         wrefresh(result->second);
+// }
 
-WINDOW *Game::getWindow(std::string window) {
-    auto result = mWindows.find(window);
-    if (result != mWindows.end())
-        return result->second;
-}
+// WINDOW *Game::getWindow(std::string window) {
+//     auto result = mWindows.find(window);
+//     if (result != mWindows.end())
+//         return result->second;
+// }
 // void Game::pushWindow(WINDOW *win) { mWinStack.push(win); }
 
 // WINDOW *Game::popWindow() {

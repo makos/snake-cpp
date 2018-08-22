@@ -9,21 +9,13 @@
 #include <curses.h>
 
 int main(int argc, char *argv[]) {
+    int ch = '';
+
     Render render;
-    Game game;
-    WINDOW *board = game.getWindow("board");
-
-    box(board, 0, 0);
-
-    wattron(board, COLOR_PAIR(Color::Red));
-    mvwprintw(board, 1, 1, "board");
-    wattroff(board, COLOR_PAIR(Color::Red));
-
-    while (game.isRunning()) {
-
-        game.getInput();
-        werase(board);
-        mvwprintw(board, 1, 1, "board");
+    while (ch != 'q') {
+        render.print(3, 3, "Dupa szatana");
+        render.print(4, 3, "Tęcza szatana", Color::Green);
+        ch = render.getInput();
     }
 
     return 0;
