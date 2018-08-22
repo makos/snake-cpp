@@ -12,14 +12,14 @@ TESTDIR=./tests
 CFLAGS=-I$(IDIR) -Wall -std=c++17 
 
 # Header files here
-_DEPS=player.hpp point.hpp entity.hpp render.hpp game.hpp
+_DEPS=Entity.hpp Game.hpp Player.hpp PlayerPart.hpp Point.hpp Render.hpp State.hpp StateMenu.hpp StatePlaying.hpp
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
 # Object files here
-_OBJ=main.o player.o point.o render.o game.o
+_OBJ=main.o Entity.o Game.o Player.o PlayerPart.o Point.o Render.o StateMenu.o StatePlaying.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_TESTOBJ=test_Main.o test_Point.o test_Player.o player.o point.o
+_TESTOBJ=test_Main.o test_Point.o test_Player.o Player.o Point.o
 TESTOBJ=$(patsubst %,$(ODIR)/%,$(_TESTOBJ))
 
 # Required libraries here
