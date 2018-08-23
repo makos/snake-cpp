@@ -3,8 +3,8 @@
 Menu::Menu(Game &game) : mItems(), mGame(game) {}
 
 void Menu::addItem(const char text[], fpCallback cb) {
-    unsigned int temp_id = (unsigned int)mItems.size();
-    mItems.push_back(std::make_unique<MenuItem>(text, cb, temp_id));
+    mItems.push_back(
+        std::make_unique<MenuItem>(text, cb, (unsigned int)mItems.size()));
 }
 
 std::vector<std::unique_ptr<MenuItem>> &Menu::items() { return mItems; }
