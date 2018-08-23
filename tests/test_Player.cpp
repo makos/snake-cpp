@@ -1,5 +1,5 @@
 #include "Player/Player.hpp"
-#include "Player/Point.hpp"
+#include "Util/Point.hpp"
 #include "catch.hpp"
 
 TEST_CASE("Player.hpp tests", "[player]") {
