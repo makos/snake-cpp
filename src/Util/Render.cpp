@@ -5,8 +5,8 @@
  * add and remove windows for menus etc.
  *
  */
-#include "Render.hpp"
-#include "Point.hpp"
+#include "Util/Render.hpp"
+#include "Util/Point.hpp"
 
 Render::Render(int height, int width) : mGameboard(nullptr), drawBox(false) {
     // Initialize ncurses and set default behavior.

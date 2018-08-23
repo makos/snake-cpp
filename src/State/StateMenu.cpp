@@ -1,8 +1,8 @@
 #include "State/StateMenu.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
-#include "Render.hpp"
 #include "State/StatePlaying.hpp"
+#include "Util/Render.hpp"
 #include <curses.h>
 
 // New game button.

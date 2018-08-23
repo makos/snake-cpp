@@ -3,8 +3,8 @@
  */
 #pragma once
 #include "Entity.hpp"
-#include "PlayerPart.hpp"
-#include "Point.hpp"
+#include "Player/PlayerPart.hpp"
+#include "Util/Point.hpp"
 #include <vector>
 
 class Player : public IEntity {

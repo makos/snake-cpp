@@ -1,4 +1,4 @@
-#include "Player.hpp"
+#include "Player/Player.hpp"
 
 // Class player
 Player::Player() : mParts(), mPosition(0, 0), mFacing(0, -1), mChar('#') {}

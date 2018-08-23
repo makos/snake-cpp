@@ -3,8 +3,8 @@
  */
 #pragma once
 
-#include "Render.hpp"
 #include "State/State.hpp"
+#include "Util/Render.hpp"
 #include <memory>
 
 class Game {

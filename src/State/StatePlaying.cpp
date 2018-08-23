@@ -1,6 +1,6 @@
 #include "State/StatePlaying.hpp"
 #include "Game.hpp"
-#include "Render.hpp"
+#include "Util/Render.hpp"
 
 StatePlaying::StatePlaying(Game &game) : mGame(&game) {}
 

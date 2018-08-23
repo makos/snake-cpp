@@ -4,7 +4,7 @@
  * vector in the Player class.
  */
 #pragma once
-#include "Point.hpp"
+#include "Util/Point.hpp"
 
 class PlayerPart {
   public:
