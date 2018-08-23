@@ -1,5 +1,6 @@
 #include "State/StatePlaying.hpp"
 #include "Game.hpp"
+#include "State/StateMenu.hpp"
 #include "Util/Render.hpp"
 
 StatePlaying::StatePlaying(Game &game) : mGame(&game) {}
@@ -11,8 +12,8 @@ void StatePlaying::input() {
     ch = getch();
 
     switch (ch) {
-    case 'Q':
-        mGame->setRunning(false);
+    case 'q':
+        mGame->setState(std::make_unique<StateMenu>(*mGame));
         break;
     }
 }
