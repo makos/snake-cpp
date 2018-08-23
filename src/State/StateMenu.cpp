@@ -1,6 +1,5 @@
 #include "State/StateMenu.hpp"
 #include "Game.hpp"
-// #include "Menu.hpp"
 #include "Render.hpp"
 #include "State/StatePlaying.hpp"
 #include <curses.h>
@@ -8,18 +7,13 @@
 
 void Callback::newClicked(Game &game) {}
 
-void Callback::exitClicked(Game &game) {
-    game.setRunning(false);
-    std::cout << "callback::exitClicked" << std::endl;
-}
+void Callback::exitClicked(Game &game) { game.setRunning(false); }
 
 StateMenu::StateMenu(Game &game)
     : mGame(game), mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
     mMenu->addItem("* New *", Callback::newClicked);
     mMenu->addItem("* Exit *", Callback::exitClicked);
 }
-
-// StateMenu::~StateMenu() {}
 
 void StateMenu::update() {}
 
