@@ -1,6 +1,6 @@
-#include "Catch.hpp"
 #include "Player.hpp"
 #include "Point.hpp"
+#include "catch.hpp"
 
 TEST_CASE("Player.hpp tests", "[player]") {
     Player defaultPlayer;
