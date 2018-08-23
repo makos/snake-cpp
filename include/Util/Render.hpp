@@ -5,16 +5,14 @@
 #include <curses.h>
 #include <string>
 
-enum Color { Red = 1, Green, Yellow };
+enum Color { Black, Red, Green, Yellow, Blue, Magenta, Cyan, White };
 
 class Render {
   public:
-    Render(int height, int width);
+    Render();
     ~Render();
 
-    int kpad(bool state);
     int kpad(WINDOW *win, bool state);
-    void setBox(bool state);
 
     void print(WINDOW *win, int y, int x, std::string msg);
     void print(WINDOW *win, int y, int x, std::string msg, Color color);
@@ -23,12 +21,5 @@ class Render {
     void print(int y, int x, std::string msg, chtype attr);
     void print(WINDOW *win, int y, int x, std::string msg, chtype attr);
 
-    void update();
-    void clear();
-
-    int getKey();
-
   private:
-    WINDOW *mGameboard;
-    bool drawBox;
 };

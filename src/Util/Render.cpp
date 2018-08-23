@@ -1,7 +1,7 @@
 #include "Util/Render.hpp"
 #include "Util/Point.hpp"
 
-Render::Render(int height, int width) : mGameboard(nullptr), drawBox(false) {
+Render::Render() {
     // Initialize ncurses and set default behavior.
     initscr();
     cbreak();
@@ -10,22 +10,17 @@ Render::Render(int height, int width) : mGameboard(nullptr), drawBox(false) {
     curs_set(0);
 
     // Initialize color pairs
+    init_pair(Color::Black, COLOR_BLACK, COLOR_BLACK);
     init_pair(Color::Red, COLOR_RED, COLOR_BLACK);
     init_pair(Color::Green, COLOR_GREEN, COLOR_BLACK);
     init_pair(Color::Yellow, COLOR_YELLOW, COLOR_BLACK);
-
-    mGameboard = newwin(height, width, 0, 0);
+    init_pair(Color::Blue, COLOR_BLUE, COLOR_BLACK);
+    init_pair(Color::Magenta, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(Color::Cyan, COLOR_CYAN, COLOR_BLACK);
+    init_pair(Color::White, COLOR_WHITE, COLOR_BLACK);
 }
-
-int Render::kpad(bool state) { return keypad(stdscr, state); }
 
 int Render::kpad(WINDOW *win, bool state) { return keypad(win, state); }
-
-void Render::setBox(bool state) {
-    drawBox = state;
-    if (drawBox)
-        box(mGameboard, 0, 0);
-}
 
 // Stop ncurses to return to default terminal mode.
 Render::~Render() { endwin(); }
@@ -61,14 +56,3 @@ void Render::print(WINDOW *win, int y, int x, std::string msg, chtype attr) {
     mvwprintw(win, y, x, msg.c_str());
     wattroff(win, attr);
 }
-
-void Render::update() {
-    werase(mGameboard);
-    if (drawBox)
-        box(mGameboard, 0, 0);
-    wrefresh(mGameboard);
-}
-
-void Render::clear() { wclear(mGameboard); }
-
-int Render::getKey() { return wgetch(mGameboard); }
