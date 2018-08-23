@@ -23,5 +23,5 @@ class StateMenu : public State {
   private:
     Game &mGame;
     std::unique_ptr<Menu> mMenu;
-    int mItemSelected;
+    unsigned int mItemSelected;
 };

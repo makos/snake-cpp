@@ -10,6 +10,8 @@ Game::~Game() {}
 
 // Main loop
 void Game::run() {
+    mScreen.kpad(true);
+
     mCurrentState->render(mScreen);
 
     while (mIsRunning) {

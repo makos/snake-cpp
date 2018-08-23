@@ -28,8 +28,17 @@ void StateMenu::input() {
     case 'n':
         mGame.setState(std::make_unique<StatePlaying>(mGame));
         break;
-    case 'e':
-        mMenu->clickItem("* Exit *");
+    case KEY_UP:
+        mItemSelected =
+            (mItemSelected - 1) % (unsigned int)mMenu->items().size();
+        break;
+    case KEY_DOWN:
+        mItemSelected =
+            (mItemSelected + 1) % (unsigned int)mMenu->items().size();
+        break;
+    case '\n':
+    case '\r':
+        mMenu->clickItem(mItemSelected);
         break;
     }
 }
@@ -38,7 +47,10 @@ void StateMenu::render(Render &render) {
     erase();
     int i = 0;
     for (auto const &item : mMenu->items()) {
-        mvprintw(i, 1, item.first.c_str());
+        if (item->id() == mItemSelected)
+            attron(A_REVERSE);
+        mvprintw(i, 1, item->text().c_str());
+        attroff(A_REVERSE);
         i++;
     }
     refresh();

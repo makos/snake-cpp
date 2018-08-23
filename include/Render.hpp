@@ -10,6 +10,7 @@ class Render {
     ~Render();
 
     int kpad(bool state);
+    int kpad(WINDOW *win, bool state);
     void setBox(bool state);
 
     void print(WINDOW *win, int y, int x, std::string msg);

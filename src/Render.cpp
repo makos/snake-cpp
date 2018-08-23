@@ -24,7 +24,9 @@ Render::Render(int height, int width) : mGameboard(nullptr), drawBox(false) {
     mGameboard = newwin(height, width, 0, 0);
 }
 
-int Render::kpad(bool state) { return keypad(mGameboard, state); }
+int Render::kpad(bool state) { return keypad(stdscr, state); }
+
+int Render::kpad(WINDOW *win, bool state) { return keypad(win, state); }
 
 void Render::setBox(bool state) {
     drawBox = state;
