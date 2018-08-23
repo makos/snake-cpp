@@ -17,7 +17,7 @@ void exitClicked(Game &game);
 
 } // namespace Callback
 
-class StateMenu : public State {
+class StateMenu : public IState {
   public:
     StateMenu(Game &game);
 

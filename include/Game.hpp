@@ -19,12 +19,12 @@ class Game {
 
     Render &getScreen();
 
-    void setState(std::unique_ptr<State> state);
-    State &getState();
+    void setState(std::unique_ptr<IState> state);
+    IState &getState();
 
   private:
     Render mScreen;
     int mScore;
     bool mIsRunning;
-    std::unique_ptr<State> mCurrentState;
+    std::unique_ptr<IState> mCurrentState;
 };

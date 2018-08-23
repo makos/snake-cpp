@@ -34,8 +34,8 @@ void Game::setRunning(bool state) { mIsRunning = state; }
 
 Render &Game::getScreen() { return mScreen; }
 
-void Game::setState(std::unique_ptr<State> state) {
+void Game::setState(std::unique_ptr<IState> state) {
     mCurrentState = std::move(state);
 }
 
-State &Game::getState() { return *mCurrentState; }
+IState &Game::getState() { return *mCurrentState; }

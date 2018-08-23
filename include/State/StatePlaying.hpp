@@ -2,7 +2,7 @@
 #include "State.hpp"
 class Game;
 
-class StatePlaying : public State {
+class StatePlaying : public IState {
   public:
     StatePlaying(Game &game);
 

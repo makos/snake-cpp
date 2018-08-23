@@ -4,7 +4,7 @@
 #pragma once
 class Render;
 
-class State {
+class IState {
   public:
     virtual void input() = 0;
     virtual void update() = 0;
