@@ -53,10 +53,9 @@ void StateMenu::render(Render &render) {
     int i = 0;
     // This is really neat syntax, thanks C++ (no sarcasm!).
     for (auto const &item : mMenu->items()) {
-        if (item->id() == mItemSelected)
-            attron(A_REVERSE);
-        mvprintw(i, 1, item->text().c_str());
-        attroff(A_REVERSE);
+        item->id() == mItemSelected
+            ? render.print(i, 1, item->text(), A_REVERSE)
+            : render.print(i, 1, item->text());
         i++;
     }
     refresh();
