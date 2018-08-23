@@ -1,10 +1,3 @@
-/* render.cpp - "renderer" functionality wrapper for ncurses.
- *
- * It operates on a stack of windows, all methods like print(), update(),
- * clear() work only on the topmost window. Use pushWindow() and popWindow() to
- * add and remove windows for menus etc.
- *
- */
 #include "Util/Render.hpp"
 #include "Util/Point.hpp"
 
@@ -55,6 +48,18 @@ void Render::print(int y, int x, std::string msg, Color color) {
     attron(COLOR_PAIR(color));
     mvprintw(y, x, msg.c_str());
     attroff(COLOR_PAIR(color));
+}
+
+void Render::print(int y, int x, std::string msg, chtype attr) {
+    attron(attr);
+    mvprintw(y, x, msg.c_str());
+    attroff(attr);
+}
+
+void Render::print(WINDOW *win, int y, int x, std::string msg, chtype attr) {
+    wattron(win, attr);
+    mvwprintw(win, y, x, msg.c_str());
+    wattroff(win, attr);
 }
 
 void Render::update() {

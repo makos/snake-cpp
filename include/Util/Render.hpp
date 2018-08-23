@@ -20,6 +20,8 @@ class Render {
     void print(WINDOW *win, int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg);
     void print(int y, int x, std::string msg, Color color);
+    void print(int y, int x, std::string msg, chtype attr);
+    void print(WINDOW *win, int y, int x, std::string msg, chtype attr);
 
     void update();
     void clear();
