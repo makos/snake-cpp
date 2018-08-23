@@ -3,10 +3,14 @@ sudo: require
 notifications: 
   email: false
 
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-8
+
 before_install:
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update -q
-  - sudo apt-get install g++-8
   - export CC=/usr/bin/gcc-8
   - export CXX=/usr/bin/g++-8
 
@@ -18,4 +22,4 @@ script:
     - cmake .. && make
 
 after_success:
-    - ../bin/tests
+    - $TRAVIS_BUILD_DIR/build/bin/tests
