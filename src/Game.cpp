@@ -5,7 +5,7 @@
 // Default constructor, creates a 20 by 20 game board ncurses window. Defaults
 // to main menu state.
 Game::Game()
-    : mScreen(20, 20), mScore(0), mIsRunning(true),
+    : mScreen(), mScore(0), mIsRunning(true),
       mCurrentState(std::make_unique<StateMenu>(*this)) {}
 
 // I'm not sure it needs a destructor TBH.
@@ -13,7 +13,7 @@ Game::~Game() {}
 
 // Main loop.
 void Game::run() {
-    mScreen.kpad(true);
+    mScreen.kpad(stdscr, true);
 
     // Do an early first render pass to actually show the menu, otherwise it
     // would show a blank screen until user pressed some key.
