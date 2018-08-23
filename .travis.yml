@@ -1,28 +1,21 @@
 dist: trusty
 sudo: require
-
-matrix:
-  include:
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
-      env:
-        - MATRIX_EVAL="CC=/usr/bin/gcc-8 && CXX=/usr/bin/g++-8"
+notifications: 
+  email: false
 
 before_install:
-  - eval "${MATRIX_EVAL}"
-  - sudo apt-get install libncurses5
-  - sudo apt-get install libncurses5-dev
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -q
+  - sudo apt-get install g++-8
+  - export CC=/usr/bin/gcc-8
+  - export CXX=/usr/bin/g++-8
 
 language: cpp
 compiler: gcc
 
 script:
-    - gcc -v && g++ -v && cmake --version
-    - mkdir build
-    - cd build
+    - mkdir build && cd build
     - cmake .. && make
+
+after_success:
+    - ../bin/tests
