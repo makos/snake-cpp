@@ -1,3 +1,8 @@
+/*
+ * StateMenu.hpp - Main Menu state logic. Creates and manages a Menu class.
+ * Contains namespace Callback that holds callback functions to be used by
+ * MenuItems.
+ */
 #pragma once
 #include "Menu.hpp"
 #include "State.hpp"
@@ -16,9 +21,9 @@ class StateMenu : public State {
   public:
     StateMenu(Game &game);
 
-    void input() override;
-    void update() override;
-    void render(Render &render) override;
+    void input();
+    void update();
+    void render(Render &render);
 
   private:
     Game &mGame;

@@ -1,3 +1,6 @@
+/*
+ * Entity.hpp - interface class for dynamic game objects to inherit from.
+ */
 #pragma once
 
 class Point;

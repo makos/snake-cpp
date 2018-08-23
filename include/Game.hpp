@@ -1,4 +1,8 @@
+/*
+ * Game.hpp - high-level game logic handling. States and main loop.
+ */
 #pragma once
+
 #include "Render.hpp"
 #include "State/State.hpp"
 #include <memory>

@@ -6,9 +6,9 @@ class StatePlaying : public State {
   public:
     StatePlaying(Game &game);
 
-    void update() override;
-    void input() override;
-    void render(Render &render) override;
+    void update();
+    void input();
+    void render(Render &render);
 
   private:
     Game *mGame;

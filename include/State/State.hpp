@@ -1,3 +1,6 @@
+/*
+ * State.hpp - interface class for other states to inherit from.
+ */
 #pragma once
 class Render;
 

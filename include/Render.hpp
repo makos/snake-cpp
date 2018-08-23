@@ -1,3 +1,6 @@
+/*
+ * Render.hpp - wrapper over ncurses. Lots of work to do here still.
+ */
 #pragma once
 #include <curses.h>
 #include <string>

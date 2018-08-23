@@ -1,3 +1,7 @@
+/*
+ * MenuItem.hpp - class containing info about menu entries. The displayed text,
+ * their internal ID and callback function.
+ */
 #pragma once
 #include <string>
 class Game;

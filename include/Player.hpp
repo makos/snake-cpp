@@ -1,3 +1,6 @@
+/*
+ * Player.hpp - player class.
+ */
 #pragma once
 #include "Entity.hpp"
 #include "PlayerPart.hpp"
