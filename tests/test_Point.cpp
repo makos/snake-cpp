@@ -1,4 +1,4 @@
-#include "Point.hpp"
+#include "Util/Point.hpp"
 #include "catch.hpp"
 
 TEST_CASE("Point.hpp tests", "[point]") {

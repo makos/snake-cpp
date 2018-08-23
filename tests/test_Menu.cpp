@@ -1,5 +1,5 @@
-#include "Menu.hpp"
-#include "MenuItem.hpp"
+#include "Menu/Menu.hpp"
+#include "Menu/MenuItem.hpp"
 #include "catch.hpp"
 
 class Game {
