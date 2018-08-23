@@ -1,4 +1,4 @@
-#include "Util/Render.hpp"
+#include "Render/Render.hpp"
 #include "Util/Point.hpp"
 
 Render::Render() {
@@ -19,8 +19,6 @@ Render::Render() {
     init_pair(Color::Cyan, COLOR_CYAN, COLOR_BLACK);
     init_pair(Color::White, COLOR_WHITE, COLOR_BLACK);
 }
-
-int Render::kpad(WINDOW *win, bool state) { return keypad(win, state); }
 
 // Stop ncurses to return to default terminal mode.
 Render::~Render() { endwin(); }

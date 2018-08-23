@@ -12,8 +12,6 @@ class Render {
     Render();
     ~Render();
 
-    int kpad(WINDOW *win, bool state);
-
     void print(WINDOW *win, int y, int x, std::string msg);
     void print(WINDOW *win, int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg);

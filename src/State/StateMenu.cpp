@@ -2,7 +2,7 @@
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
 #include "State/StatePlaying.hpp"
-#include "Util/Render.hpp"
+#include "Render/Render.hpp"
 #include <curses.h>
 
 // New game button.

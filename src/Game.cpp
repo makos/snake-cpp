@@ -13,7 +13,8 @@ Game::~Game() {}
 
 // Main loop.
 void Game::run() {
-    mScreen.kpad(stdscr, true);
+    // mScreen.kpad(stdscr, true);
+    keypad(stdscr, TRUE);
 
     // Do an early first render pass to actually show the menu, otherwise it
     // would show a blank screen until user pressed some key.
