@@ -1,17 +1,18 @@
 #pragma once
-#include <memory>
+// #include <memory>
 #include <string>
-class StateMenu;
+// class StateMenu;
 class Game;
 
 // using fpCallback = void (StateMenu::*)();
-typedef void (StateMenu::*fpCallback)(Game &);
+// typedef void (StateMenu::*fpCallback)(Game &);
+using fpCallback = void (*)(Game &);
 
 class MenuItem {
   public:
     MenuItem(const char text[], fpCallback cb);
 
-    void click();
+    void click(Game &game);
 
   private:
     std::string mText;

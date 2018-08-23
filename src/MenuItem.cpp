@@ -3,4 +3,4 @@
 MenuItem::MenuItem(const char text[], fpCallback cb)
     : mText(std::string(text)), mCallback(cb) {}
 
-void MenuItem::click() { mCallback(); }
+void MenuItem::click(Game &game) { mCallback(game); }

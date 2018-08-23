@@ -1,16 +1,25 @@
 #include "State/StateMenu.hpp"
 #include "Game.hpp"
-#include "Menu.hpp"
+// #include "Menu.hpp"
 #include "Render.hpp"
 #include "State/StatePlaying.hpp"
 #include <curses.h>
+#include <iostream>
+
+void Callback::newClicked(Game &game) {}
+
+void Callback::exitClicked(Game &game) {
+    game.setRunning(false);
+    std::cout << "callback::exitClicked" << std::endl;
+}
 
 StateMenu::StateMenu(Game &game)
-    : mGame(std::make_unique<Game>(game)),
-      mMenu(std::make_unique<Menu>(Menu())) {
-    mMenu->addItem("* New *", newClicked);
-    mMenu->addItem("* Exit *", exitClicked);
+    : mGame(game), mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
+    mMenu->addItem("* New *", Callback::newClicked);
+    mMenu->addItem("* Exit *", Callback::exitClicked);
 }
+
+// StateMenu::~StateMenu() {}
 
 void StateMenu::update() {}
 
@@ -20,10 +29,13 @@ void StateMenu::input() {
 
     switch (ch) {
     case 'Q':
-        mGame->setRunning(false);
+        mGame.setRunning(false);
         break;
     case 'n':
-        mGame->setState(std::make_unique<StatePlaying>(StatePlaying(*mGame)));
+        mGame.setState(std::make_unique<StatePlaying>(mGame));
+        break;
+    case 'e':
+        mMenu->clickItem("* Exit *");
         break;
     }
 }
@@ -37,7 +49,3 @@ void StateMenu::render(Render &render) {
     }
     refresh();
 }
-
-void StateMenu::newClicked() {}
-
-void StateMenu::exitClicked() { mGame->setRunning(false); }

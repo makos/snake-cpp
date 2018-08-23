@@ -1,19 +1,22 @@
 #pragma once
 #include "MenuItem.hpp"
-#include "Point.hpp"
+#include <iostream>
 #include <map>
+#include <memory>
 #include <string>
-// #include <vector>
+class Game;
 
 class Menu {
   public:
-    Menu();
+    Menu(Game &game);
     // ~Menu();
 
     void addItem(const char text[], fpCallback cb);
-    std::map<std::string, MenuItem> &items();
+    std::map<std::string, std::unique_ptr<MenuItem>> &items();
+    void clickItem(const char text[]);
 
   private:
     // std::vector<MenuItem> mItems;
-    std::map<std::string, MenuItem> mItems;
+    std::map<std::string, std::unique_ptr<MenuItem>> mItems;
+    Game &mGame;
 };

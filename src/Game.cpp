@@ -4,7 +4,7 @@
 
 Game::Game()
     : mScreen(20, 20), mScore(0), mIsRunning(true),
-      mCurrentState(std::make_unique<StateMenu>(StateMenu(*this))) {}
+      mCurrentState(std::make_unique<StateMenu>(*this)) {}
 
 Game::~Game() {}
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "Menu.hpp"
 #include "State.hpp"
 #include <memory>
 class Game;
@@ -14,7 +15,7 @@ void exitClicked(Game &game);
 class StateMenu : public State {
   public:
     StateMenu(Game &game);
-    ~StateMenu();
+    // ~StateMenu();
 
     void input() override;
     void update() override;
@@ -23,7 +24,9 @@ class StateMenu : public State {
   private:
     // Game *mGame;
     // Menu *mMenu;
-    std::unique_ptr<Game> mGame;
+    // std::shared_ptr<Game> mGame;
+    Game &mGame;
+    // Menu &mMenu;
     std::unique_ptr<Menu> mMenu;
     int mItemSelected;
 };
