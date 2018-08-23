@@ -1,4 +1,4 @@
-#include "Menu.hpp"
+#include "Menu/Menu.hpp"
 
 Menu::Menu(Game &game) : mItems(), mGame(game) {}
 

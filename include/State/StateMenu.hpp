@@ -4,7 +4,7 @@
  * MenuItems.
  */
 #pragma once
-#include "Menu.hpp"
+#include "Menu/Menu.hpp"
 #include "State.hpp"
 #include <memory>
 class Game;

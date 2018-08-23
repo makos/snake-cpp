@@ -1,4 +1,4 @@
-#include "MenuItem.hpp"
+#include "Menu/MenuItem.hpp"
 
 MenuItem::MenuItem(const char text[], fpCallback cb, unsigned int id)
     : mText(std::string(text)), mCallback(cb), mId(id) {}
