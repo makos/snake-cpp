@@ -5,10 +5,11 @@
  */
 #pragma once
 #include "Menu/Menu.hpp"
+#include "Render/Window.hpp"
 #include "State.hpp"
 #include <memory>
 class Game;
-class Menu;
+// class Menu;
 
 namespace Callback {
 
@@ -27,6 +28,7 @@ class StateMenu : public IState {
 
   private:
     Game &mGame;
+    std::unique_ptr<Window> mWindow;
     std::unique_ptr<Menu> mMenu;
     unsigned int mItemSelected;
 };

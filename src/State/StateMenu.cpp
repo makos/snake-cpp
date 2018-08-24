@@ -1,8 +1,8 @@
 #include "State/StateMenu.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
-#include "State/StatePlaying.hpp"
 #include "Render/Render.hpp"
+#include "State/StatePlaying.hpp"
 #include <curses.h>
 
 // New game button.
@@ -15,9 +15,12 @@ void Callback::exitClicked(Game &game) { game.setRunning(false); }
 
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
-    : mGame(game), mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
-    mMenu->addItem("* New *", Callback::newClicked);
+    : mGame(game),
+      mWindow(std::make_unique<Window>(5, 10, LINES / 2, (COLS - 5) / 2)),
+      mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
+    mMenu->addItem("* New  *", Callback::newClicked);
     mMenu->addItem("* Exit *", Callback::exitClicked);
+    mWindow->setBox(true);
 }
 
 // Not really anything to update in a static menu.
@@ -49,14 +52,16 @@ void StateMenu::input() {
 }
 
 void StateMenu::render(Render &render) {
-    erase();
-    int i = 0;
+    // erase();
+    mWindow->erase();
+    int i = 1;
     // This is really neat syntax, thanks C++ (no sarcasm!).
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? render.print(i, 1, item->text(), A_REVERSE)
-            : render.print(i, 1, item->text());
-        i++;
+            ? render.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
+            : render.print(mWindow->get(), i, 1, item->text());
+        i += 2;
     }
-    refresh();
+    mWindow->refresh();
+    // refresh();
 }

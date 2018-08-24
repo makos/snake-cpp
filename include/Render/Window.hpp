@@ -9,7 +9,7 @@ class Window {
 
     WINDOW *get();
 
-    int setBox();
+    void setBox(bool state);
     int refresh();
     int erase();
     int clear();
@@ -18,4 +18,5 @@ class Window {
   private:
     // WINDOW *mWindow;
     std::unique_ptr<WINDOW> mWindow;
+    bool mBox;
 };
