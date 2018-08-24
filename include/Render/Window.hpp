@@ -5,14 +5,15 @@
 class Window {
   public:
     Window(int height, int width, int posy, int posx);
-    ~Window();
+    // ~Window();
 
     WINDOW *get();
 
     int setBox();
-    int refreshWin();
-    int eraseWin();
-    int clearWin();
+    int refresh();
+    int erase();
+    int clear();
+    int getKey();
 
   private:
     // WINDOW *mWindow;
