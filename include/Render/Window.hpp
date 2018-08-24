@@ -9,7 +9,12 @@ class Window {
 
     WINDOW *get();
 
+    int setBox();
+    int refreshWin();
+    int eraseWin();
+    int clearWin();
+
   private:
-    WINDOW *mWindow;
-    // std::unique_ptr<WINDOW> mWindow;
+    // WINDOW *mWindow;
+    std::unique_ptr<WINDOW> mWindow;
 };
