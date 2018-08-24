@@ -3,7 +3,8 @@
 #include <typeinfo>
 
 TEST_CASE("Window.hpp tests", "[window]") {
-    initscr();
+    // Following call doesn't refresh the screen, while initscr() does.
+    newterm(NULL, stdout, stdin);
     Window testWin(5, 5, 0, 0);
 
     SECTION("General capabilities test") {
