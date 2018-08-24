@@ -6,11 +6,11 @@
 #include "Render/Render.hpp"
 #include "State/State.hpp"
 #include <memory>
+#include <stack>
 
 class Game {
   public:
     Game();
-    ~Game();
 
     void run();
 
@@ -19,12 +19,19 @@ class Game {
 
     Render &getScreen();
 
-    void setState(std::unique_ptr<IState> state);
+    // void setState(std::unique_ptr<IState> state);
+    void pushState(std::unique_ptr<IState> state);
+    void popState();
     IState &getState();
+
+  private:
+    void pop();
 
   private:
     Render mScreen;
     int mScore;
     bool mIsRunning;
-    std::unique_ptr<IState> mCurrentState;
+    bool mShouldPop;
+    // std::unique_ptr<IState> mCurrentState;
+    std::stack<std::unique_ptr<IState>> mStateStack;
 };
