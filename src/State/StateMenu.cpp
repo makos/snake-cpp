@@ -7,7 +7,8 @@
 
 // New game button.
 void Callback::newClicked(Game &game) {
-    game.setState(std::make_unique<StatePlaying>(game));
+    // game.setState(std::make_unique<StatePlaying>(game));
+    game.pushState(std::make_unique<StatePlaying>(game));
 }
 
 // Exit button.
