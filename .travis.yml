@@ -3,20 +3,36 @@ sudo: require
 notifications: 
   email: false
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-8
+matrix:
+  include:
+    - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-8
+    env:
+      - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-6.0
+        packages:
+        - clang-6.0
+    env:
+      - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
 
 before_install:
-  - export CC=/usr/bin/gcc-8
-  - export CXX=/usr/bin/g++-8
+  - eval "${MATRIX_EVAL}"
   - $CC --version && $CXX --version
 
 language: cpp
-compiler: gcc
+compiler: 
+  - gcc
+  - clang
 
 script:
     - mkdir build && cd build
