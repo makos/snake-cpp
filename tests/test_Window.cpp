@@ -9,7 +9,6 @@ TEST_CASE("Window.hpp tests", "[window]") {
 
     SECTION("General capabilities test") {
         // REQUIRE(typeid(testWin.get()) == typeid(WINDOW *));
-        REQUIRE(testWin.setBox() == OK);
         REQUIRE(testWin.clear() == OK);
         REQUIRE(testWin.erase() == OK);
         REQUIRE(testWin.refresh() == OK);
