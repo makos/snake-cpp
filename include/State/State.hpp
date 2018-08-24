@@ -6,6 +6,7 @@ class Render;
 
 class IState {
   public:
+    virtual ~IState() = default;
     virtual void input() = 0;
     virtual void update() = 0;
     virtual void render(Render &render) = 0;
