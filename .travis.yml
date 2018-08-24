@@ -3,6 +3,11 @@ sudo: require
 notifications: 
   email: false
 
+language: cpp
+compiler: 
+  - gcc
+  - clang
+
 matrix:
   include:
     - os: linux
@@ -28,11 +33,6 @@ matrix:
 before_install:
   - eval "${MATRIX_EVAL}"
   - $CC --version && $CXX --version
-
-language: cpp
-compiler: 
-  - gcc
-  - clang
 
 script:
     - mkdir build && cd build
