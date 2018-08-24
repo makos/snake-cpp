@@ -8,10 +8,15 @@ TEST_CASE("Window.hpp tests", "[window]") {
     Window testWin(5, 5, 0, 0);
 
     SECTION("General capabilities test") {
-        REQUIRE(typeid(testWin.get()) == typeid(WINDOW *));
+        // REQUIRE(typeid(testWin.get()) == typeid(WINDOW *));
         REQUIRE(testWin.setBox() == OK);
-        REQUIRE(testWin.clearWin() == OK);
-        REQUIRE(testWin.eraseWin() == OK);
-        REQUIRE(testWin.refreshWin() == OK);
+        REQUIRE(testWin.clear() == OK);
+        REQUIRE(testWin.erase() == OK);
+        REQUIRE(testWin.refresh() == OK);
+    }
+
+    SECTION("Input test") {
+        ungetch('a');
+        REQUIRE(testWin.getKey() == 'a');
     }
 }
