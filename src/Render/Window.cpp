@@ -12,9 +12,9 @@ void Window::setBox(bool state) { mBox = state; }
 
 int Window::setDelay(bool state) {
     if (state)
-        return nodelay(mWindow.get(), TRUE);
-    else
         return nodelay(mWindow.get(), FALSE);
+    else
+        return nodelay(mWindow.get(), TRUE);
 }
 
 int Window::setKeypad(bool state) {
