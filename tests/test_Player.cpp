@@ -25,7 +25,7 @@ TEST_CASE("Player.hpp tests", "[player]") {
         }
 
         SECTION("Default constructor: facing()") {
-            Point temp(0, -1);
+            Point temp(1, 0);
             REQUIRE(defaultPlayer.facing() == temp);
         }
     }
@@ -41,7 +41,7 @@ TEST_CASE("Player.hpp tests", "[player]") {
         }
 
         SECTION("(y, x) constructor: facing()") {
-            Point temp(0, -1);
+            Point temp(1, 0);
             REQUIRE(testPlayer.facing() == temp);
         }
     }
