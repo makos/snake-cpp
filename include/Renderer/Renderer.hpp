@@ -24,6 +24,7 @@ class Renderer {
 
     void clearAll();
     void eraseAll();
+    void refreshAll();
 
     void setDelay(bool state);
 };

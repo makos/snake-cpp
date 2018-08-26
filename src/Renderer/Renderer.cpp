@@ -62,6 +62,8 @@ void Renderer::clearAll() { clear(); }
 
 void Renderer::eraseAll() { erase(); }
 
+void Renderer::refreshAll() { refresh(); }
+
 void Renderer::setDelay(bool state) {
     if (state)
         nodelay(stdscr, FALSE);
