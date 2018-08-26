@@ -39,7 +39,7 @@ bool Game::isRunning() { return mIsRunning; }
 
 void Game::setRunning(bool state) { mIsRunning = state; }
 
-Render &Game::renderer() { return mRenderer; }
+Renderer &Game::renderer() { return mRenderer; }
 
 // Pop all states from the stack except the first one (Main Menu).
 void Game::clearStates() {

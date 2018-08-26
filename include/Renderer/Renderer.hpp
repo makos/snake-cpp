@@ -1,5 +1,5 @@
 /*
- * Render.hpp - wrapper over ncurses. Lots of work to do here still.
+ * Renderer.hpp - wrapper over ncurses. Lots of work to do here still.
  */
 #pragma once
 #include <curses.h>
@@ -7,10 +7,10 @@
 
 enum Color { Black, Red, Green, Yellow, Blue, Magenta, Cyan, White };
 
-class Render {
+class Renderer {
   public:
-    Render();
-    ~Render();
+    Renderer();
+    ~Renderer();
 
     void sleep(int ms);
 

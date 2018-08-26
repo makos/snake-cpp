@@ -1,4 +1,4 @@
-#include "Render/Window.hpp"
+#include "Renderer/Window.hpp"
 
 Window::Window(int height, int width, int posy, int posx)
     : mWindow(std::unique_ptr<WINDOW>(newwin(height, width, posy, posx))),

@@ -1,7 +1,7 @@
 #include "State/StatePlaying.hpp"
 #include "Game.hpp"
 #include "Player/Player.hpp"
-#include "Render/Render.hpp"
+// #include "Renderer/Renderer.hpp"
 #include "State/StatePause.hpp"
 // #include "State/StateMenu.hpp"
 
@@ -29,7 +29,7 @@ void StatePlaying::input() {
     }
 }
 
-void StatePlaying::render(Render &render) {
+void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
 
     mGameWindow->refresh();

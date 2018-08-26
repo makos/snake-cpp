@@ -38,13 +38,13 @@ void StatePause::input() {
     }
 }
 
-void StatePause::render(Render &render) {
+void StatePause::render(Renderer &renderer) {
     mWindow->erase();
     int i = 1;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? render.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
-            : render.print(mWindow->get(), i, 1, item->text());
+            ? renderer.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
+            : renderer.print(mWindow->get(), i, 1, item->text());
         i += 2;
     }
     mWindow->refresh();

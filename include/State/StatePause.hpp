@@ -1,6 +1,6 @@
 #pragma once
 #include "Menu/Menu.hpp"
-#include "Render/Window.hpp"
+#include "Renderer/Window.hpp"
 #include "State.hpp"
 #include <memory>
 class Game;
@@ -11,7 +11,7 @@ class StatePause : public IState {
 
     void update();
     void input();
-    void render(Render &render);
+    void render(Renderer &renderer);
 
   private:
     Game &mGame;

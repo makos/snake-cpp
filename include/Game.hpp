@@ -3,7 +3,7 @@
  */
 #pragma once
 
-#include "Render/Render.hpp"
+#include "Renderer/Renderer.hpp"
 #include "State/State.hpp"
 #include <memory>
 #include <stack>
@@ -17,7 +17,7 @@ class Game {
     bool isRunning();
     void setRunning(bool state);
 
-    Render &renderer();
+    Renderer &renderer();
 
     void clearStates();
     void pushState(std::unique_ptr<IState> state);
@@ -28,7 +28,7 @@ class Game {
     void pop();
 
   private:
-    Render mRenderer;
+    Renderer mRenderer;
     int mScore;
     bool mIsRunning;
     bool mShouldPop;

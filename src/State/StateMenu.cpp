@@ -1,9 +1,9 @@
 #include "State/StateMenu.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
-#include "Render/Render.hpp"
-#include "State/StatePlaying.hpp"
+#include "Renderer/Renderer.hpp"
 #include "State/Callback.hpp"
+#include "State/StatePlaying.hpp"
 #include <curses.h>
 
 // New game button.
@@ -53,14 +53,14 @@ void StateMenu::input() {
     }
 }
 
-void StateMenu::render(Render &render) {
+void StateMenu::render(Renderer &renderer) {
     mWindow->erase();
     int i = 1;
     // This is really neat syntax, thanks C++ (no sarcasm!).
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? render.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
-            : render.print(mWindow->get(), i, 1, item->text());
+            ? renderer.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
+            : renderer.print(mWindow->get(), i, 1, item->text());
         i += 2;
     }
     mWindow->refresh();
