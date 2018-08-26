@@ -31,7 +31,7 @@ void Game::run() {
         currentState().update();
 
         if (mShouldPop) {
-            mRenderer.clearAll();
+            // mRenderer.clearAll();
             pop();
         }
     }
@@ -45,7 +45,7 @@ Renderer &Game::renderer() { return mRenderer; }
 
 // Pop all states from the stack except the first one (Main Menu).
 void Game::clearStates() {
-    mRenderer.clearAll();
+    // mRenderer.clearAll();
     while (mStateStack.size() > 1) {
         mStateStack.pop();
     }
