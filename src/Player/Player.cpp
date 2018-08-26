@@ -10,7 +10,7 @@ Player::Player(const Point &pos)
     : mParts(), mPosition(pos), mFacing(0, -1), mChar('#') {}
 
 // TODO:
-void Player::move(const Point &dir) {}
+void Player::move(const Point &dir) { mPosition += dir; }
 
 Point &Player::getPosition() { return mPosition; }
 
