@@ -6,6 +6,8 @@ namespace Callback {
 
 void newClicked(Game &game) {
     game.clearStates();
+    game.renderer().clearAll();
+    game.renderer().refreshAll();
     game.pushState(std::make_unique<StatePlaying>(game));
 }
 
