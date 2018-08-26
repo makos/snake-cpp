@@ -10,6 +10,7 @@ class Window {
     WINDOW *get();
 
     void setBox(bool state);
+    int setKeypad(bool state);
     int refresh();
     int erase();
     int clear();

@@ -10,6 +10,13 @@ WINDOW *Window::get() { return mWindow.get(); }
 
 void Window::setBox(bool state) { mBox = state; }
 
+int Window::setKeypad(bool state) {
+    if (state)
+        return keypad(mWindow.get(), TRUE);
+    else
+        return keypad(mWindow.get(), FALSE);
+}
+
 int Window::refresh() {
     if (mBox)
         box(mWindow.get(), 0, 0);
