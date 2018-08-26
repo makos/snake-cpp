@@ -6,32 +6,19 @@
 Game::Game()
     : mRenderer(), mScore(0), mIsRunning(true), mShouldPop(false),
       mStateStack() {}
-//   mCurrentState(std::make_unique<StateMenu>(*this)) {}
 
 // Main loop.
 void Game::run() {
     mStateStack.push(std::make_unique<StateMenu>(*this));
-    // mScreen.kpad(stdscr, true);
-    // TODO: move this to Window
-    // keypad(stdscr, true);
-
-    // Do an early first render pass to actually show the menu, otherwise it
-    // would show a blank screen until user pressed some key.
-    // currentState().render(mRenderer);
-    // mCurrentState->render(mScreen);
 
     while (mIsRunning) {
-        // mCurrentState->render(mScreen);
         currentState().render(mRenderer);
 
-        // mCurrentState->input();
         currentState().input();
 
-        // mCurrentState->update();
         currentState().update();
 
         if (mShouldPop) {
-            // mRenderer.clearAll();
             pop();
         }
     }
@@ -45,7 +32,6 @@ Renderer &Game::renderer() { return mRenderer; }
 
 // Pop all states from the stack except the first one (Main Menu).
 void Game::clearStates() {
-    // mRenderer.clearAll();
     while (mStateStack.size() > 1) {
         mStateStack.pop();
     }
