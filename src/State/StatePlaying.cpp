@@ -13,9 +13,8 @@ void StatePlaying::input() {
 
     switch (ch) {
     case 'q':
-        // mGame->setState(std::make_unique<StateMenu>(*mGame));
-        // mGame->pushState(std::make_unique<StateMenu>(*mGame));
-        mGame->popState();
+        // mGame->popState();
+        mGame->pushState(std::make_unique<StatePause>(mGame));
         break;
     }
 }
