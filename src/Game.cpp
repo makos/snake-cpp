@@ -41,9 +41,12 @@ void Game::setRunning(bool state) { mIsRunning = state; }
 
 Render &Game::getScreen() { return mScreen; }
 
-// void Game::setState(std::unique_ptr<IState> state) {
-//     mCurrentState = std::move(state);
-// }
+// Pop all states from the stack except the first one (Main Menu).
+void Game::clearStates() {
+    while (mStateStack.size() > 1) {
+        mStateStack.pop();
+    }
+}
 
 void Game::pushState(std::unique_ptr<IState> state) {
     mStateStack.push(std::move(state));

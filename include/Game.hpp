@@ -19,7 +19,7 @@ class Game {
 
     Render &getScreen();
 
-    // void setState(std::unique_ptr<IState> state);
+    void clearStates();
     void pushState(std::unique_ptr<IState> state);
     void popState();
     IState &currentState();
@@ -32,6 +32,5 @@ class Game {
     int mScore;
     bool mIsRunning;
     bool mShouldPop;
-    // std::unique_ptr<IState> mCurrentState;
     std::stack<std::unique_ptr<IState>> mStateStack;
 };
