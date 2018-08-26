@@ -15,6 +15,7 @@ StatePause::StatePause(Game &game)
 
 StatePause::~StatePause() {
     mGame.renderer().clearAll();
+    mGame.renderer().refreshAll();
     mWindow->clear();
 }
 
