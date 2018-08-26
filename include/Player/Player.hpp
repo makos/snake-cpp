@@ -20,6 +20,7 @@ class Player : public IEntity {
     void setChar(char ch);
 
     Point &facing();
+    void face(const Point &dir);
 
   private:
     std::vector<PlayerPart> mParts;
