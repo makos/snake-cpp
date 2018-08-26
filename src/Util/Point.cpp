@@ -31,7 +31,16 @@ Point &Point::operator-=(const Point &other) {
 }
 
 bool Point::operator==(const Point &other) const {
-    return (other.y == this->y && other.x == this->x);
+    if (other.y == this->y && other.x == this->x)
+        return true;
+    else
+        return false;
+    // return (other.y == this->y && other.x == this->x);
+}
+
+std::ostream &operator<<(std::ostream &out, const Point &point) {
+    out << "(" << point.y << "," << point.x << ")";
+    return out;
 }
 
 bool Point::operator!=(const Point &other) const { return !(*this == other); }
