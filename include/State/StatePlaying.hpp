@@ -11,5 +11,5 @@ class StatePlaying : public IState {
     void render(Render &render);
 
   private:
-    Game *mGame;
+    Game &mGame;
 };
