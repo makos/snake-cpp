@@ -1,5 +1,6 @@
 #include "State/StatePlaying.hpp"
 #include "Game.hpp"
+#include <string>
 // #include "Player/Player.hpp"
 // #include "Renderer/Renderer.hpp"
 #include "State/StatePause.hpp"
@@ -17,10 +18,14 @@ StatePlaying::StatePlaying(Game &game)
 
 StatePlaying::~StatePlaying() {
     mGame.renderer().clearAll();
+    mGame.renderer().refreshAll();
     mGameWindow->clear();
 }
 
-void StatePlaying::update() { mGame.renderer().sleep(150); }
+void StatePlaying::update() {
+    mPlayer.move(Point(1, 1));
+    mGame.renderer().sleep(150);
+}
 
 void StatePlaying::input() {
     int ch;
@@ -37,6 +42,8 @@ void StatePlaying::input() {
 
 void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
+    renderer.print(*mGameWindow, mPlayer.getPosition().y,
+                   mPlayer.getPosition().x, std::string(1, mPlayer.getChar()));
     renderer.print(*mGameWindow, 2, 1, "Test");
     mGameWindow->refresh();
 }
