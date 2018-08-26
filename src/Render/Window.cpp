@@ -10,6 +10,13 @@ WINDOW *Window::get() { return mWindow.get(); }
 
 void Window::setBox(bool state) { mBox = state; }
 
+int Window::setDelay(bool state) {
+    if (state)
+        return nodelay(mWindow.get(), TRUE);
+    else
+        return nodelay(mWindow.get(), FALSE);
+}
+
 int Window::setKeypad(bool state) {
     if (state)
         return keypad(mWindow.get(), TRUE);
