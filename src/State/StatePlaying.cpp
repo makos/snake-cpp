@@ -9,7 +9,7 @@
 StatePlaying::StatePlaying(Game &game)
     : mGame(game),
       mGameWindow(std::make_unique<Window>(16, 16, 0, (COLS - 8) / 2)),
-      mPlayer() {
+      mPlayer(2, 2) {
     mGameWindow->setBox(true);
     mGameWindow->setKeypad(true);
     mGameWindow->clear();
@@ -23,7 +23,7 @@ StatePlaying::~StatePlaying() {
 }
 
 void StatePlaying::update() {
-    mPlayer.move(Point(1, 1));
+    mPlayer.move(mPlayer.facing());
     mGame.renderer().sleep(150);
 }
 
@@ -37,6 +37,18 @@ void StatePlaying::input() {
         // mGame->popState();
         mGame.pushState(std::make_unique<StatePause>(mGame));
         break;
+    case KEY_UP:
+        mPlayer.face(Point(-1, 0));
+        break;
+    case KEY_RIGHT:
+        mPlayer.face(Point(0, 1));
+        break;
+    case KEY_DOWN:
+        mPlayer.face(Point(1, 0));
+        break;
+    case KEY_LEFT:
+        mPlayer.face(Point(0, -1));
+        break;
     }
 }
 
@@ -44,6 +56,5 @@ void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
     renderer.print(*mGameWindow, mPlayer.getPosition().y,
                    mPlayer.getPosition().x, std::string(1, mPlayer.getChar()));
-    renderer.print(*mGameWindow, 2, 1, "Test");
     mGameWindow->refresh();
 }
