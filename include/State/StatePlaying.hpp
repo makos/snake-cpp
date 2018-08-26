@@ -1,4 +1,5 @@
 #pragma once
+#include "Player/Player.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
 #include <memory>
