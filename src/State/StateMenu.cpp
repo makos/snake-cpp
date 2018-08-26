@@ -3,15 +3,16 @@
 #include "Menu/Menu.hpp"
 #include "Render/Render.hpp"
 #include "State/StatePlaying.hpp"
+#include "State/Callback.hpp"
 #include <curses.h>
 
 // New game button.
-void Callback::newClicked(Game &game) {
-    game.pushState(std::make_unique<StatePlaying>(game));
-}
+// void Callback::newClicked(Game &game) {
+//     game.pushState(std::make_unique<StatePlaying>(game));
+// }
 
-// Exit button.
-void Callback::exitClicked(Game &game) { game.setRunning(false); }
+// // Exit button.
+// void Callback::exitClicked(Game &game) { game.setRunning(false); }
 
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)

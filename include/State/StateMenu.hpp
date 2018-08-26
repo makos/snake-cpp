@@ -11,13 +11,6 @@
 class Game;
 // class Menu;
 
-namespace Callback {
-
-void newClicked(Game &game);
-void exitClicked(Game &game);
-
-} // namespace Callback
-
 class StateMenu : public IState {
   public:
     StateMenu(Game &game);
