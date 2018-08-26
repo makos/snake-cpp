@@ -15,6 +15,13 @@ Requirements:
 * GCC version >5.0, Clang version >4.0 (those are tested, just make sure it supports C++17)
 * ncurses library on your system (or [PDCurses](https://pdcurses.sourceforge.io/) on Windows)
 
+````
+git clone https://github.com/makos/snake-cpp
+cd snake-cpp
+mkdir build && cd build
+cmake .. && make snake
+````
+
 ## License
 
 Licensed under GPL v3. See [LICENSE](LICENSE) for details.
