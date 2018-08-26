@@ -17,7 +17,7 @@ void Game::run() {
 
     // Do an early first render pass to actually show the menu, otherwise it
     // would show a blank screen until user pressed some key.
-    currentState().render(mRenderer);
+    // currentState().render(mRenderer);
     // mCurrentState->render(mScreen);
 
     while (mIsRunning) {
@@ -30,8 +30,10 @@ void Game::run() {
         // mCurrentState->update();
         currentState().update();
 
-        if (mShouldPop)
+        if (mShouldPop) {
+            mRenderer.clearAll();
             pop();
+        }
     }
 }
 
@@ -43,6 +45,7 @@ Renderer &Game::renderer() { return mRenderer; }
 
 // Pop all states from the stack except the first one (Main Menu).
 void Game::clearStates() {
+    mRenderer.clearAll();
     while (mStateStack.size() > 1) {
         mStateStack.pop();
     }
