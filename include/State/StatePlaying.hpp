@@ -7,6 +7,7 @@ class Game;
 class StatePlaying : public IState {
   public:
     StatePlaying(Game &game);
+    ~StatePlaying();
 
     void update();
     void input();
@@ -15,4 +16,5 @@ class StatePlaying : public IState {
   private:
     Game &mGame;
     std::unique_ptr<Window> mGameWindow;
+    Player mPlayer;
 };
