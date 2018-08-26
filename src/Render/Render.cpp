@@ -54,3 +54,5 @@ void Render::print(WINDOW *win, int y, int x, std::string msg, chtype attr) {
     mvwprintw(win, y, x, msg.c_str());
     wattroff(win, attr);
 }
+
+void Render::sleep(int ms) { napms(ms); }
