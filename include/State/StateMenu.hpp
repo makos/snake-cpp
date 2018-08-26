@@ -14,6 +14,7 @@ class Game;
 class StateMenu : public IState {
   public:
     StateMenu(Game &game);
+    ~StateMenu();
 
     void input();
     void update();

@@ -23,7 +23,10 @@ StateMenu::StateMenu(Game &game)
     mMenu->addItem("* Exit *", Callback::exitClicked);
     mWindow->setBox(true);
     mWindow->setKeypad(true);
+    mWindow->setDelay(false);
 }
+
+StateMenu::~StateMenu() { mWindow->clear(); }
 
 // Not really anything to update in a static menu.
 void StateMenu::update() {}
@@ -59,8 +62,8 @@ void StateMenu::render(Renderer &renderer) {
     // This is really neat syntax, thanks C++ (no sarcasm!).
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? renderer.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
-            : renderer.print(mWindow->get(), i, 1, item->text());
+            ? renderer.print(*mWindow, i, 1, item->text(), A_REVERSE)
+            : renderer.print(*mWindow, i, 1, item->text());
         i += 2;
     }
     mWindow->refresh();

@@ -13,6 +13,11 @@ StatePause::StatePause(Game &game)
     mWindow->setBox(true);
 }
 
+StatePause::~StatePause() {
+    mGame.renderer().clearAll();
+    mWindow->clear();
+}
+
 void StatePause::update() {}
 
 void StatePause::input() {
@@ -43,8 +48,8 @@ void StatePause::render(Renderer &renderer) {
     int i = 1;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? renderer.print(mWindow->get(), i, 1, item->text(), A_REVERSE)
-            : renderer.print(mWindow->get(), i, 1, item->text());
+            ? renderer.print(*mWindow, i, 1, item->text(), A_REVERSE)
+            : renderer.print(*mWindow, i, 1, item->text());
         i += 2;
     }
     mWindow->refresh();
