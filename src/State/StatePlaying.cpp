@@ -1,12 +1,21 @@
 #include "State/StatePlaying.hpp"
 #include "Game.hpp"
+#include "Player/Player.hpp"
 #include "Render/Render.hpp"
 #include "State/StatePause.hpp"
 // #include "State/StateMenu.hpp"
 
-StatePlaying::StatePlaying(Game &game) : mGame(game) {}
+StatePlaying::StatePlaying(Game &game)
+    : mGame(game),
+      mGameWindow(std::make_unique<Window>(16, 16, 0, (COLS - 8) / 2)) {
+    mGameWindow->setBox(true);
+    mGameWindow->setKeypad(true);
+    mGameWindow->clear();
+    mGameWindow->setDelay(false);
+    Player player;
+}
 
-void StatePlaying::update() {}
+void StatePlaying::update() { mGame.renderer().sleep(150); }
 
 void StatePlaying::input() {
     int ch;
@@ -21,7 +30,7 @@ void StatePlaying::input() {
 }
 
 void StatePlaying::render(Render &render) {
-    erase();
-    render.print(5, 5, "Game wooo", Color::Yellow);
-    refresh();
+    mGameWindow->erase();
+
+    mGameWindow->refresh();
 }

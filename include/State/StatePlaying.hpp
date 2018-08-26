@@ -12,4 +12,5 @@ class StatePlaying : public IState {
 
   private:
     Game &mGame;
+    std::unique_ptr<Window> mGameWindow;
 };
