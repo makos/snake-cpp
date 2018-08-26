@@ -17,7 +17,7 @@
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
-      mWindow(std::make_unique<Window>(5, 10, LINES / 2, (COLS - 5) / 2)),
+      mWindow(std::make_unique<Window>(5, 10, (LINES - 3) / 2, (COLS - 5) / 2)),
       mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
     mMenu->addItem("* New  *", Callback::newClicked);
     mMenu->addItem("* Exit *", Callback::exitClicked);

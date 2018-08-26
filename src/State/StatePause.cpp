@@ -4,7 +4,7 @@
 
 StatePause::StatePause(Game &game)
     : mGame(game),
-      mWindow(std::make_unique<Window>(8, 14, LINES / 2, (COLS - 7) / 2)),
+      mWindow(std::make_unique<Window>(8, 14, (LINES - 4) / 2, (COLS - 7) / 2)),
       mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
     mMenu->addItem("* Continue *", Callback::continueClicked);
     mMenu->addItem("* New *", Callback::newClicked);
