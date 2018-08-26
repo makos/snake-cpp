@@ -10,6 +10,8 @@ class Point {
     Point(int y, int x);
     Point operator+(const Point &other);
     Point &operator+=(const Point &other);
+    Point operator-(const Point &other);
+    Point &operator-=(const Point &other);
     bool operator==(const Point &other) const;
     bool operator!=(const Point &other) const;
 

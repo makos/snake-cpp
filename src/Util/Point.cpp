@@ -17,6 +17,19 @@ Point &Point::operator+=(const Point &other) {
     return *this;
 }
 
+Point Point::operator-(const Point &other) {
+    Point tmp(*this);
+    tmp.y -= other.y;
+    tmp.x -= other.x;
+    return tmp;
+}
+
+Point &Point::operator-=(const Point &other) {
+    this->y -= other.y;
+    this->x -= other.x;
+    return *this;
+}
+
 bool Point::operator==(const Point &other) const {
     return (other.y == this->y && other.x == this->x);
 }

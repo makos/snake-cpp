@@ -28,6 +28,18 @@ TEST_CASE("Point.hpp tests", "[point]") {
         REQUIRE(testPoint == cmp);
     }
 
+    SECTION("Substraction") {
+        Point cmp(1, 0);
+        Point tmp = otherPoint - testPoint;
+        REQUIRE(tmp == cmp);
+    }
+
+    SECTION("Substraction in place") {
+        Point cmp(1, 0);
+        otherPoint -= testPoint;
+        REQUIRE(otherPoint == cmp);
+    }
+
     SECTION("Testing default constructor") {
         REQUIRE(defaultPoint.y == 0);
         REQUIRE(defaultPoint.x == 0);
