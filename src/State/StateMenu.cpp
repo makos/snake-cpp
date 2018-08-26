@@ -7,7 +7,6 @@
 
 // New game button.
 void Callback::newClicked(Game &game) {
-    // game.setState(std::make_unique<StatePlaying>(game));
     game.pushState(std::make_unique<StatePlaying>(game));
 }
 
@@ -22,6 +21,7 @@ StateMenu::StateMenu(Game &game)
     mMenu->addItem("* New  *", Callback::newClicked);
     mMenu->addItem("* Exit *", Callback::exitClicked);
     mWindow->setBox(true);
+    mWindow->setKeypad(true);
 }
 
 // Not really anything to update in a static menu.
@@ -29,7 +29,7 @@ void StateMenu::update() {}
 
 void StateMenu::input() {
     int ch;
-    ch = getch();
+    ch = mWindow->getKey();
 
     switch (ch) {
     case 'Q':
@@ -53,7 +53,6 @@ void StateMenu::input() {
 }
 
 void StateMenu::render(Render &render) {
-    // erase();
     mWindow->erase();
     int i = 1;
     // This is really neat syntax, thanks C++ (no sarcasm!).
@@ -64,5 +63,4 @@ void StateMenu::render(Render &render) {
         i += 2;
     }
     mWindow->refresh();
-    // refresh();
 }
