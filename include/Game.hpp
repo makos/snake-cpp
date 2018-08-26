@@ -22,7 +22,7 @@ class Game {
     // void setState(std::unique_ptr<IState> state);
     void pushState(std::unique_ptr<IState> state);
     void popState();
-    IState &getState();
+    IState &currentState();
 
   private:
     void pop();
