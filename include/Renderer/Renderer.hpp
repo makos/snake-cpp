@@ -4,6 +4,7 @@
 #pragma once
 #include <curses.h>
 #include <string>
+class Window;
 
 enum Color { Black, Red, Green, Yellow, Blue, Magenta, Cyan, White };
 
@@ -14,12 +15,15 @@ class Renderer {
 
     void sleep(int ms);
 
-    void print(WINDOW *win, int y, int x, std::string msg);
-    void print(WINDOW *win, int y, int x, std::string msg, Color color);
+    void print(Window &win, int y, int x, std::string msg);
+    void print(Window &win, int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg);
     void print(int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg, chtype attr);
-    void print(WINDOW *win, int y, int x, std::string msg, chtype attr);
+    void print(Window &win, int y, int x, std::string msg, chtype attr);
 
-  private:
+    void clearAll();
+    void eraseAll();
+
+    void setDelay(bool state);
 };

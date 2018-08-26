@@ -1,4 +1,5 @@
 #include "Renderer/Renderer.hpp"
+#include "Renderer/Window.hpp"
 #include "Util/Point.hpp"
 
 Renderer::Renderer() {
@@ -23,14 +24,14 @@ Renderer::Renderer() {
 // Stop ncurses to return to default terminal mode.
 Renderer::~Renderer() { endwin(); }
 
-void Renderer::print(WINDOW *win, int y, int x, std::string msg) {
-    mvwprintw(win, y, x, msg.c_str());
+void Renderer::print(Window &win, int y, int x, std::string msg) {
+    mvwprintw(win.get(), y, x, msg.c_str());
 }
 
-void Renderer::print(WINDOW *win, int y, int x, std::string msg, Color color) {
-    wattron(win, COLOR_PAIR(color));
-    mvwprintw(win, y, x, msg.c_str());
-    wattron(win, COLOR_PAIR(color));
+void Renderer::print(Window &win, int y, int x, std::string msg, Color color) {
+    wattron(win.get(), COLOR_PAIR(color));
+    mvwprintw(win.get(), y, x, msg.c_str());
+    wattron(win.get(), COLOR_PAIR(color));
 }
 
 void Renderer::print(int y, int x, std::string msg) {
@@ -49,10 +50,21 @@ void Renderer::print(int y, int x, std::string msg, chtype attr) {
     attroff(attr);
 }
 
-void Renderer::print(WINDOW *win, int y, int x, std::string msg, chtype attr) {
-    wattron(win, attr);
-    mvwprintw(win, y, x, msg.c_str());
-    wattroff(win, attr);
+void Renderer::print(Window &win, int y, int x, std::string msg, chtype attr) {
+    wattron(win.get(), attr);
+    mvwprintw(win.get(), y, x, msg.c_str());
+    wattroff(win.get(), attr);
 }
 
 void Renderer::sleep(int ms) { napms(ms); }
+
+void Renderer::clearAll() { clear(); }
+
+void Renderer::eraseAll() { erase(); }
+
+void Renderer::setDelay(bool state) {
+    if (state)
+        nodelay(stdscr, FALSE);
+    else
+        nodelay(stdscr, TRUE);
+}
