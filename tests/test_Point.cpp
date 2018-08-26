@@ -16,6 +16,18 @@ TEST_CASE("Point.hpp tests", "[point]") {
         REQUIRE(testPoint != otherPoint);
     }
 
+    SECTION("Testing addition") {
+        Point cmp(3, 6);
+        Point tmp = testPoint + otherPoint;
+        REQUIRE(tmp == cmp);
+    }
+
+    SECTION("Testing addition in place") {
+        Point cmp(3, 6);
+        testPoint += otherPoint;
+        REQUIRE(testPoint == cmp);
+    }
+
     SECTION("Testing default constructor") {
         REQUIRE(defaultPoint.y == 0);
         REQUIRE(defaultPoint.x == 0);
