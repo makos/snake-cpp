@@ -4,8 +4,8 @@
 
 // Default constructor. Starts in main menu state.
 Game::Game()
-    : mScreen(), mScore(0), mIsRunning(true), mShouldPop(false), mStateStack() {
-}
+    : mRenderer(), mScore(0), mIsRunning(true), mShouldPop(false),
+      mStateStack() {}
 //   mCurrentState(std::make_unique<StateMenu>(*this)) {}
 
 // Main loop.
@@ -17,12 +17,12 @@ void Game::run() {
 
     // Do an early first render pass to actually show the menu, otherwise it
     // would show a blank screen until user pressed some key.
-    currentState().render(mScreen);
+    currentState().render(mRenderer);
     // mCurrentState->render(mScreen);
 
     while (mIsRunning) {
         // mCurrentState->render(mScreen);
-        currentState().render(mScreen);
+        currentState().render(mRenderer);
 
         // mCurrentState->input();
         currentState().input();
@@ -39,7 +39,7 @@ bool Game::isRunning() { return mIsRunning; }
 
 void Game::setRunning(bool state) { mIsRunning = state; }
 
-Render &Game::getScreen() { return mScreen; }
+Render &Game::renderer() { return mRenderer; }
 
 // Pop all states from the stack except the first one (Main Menu).
 void Game::clearStates() {

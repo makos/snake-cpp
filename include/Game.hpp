@@ -17,7 +17,7 @@ class Game {
     bool isRunning();
     void setRunning(bool state);
 
-    Render &getScreen();
+    Render &renderer();
 
     void clearStates();
     void pushState(std::unique_ptr<IState> state);
@@ -28,7 +28,7 @@ class Game {
     void pop();
 
   private:
-    Render mScreen;
+    Render mRenderer;
     int mScore;
     bool mIsRunning;
     bool mShouldPop;
