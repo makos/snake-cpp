@@ -12,13 +12,6 @@ TEST_CASE("Player.hpp tests", "[player]") {
         SECTION("getPosition()") {
             REQUIRE(defaultPlayer.getPosition() == Point(0, 0));
         }
-
-        SECTION("getChar()") { REQUIRE(defaultPlayer.getChar() == '#'); }
-    }
-
-    SECTION("setChar()") {
-        defaultPlayer.setChar('@');
-        REQUIRE(defaultPlayer.getChar() == '@');
     }
 
     SECTION("facing()") { REQUIRE(defaultPlayer.facing() == Point(1, 0)); }
