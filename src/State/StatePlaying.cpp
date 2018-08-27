@@ -4,20 +4,23 @@
 #include <string>
 
 StatePlaying::StatePlaying(Game &game)
-    : mGame(game), mGameWindow(std::make_unique<Window>(
+    : mGame(game), mWindow(std::make_unique<Window>(
                        game.getBoardSize().y, game.getBoardSize().x, 1,
                        (COLS - (game.getBoardSize().x / 2)) / 2)),
+      mScoreWindow(
+          std::make_unique<Window>(1, game.getBoardSize().x, 0,
+                                   (COLS - (game.getBoardSize().x / 2)) / 2)),
       mPlayer(2, 2), mApple(std::make_unique<Apple>(game)) {
-    mGameWindow->setBox(true);
-    mGameWindow->setKeypad(true);
-    mGameWindow->clear();
-    mGameWindow->setDelay(false);
+    mWindow->setBox(true);
+    mWindow->setKeypad(true);
+    mWindow->clear();
+    mWindow->setDelay(false);
 }
 
 StatePlaying::~StatePlaying() {
     mGame.renderer().clearAll();
     mGame.renderer().refreshAll();
-    mGameWindow->clear();
+    mWindow->clear();
 }
 
 void StatePlaying::update() {
@@ -35,7 +38,7 @@ void StatePlaying::update() {
 
 void StatePlaying::input() {
     int ch;
-    ch = mGameWindow->getKey();
+    ch = mWindow->getKey();
 
     switch (ch) {
     case 'q':
@@ -57,29 +60,33 @@ void StatePlaying::input() {
 }
 
 void StatePlaying::render(Renderer &renderer) {
-    mGameWindow->erase();
+    mWindow->erase();
+    mScoreWindow->erase();
 
-    mGameWindow->print(mApple->getPosition().y, mApple->getPosition().x,
-                       std::string(1, mApple->getChar()), Color::Red);
+    mScoreWindow->print(0, 1, "Score: " + std::to_string(mGame.getScore()));
+
+    mWindow->print(mApple->getPosition(), std::string(1, mApple->getChar()),
+                   Color::Red);
 
     // Color the head yellow and rest of the body green.
     for (auto &part : mPlayer.parts()) {
         if (part.getPosition() == mPlayer.parts().begin()->getPosition()) {
-            mGameWindow->print(part.getPosition().y, part.getPosition().x,
-                               std::string(1, part.getChar()), Color::Yellow);
+            mWindow->print(part.getPosition(), std::string(1, part.getChar()),
+                           Color::Yellow);
         } else {
-            mGameWindow->print(part.getPosition().y, part.getPosition().x,
-                               std::string(1, part.getChar()), Color::Green);
+            mWindow->print(part.getPosition(), std::string(1, part.getChar()),
+                           Color::Green);
         }
     }
 
-    mGameWindow->refresh();
+    mScoreWindow->refresh();
+    mWindow->refresh();
 }
 
 bool StatePlaying::canMove() {
     Point tmp(mPlayer.getPosition() + mPlayer.facing());
 
     // Magic - 1 because of the border that counts to the window size.
-    return (tmp.y > 0 && tmp.y < mGameWindow->size().y - 1 && tmp.x > 0 &&
-            tmp.x < mGameWindow->size().x - 1);
+    return (tmp.y > 0 && tmp.y < mWindow->size().y - 1 && tmp.x > 0 &&
+            tmp.x < mWindow->size().x - 1);
 }

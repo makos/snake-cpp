@@ -23,7 +23,8 @@ class StatePlaying : public IState {
 
   private:
     Game &mGame;
-    std::unique_ptr<Window> mGameWindow;
+    std::unique_ptr<Window> mWindow;
+    std::unique_ptr<Window> mScoreWindow;
     Player mPlayer;
     std::unique_ptr<Apple> mApple;
 };
