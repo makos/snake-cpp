@@ -6,6 +6,22 @@ Window::Window(int height, int width, int posy, int posx)
 
 WINDOW *Window::get() { return mWindow.get(); }
 
+void Window::print(int y, int x, std::string msg) {
+    mvwprintw(mWindow.get(), y, x, msg.c_str());
+}
+
+void Window::print(int y, int x, std::string msg, Color color) {
+    wattron(mWindow.get(), COLOR_PAIR(color));
+    mvwprintw(mWindow.get(), y, x, msg.c_str());
+    wattroff(mWindow.get(), COLOR_PAIR(color));
+}
+
+void Window::print(int y, int x, std::string msg, chtype attr) {
+    wattron(mWindow.get(), attr);
+    mvwprintw(mWindow.get(), y, x, msg.c_str());
+    wattroff(mWindow.get(), attr);
+}
+
 void Window::setBox(bool state) { mBox = state; }
 
 int Window::setDelay(bool state) {

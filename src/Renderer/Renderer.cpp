@@ -24,16 +24,6 @@ Renderer::Renderer() {
 // Stop ncurses to return to default terminal mode.
 Renderer::~Renderer() { endwin(); }
 
-void Renderer::print(Window &win, int y, int x, std::string msg) {
-    mvwprintw(win.get(), y, x, msg.c_str());
-}
-
-void Renderer::print(Window &win, int y, int x, std::string msg, Color color) {
-    wattron(win.get(), COLOR_PAIR(color));
-    mvwprintw(win.get(), y, x, msg.c_str());
-    wattron(win.get(), COLOR_PAIR(color));
-}
-
 void Renderer::print(int y, int x, std::string msg) {
     mvprintw(y, x, msg.c_str());
 }
@@ -48,12 +38,6 @@ void Renderer::print(int y, int x, std::string msg, chtype attr) {
     attron(attr);
     mvprintw(y, x, msg.c_str());
     attroff(attr);
-}
-
-void Renderer::print(Window &win, int y, int x, std::string msg, chtype attr) {
-    wattron(win.get(), attr);
-    mvwprintw(win.get(), y, x, msg.c_str());
-    wattroff(win.get(), attr);
 }
 
 void Renderer::sleep(int ms) { napms(ms); }

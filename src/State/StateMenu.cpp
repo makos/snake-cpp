@@ -53,8 +53,8 @@ void StateMenu::render(Renderer &renderer) {
     int i = 1;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? renderer.print(*mWindow, i, 1, item->text(), A_REVERSE)
-            : renderer.print(*mWindow, i, 1, item->text());
+            ? mWindow->print(i, 1, item->text(), A_REVERSE)
+            : mWindow->print(i, 1, item->text());
         i += 2;
     }
     mWindow->refresh();

@@ -49,7 +49,7 @@ void StatePlaying::input() {
 
 void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
-    renderer.print(*mGameWindow, mPlayer.getPosition().y,
-                   mPlayer.getPosition().x, std::string(1, mPlayer.getChar()));
+    mGameWindow->print(mPlayer.getPosition().y, mPlayer.getPosition().x,
+                       std::string(1, mPlayer.getChar()));
     mGameWindow->refresh();
 }
