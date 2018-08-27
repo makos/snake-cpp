@@ -4,8 +4,10 @@
 
 // Default constructor. Starts in main menu state.
 Game::Game()
-    : mRenderer(), mScore(0), mIsRunning(true), mShouldPop(false),
-      mStateStack() {}
+    : mRenderer(), mBoardSize(16, 30), mScore(0), mIsRunning(true),
+      mShouldPop(false), mStateStack(), mRng() {
+    mRng.seed(std::random_device()());
+}
 
 // Main loop.
 void Game::run() {
@@ -52,3 +54,11 @@ void Game::pop() {
 }
 
 IState &Game::currentState() { return *mStateStack.top(); }
+
+std::minstd_rand &Game::rng() { return mRng; }
+
+Point Game::getBoardSize() { return mBoardSize; }
+
+void Game::addScore(int n) { mScore += n; }
+
+int Game::getScore() { return mScore; }

@@ -4,8 +4,9 @@
 #include <string>
 
 StatePlaying::StatePlaying(Game &game)
-    : mGame(game),
-      mGameWindow(std::make_unique<Window>(16, 16, 0, (COLS - 8) / 2)),
+    : mGame(game), mGameWindow(std::make_unique<Window>(
+                       game.getBoardSize().y, game.getBoardSize().x, 1,
+                       (COLS - (game.getBoardSize().x / 2)) / 2)),
       mPlayer(2, 2), mApple(std::make_unique<Apple>(game)) {
     mGameWindow->setBox(true);
     mGameWindow->setKeypad(true);
@@ -22,6 +23,13 @@ StatePlaying::~StatePlaying() {
 void StatePlaying::update() {
     if (canMove())
         mPlayer.move();
+
+    if (mPlayer.getPosition() == mApple->getPosition()) {
+        mGame.addScore(1);
+        mPlayer.pushPart();
+        mApple = std::make_unique<Apple>(mGame);
+    }
+
     mGame.renderer().sleep(150);
 }
 
@@ -45,10 +53,6 @@ void StatePlaying::input() {
     case KEY_LEFT:
         mPlayer.face(Point(0, -1));
         break;
-    // DEBUG
-    case 'a':
-        mPlayer.pushPart();
-        break;
     }
 }
 
@@ -68,9 +72,6 @@ void StatePlaying::render(Renderer &renderer) {
                                std::string(1, part.getChar()), Color::Green);
         }
     }
-
-    mGameWindow->print(1, 1, std::to_string(mApple->getPosition().y));
-    mGameWindow->print(1, 4, std::to_string(mApple->getPosition().x));
 
     mGameWindow->refresh();
 }

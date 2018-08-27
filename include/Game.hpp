@@ -5,7 +5,9 @@
 
 #include "Renderer/Renderer.hpp"
 #include "State/State.hpp"
+#include "Util/Point.hpp"
 #include <memory>
+#include <random>
 #include <stack>
 
 class Game {
@@ -18,19 +20,26 @@ class Game {
     void setRunning(bool state);
 
     Renderer &renderer();
+    Point getBoardSize();
 
     void clearStates();
     void pushState(std::unique_ptr<IState> state);
     void popState();
     IState &currentState();
+    std::minstd_rand &rng();
+
+    void addScore(int n);
+    int getScore();
 
   private:
     void pop();
 
   private:
     Renderer mRenderer;
+    Point mBoardSize;
     int mScore;
     bool mIsRunning;
     bool mShouldPop;
     std::stack<std::unique_ptr<IState>> mStateStack;
+    std::minstd_rand mRng;
 };
