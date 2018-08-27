@@ -21,7 +21,7 @@ StatePlaying::~StatePlaying() {
 
 void StatePlaying::update() {
     if (canMove())
-        mPlayer.move(mPlayer.facing());
+        mPlayer.move();
     mGame.renderer().sleep(150);
 }
 
@@ -45,13 +45,20 @@ void StatePlaying::input() {
     case KEY_LEFT:
         mPlayer.face(Point(0, -1));
         break;
+    case 'a':
+        mPlayer.pushPart();
+        break;
     }
 }
 
 void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
-    mGameWindow->print(mPlayer.getPosition().y, mPlayer.getPosition().x,
-                       std::string(1, mPlayer.getChar()));
+
+    for (auto &part : mPlayer.parts()) {
+        mGameWindow->print(part.getPosition().y, part.getPosition().x,
+                           std::string(1, part.getChar()));
+    }
+
     mGameWindow->refresh();
 }
 
