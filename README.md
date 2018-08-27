@@ -12,7 +12,7 @@ This project started out as a simple rewrite to iteratively learn C++, but now I
 
 Requirements:
 * CMake version >3.0
-* GCC version >5.0, Clang version >4.0 (those are tested, just make sure it supports C++17)
+* GCC version >5.0, Clang version >4.0 (those are [tested](https://travis-ci.org/makos/snake-cpp), just make sure it supports C++17)
 * ncurses library on your system (or [PDCurses](https://pdcurses.sourceforge.io/) on Windows)
 
 ````
@@ -21,6 +21,8 @@ cd snake-cpp
 mkdir build && cd build
 cmake .. && make snake
 ````
+
+Tested locally on Windows 10 with MinGW-w64 toolchain (g++) and with Travis on Linux with g++ and clang.
 
 ## License
 
