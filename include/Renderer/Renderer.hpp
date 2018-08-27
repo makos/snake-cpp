@@ -4,6 +4,7 @@
  * stdscr which is ncurses' pointer to the whole available screen area.
  */
 #pragma once
+#include "Util/Point.hpp"
 #include <curses.h>
 #include <string>
 class Window;
@@ -20,6 +21,10 @@ class Renderer {
     void print(int y, int x, std::string msg);
     void print(int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg, chtype attr);
+
+    void print(Point pos, std::string msg);
+    void print(Point pos, std::string msg, Color color);
+    void print(Point pos, std::string msg, chtype attr);
 
     void clearAll();
     void eraseAll();

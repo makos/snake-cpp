@@ -22,6 +22,22 @@ void Window::print(int y, int x, std::string msg, chtype attr) {
     wattroff(mWindow.get(), attr);
 }
 
+void Window::print(Point pos, std::string msg) {
+    mvwprintw(mWindow.get(), pos.y, pos.x, msg.c_str());
+}
+
+void Window::print(Point pos, std::string msg, Color color) {
+    wattron(mWindow.get(), COLOR_PAIR(color));
+    mvwprintw(mWindow.get(), pos.y, pos.x, msg.c_str());
+    wattroff(mWindow.get(), COLOR_PAIR(color));
+}
+
+void Window::print(Point pos, std::string msg, chtype attr) {
+    wattron(mWindow.get(), attr);
+    mvwprintw(mWindow.get(), pos.y, pos.x, msg.c_str());
+    wattroff(mWindow.get(), attr);
+}
+
 void Window::setBox(bool state) { mBox = state; }
 
 int Window::setDelay(bool state) {

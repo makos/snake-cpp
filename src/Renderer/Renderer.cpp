@@ -1,6 +1,5 @@
 #include "Renderer/Renderer.hpp"
 #include "Renderer/Window.hpp"
-#include "Util/Point.hpp"
 
 Renderer::Renderer() {
     // Initialize ncurses and set default behavior.
@@ -37,6 +36,22 @@ void Renderer::print(int y, int x, std::string msg, Color color) {
 void Renderer::print(int y, int x, std::string msg, chtype attr) {
     attron(attr);
     mvprintw(y, x, msg.c_str());
+    attroff(attr);
+}
+
+void Renderer::print(Point pos, std::string msg) {
+    mvprintw(pos.y, pos.x, msg.c_str());
+}
+
+void Renderer::print(Point pos, std::string msg, Color color) {
+    attron(COLOR_PAIR(color));
+    mvprintw(pos.y, pos.x, msg.c_str());
+    attroff(COLOR_PAIR(color));
+}
+
+void Renderer::print(Point pos, std::string msg, chtype attr) {
+    attron(attr);
+    mvprintw(pos.y, pos.x, msg.c_str());
     attroff(attr);
 }
 

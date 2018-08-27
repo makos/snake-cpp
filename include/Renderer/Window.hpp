@@ -19,6 +19,9 @@ class Window {
     void print(int y, int x, std::string msg);
     void print(int y, int x, std::string msg, Color color);
     void print(int y, int x, std::string msg, chtype attr);
+    void print(Point pos, std::string msg);
+    void print(Point pos, std::string msg, Color color);
+    void print(Point pos, std::string msg, chtype attr);
 
     void setBox(bool state);
     int setDelay(bool state);
