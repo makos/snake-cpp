@@ -55,6 +55,7 @@ void StatePlaying::input() {
 void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
 
+    // Color the head yellow and rest of the body green.
     for (auto &part : mPlayer.parts()) {
         if (part.getPosition() == mPlayer.parts().begin()->getPosition()) {
             mGameWindow->print(part.getPosition().y, part.getPosition().x,
