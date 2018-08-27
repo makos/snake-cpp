@@ -8,6 +8,5 @@ class Point;
 class IEntity {
   public:
     virtual ~IEntity() = default;
-    virtual void move(const Point &dir) = 0;
     virtual Point &getPosition() = 0;
 };
