@@ -9,9 +9,13 @@
 class PlayerPart {
   public:
     PlayerPart(const Point &pos);
+    PlayerPart(int y, int x);
 
     Point &getPosition();
 
+    char getChar();
+
   private:
     Point mPosition;
+    char mChar;
 };
