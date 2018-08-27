@@ -6,7 +6,7 @@
 StatePlaying::StatePlaying(Game &game)
     : mGame(game),
       mGameWindow(std::make_unique<Window>(16, 16, 0, (COLS - 8) / 2)),
-      mPlayer(2, 2) {
+      mPlayer(2, 2), mApple(std::make_unique<Apple>(game)) {
     mGameWindow->setBox(true);
     mGameWindow->setKeypad(true);
     mGameWindow->clear();
@@ -55,6 +55,9 @@ void StatePlaying::input() {
 void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
 
+    mGameWindow->print(mApple->getPosition().y, mApple->getPosition().x,
+                       std::string(1, mApple->getChar()), Color::Red);
+
     // Color the head yellow and rest of the body green.
     for (auto &part : mPlayer.parts()) {
         if (part.getPosition() == mPlayer.parts().begin()->getPosition()) {
@@ -65,6 +68,9 @@ void StatePlaying::render(Renderer &renderer) {
                                std::string(1, part.getChar()), Color::Green);
         }
     }
+
+    mGameWindow->print(1, 1, std::to_string(mApple->getPosition().y));
+    mGameWindow->print(1, 4, std::to_string(mApple->getPosition().x));
 
     mGameWindow->refresh();
 }

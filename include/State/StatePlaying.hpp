@@ -3,6 +3,7 @@
  * movement, scoring etc. happen here.
  */
 #pragma once
+#include "Entities/Apple.hpp"
 #include "Entities/Player.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
@@ -24,4 +25,5 @@ class StatePlaying : public IState {
     Game &mGame;
     std::unique_ptr<Window> mGameWindow;
     Player mPlayer;
+    std::unique_ptr<Apple> mApple;
 };
