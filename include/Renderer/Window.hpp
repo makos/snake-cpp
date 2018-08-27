@@ -1,5 +1,7 @@
 /*
- * Window.hpp - high level wrapper over ncurses' WINDOW struct.
+ * Window.hpp - high level wrapper over ncurses' WINDOW struct, providing
+ * encapsulation of WINDOW related methods (in plain ncurses usually denoted
+ * by w- prefix).
  */
 #pragma once
 #include "Renderer.hpp"
