@@ -45,6 +45,7 @@ void StatePlaying::input() {
     case KEY_LEFT:
         mPlayer.face(Point(0, -1));
         break;
+    // DEBUG
     case 'a':
         mPlayer.pushPart();
         break;
@@ -55,8 +56,13 @@ void StatePlaying::render(Renderer &renderer) {
     mGameWindow->erase();
 
     for (auto &part : mPlayer.parts()) {
-        mGameWindow->print(part.getPosition().y, part.getPosition().x,
-                           std::string(1, part.getChar()));
+        if (part.getPosition() == mPlayer.parts().begin()->getPosition()) {
+            mGameWindow->print(part.getPosition().y, part.getPosition().x,
+                               std::string(1, part.getChar()), Color::Yellow);
+        } else {
+            mGameWindow->print(part.getPosition().y, part.getPosition().x,
+                               std::string(1, part.getChar()), Color::Green);
+        }
     }
 
     mGameWindow->refresh();
