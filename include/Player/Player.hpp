@@ -13,18 +13,18 @@ class Player : public IEntity {
     Player(int y, int x);
     Player(const Point &pos);
 
-    void move(const Point &dir);
+    void move();
     Point &getPosition();
-
-    char getChar();
-    void setChar(char ch);
 
     Point &facing();
     void face(const Point &dir);
+
+    std::vector<PlayerPart> &parts();
+    void pushPart();
+    void insertPart();
 
   private:
     std::vector<PlayerPart> mParts;
     Point mPosition;
     Point mFacing;
-    char mChar;
 };
