@@ -7,14 +7,14 @@ TEST_CASE("Window.hpp tests", "[window]") {
     newterm(NULL, stdout, stdin);
     Window testWin(5, 5, 0, 0);
 
-    SECTION("General capabilities test") {
-        // REQUIRE(typeid(testWin.get()) == typeid(WINDOW *));
-        REQUIRE(testWin.clear() == OK);
-        REQUIRE(testWin.erase() == OK);
-        REQUIRE(testWin.refresh() == OK);
+    SECTION("get() return value") {
+        REQUIRE(typeid(testWin.get()).name() == typeid(WINDOW *).name());
     }
+    SECTION("clear()") { REQUIRE(testWin.clear() == OK); }
+    SECTION("erase()") { REQUIRE(testWin.erase() == OK); }
+    SECTION("refresh()") { REQUIRE(testWin.refresh() == OK); }
 
-    SECTION("Input test") {
+    SECTION("getKey()") {
         ungetch('a');
         REQUIRE(testWin.getKey() == 'a');
     }

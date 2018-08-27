@@ -6,50 +6,37 @@ TEST_CASE("Player.hpp tests", "[player]") {
     Player defaultPlayer;
     Player testPlayer(10, 20);
 
-    Point testPoint(30, 40);
-    Player pointPlayer(testPoint);
+    Player pointPlayer(Point(30, 40));
 
-    SECTION("Testing default constructor") {
-        SECTION("Default constructor: getPosition()") {
-            REQUIRE(defaultPlayer.getPosition().y == 0);
-            REQUIRE(defaultPlayer.getPosition().x == 0);
+    SECTION("default constructor") {
+        SECTION("getPosition()") {
+            REQUIRE(defaultPlayer.getPosition() == Point(0, 0));
         }
 
-        SECTION("Default constructor: getChar()") {
-            REQUIRE(defaultPlayer.getChar() == '#');
-        }
+        SECTION("getChar()") { REQUIRE(defaultPlayer.getChar() == '#'); }
+    }
 
-        SECTION("Default constructor: setChar()") {
-            defaultPlayer.setChar('@');
-            REQUIRE(defaultPlayer.getChar() == '@');
-        }
+    SECTION("setChar()") {
+        defaultPlayer.setChar('@');
+        REQUIRE(defaultPlayer.getChar() == '@');
+    }
 
-        SECTION("Default constructor: facing()") {
-            Point temp(1, 0);
-            REQUIRE(defaultPlayer.facing() == temp);
+    SECTION("facing()") { REQUIRE(defaultPlayer.facing() == Point(1, 0)); }
+
+    SECTION("face()") {
+        defaultPlayer.face(Point(0, 1));
+        REQUIRE(defaultPlayer.facing() == Point(0, 1));
+    }
+
+    SECTION("(y, x) constructor") {
+        SECTION("getPosition()") {
+            REQUIRE(testPlayer.getPosition() == Point(10, 20));
         }
     }
 
-    SECTION("Testing (y, x) constructor") {
-        Point tempPoint(10, 20);
-        SECTION("(y, x) constructor: getPosition()") {
-            REQUIRE(testPlayer.getPosition() == tempPoint);
-        }
-
-        SECTION("(y, x) constructor: getChar()") {
-            REQUIRE(testPlayer.getChar() == '#');
-        }
-
-        SECTION("(y, x) constructor: facing()") {
-            Point temp(1, 0);
-            REQUIRE(testPlayer.facing() == temp);
-        }
-    }
-
-    SECTION("Testing Point constructor") {
-        SECTION("Point constructor: getPosition()") {
-            REQUIRE(pointPlayer.getPosition().y == 30);
-            REQUIRE(pointPlayer.getPosition().x == 40);
+    SECTION("point constructor") {
+        SECTION("getPosition()") {
+            REQUIRE(pointPlayer.getPosition() == Point(30, 40));
         }
     }
 }

@@ -20,13 +20,13 @@ TEST_CASE("Menu.hpp tests", "[menu]") {
     Game mockGame;
     Menu testMenu(mockGame);
 
-    SECTION("Testing addItem() and items()") {
+    SECTION("items()") {
         testMenu.addItem("Test", callback);
         REQUIRE(testMenu.items()[0]->text() == "Test");
         REQUIRE(testMenu.items()[0]->id() == 0);
     }
 
-    SECTION("Testing clickItem()") {
+    SECTION("clickItem()") {
         testMenu.addItem("Test", callback);
         REQUIRE(mockGame.isRunning());
         testMenu.clickItem(0);
