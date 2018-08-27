@@ -1,10 +1,7 @@
 #include "State/StatePlaying.hpp"
 #include "Game.hpp"
-#include <string>
-// #include "Player/Player.hpp"
-// #include "Renderer/Renderer.hpp"
 #include "State/StatePause.hpp"
-// #include "State/StateMenu.hpp"
+#include <string>
 
 StatePlaying::StatePlaying(Game &game)
     : mGame(game),
@@ -29,12 +26,10 @@ void StatePlaying::update() {
 
 void StatePlaying::input() {
     int ch;
-    // ch = getch();
     ch = mGameWindow->getKey();
 
     switch (ch) {
     case 'q':
-        // mGame->popState();
         mGame.pushState(std::make_unique<StatePause>(mGame));
         break;
     case KEY_UP:

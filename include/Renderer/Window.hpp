@@ -5,7 +5,6 @@
 class Window {
   public:
     Window(int height, int width, int posy, int posx);
-    // ~Window();
 
     WINDOW *get();
 
@@ -18,7 +17,6 @@ class Window {
     int getKey();
 
   private:
-    // WINDOW *mWindow;
     std::unique_ptr<WINDOW> mWindow;
     bool mBox;
 };

@@ -4,8 +4,6 @@ Window::Window(int height, int width, int posy, int posx)
     : mWindow(std::unique_ptr<WINDOW>(newwin(height, width, posy, posx))),
       mBox(false) {}
 
-// Window::~Window() { delwin(mWindow.get()); }
-
 WINDOW *Window::get() { return mWindow.get(); }
 
 void Window::setBox(bool state) { mBox = state; }

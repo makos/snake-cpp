@@ -6,14 +6,6 @@
 #include "State/StatePlaying.hpp"
 #include <curses.h>
 
-// New game button.
-// void Callback::newClicked(Game &game) {
-//     game.pushState(std::make_unique<StatePlaying>(game));
-// }
-
-// // Exit button.
-// void Callback::exitClicked(Game &game) { game.setRunning(false); }
-
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
@@ -59,7 +51,6 @@ void StateMenu::input() {
 void StateMenu::render(Renderer &renderer) {
     mWindow->erase();
     int i = 1;
-    // This is really neat syntax, thanks C++ (no sarcasm!).
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
             ? renderer.print(*mWindow, i, 1, item->text(), A_REVERSE)
