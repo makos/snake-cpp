@@ -2,8 +2,8 @@
  * Player.hpp - a Player is made of PlayerParts.
  */
 #pragma once
-#include "Entity.hpp"
-#include "Player/PlayerPart.hpp"
+#include "Entities/Entity.hpp"
+#include "Entities/PlayerPart.hpp"
 #include "Util/Point.hpp"
 #include <vector>
 

@@ -3,7 +3,7 @@
  * movement, scoring etc. happen here.
  */
 #pragma once
-#include "Player/Player.hpp"
+#include "Entities/Player.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
 #include <memory>

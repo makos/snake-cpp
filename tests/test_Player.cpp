@@ -1,4 +1,4 @@
-#include "Player/Player.hpp"
+#include "Entities/Player.hpp"
 #include "Util/Point.hpp"
 #include "catch.hpp"
 

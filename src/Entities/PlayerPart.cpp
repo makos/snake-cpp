@@ -1,4 +1,4 @@
-#include "Player/PlayerPart.hpp"
+#include "Entities/PlayerPart.hpp"
 #include "Util/Point.hpp"
 
 PlayerPart::PlayerPart(const Point &pos) : mPosition(pos), mChar('#') {}
