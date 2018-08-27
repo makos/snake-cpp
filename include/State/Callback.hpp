@@ -1,3 +1,6 @@
+/*
+ * Callback.hpp - callback functions to be used by MenuItems in a Menu.
+ */
 #pragma once
 class Game;
 

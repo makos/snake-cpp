@@ -1,6 +1,6 @@
 #include "Player/Player.hpp"
 
-// Class player
+// Every constructor starts with Player facing down - (1, 0).
 Player::Player() : mParts(), mPosition(0, 0), mFacing(1, 0), mChar('#') {}
 
 Player::Player(int y, int x)

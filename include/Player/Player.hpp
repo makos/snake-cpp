@@ -1,5 +1,5 @@
 /*
- * Player.hpp - player class.
+ * Player.hpp - a Player is made of PlayerParts.
  */
 #pragma once
 #include "Entity.hpp"

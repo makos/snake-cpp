@@ -9,7 +9,6 @@
 #include "State.hpp"
 #include <memory>
 class Game;
-// class Menu;
 
 class StateMenu : public IState {
   public:

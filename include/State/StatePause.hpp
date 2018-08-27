@@ -1,3 +1,7 @@
+/*
+ * StatePause.hpp - pause (in-game) menu logic. Very similar to Main Menu; maybe
+ * there's a way to generalize this enough to not require two classes?
+ */
 #pragma once
 #include "Menu/Menu.hpp"
 #include "Renderer/Window.hpp"

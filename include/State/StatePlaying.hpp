@@ -1,3 +1,7 @@
+/*
+ * StatePlaying.hpp - where the actions takes place. Game rendering, player
+ * movement, scoring etc. happen here.
+ */
 #pragma once
 #include "Player/Player.hpp"
 #include "Renderer/Window.hpp"

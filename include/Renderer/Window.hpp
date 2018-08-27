@@ -1,3 +1,6 @@
+/*
+ * Window.hpp - high level wrapper over ncurses' WINDOW struct.
+ */
 #pragma once
 #include <curses.h>
 #include <memory>

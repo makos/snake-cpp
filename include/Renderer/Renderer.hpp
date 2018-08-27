@@ -1,5 +1,7 @@
 /*
- * Renderer.hpp - wrapper over ncurses. Lots of work to do here still.
+ * Renderer.hpp - high(er) level wrapper over ncurses.
+ * Provides methods that don't work on any particular Window, but rather on
+ * stdscr which is ncurses' pointer to the whole available screen area.
  */
 #pragma once
 #include <curses.h>
