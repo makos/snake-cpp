@@ -2,12 +2,12 @@
  * Player.hpp - a Player is made of PlayerParts.
  */
 #pragma once
-#include "Entities/Entity.hpp"
+// #include "Entities/Entity.hpp"
 #include "Entities/PlayerPart.hpp"
 #include "Util/Point.hpp"
 #include <vector>
 
-class Player : public IEntity {
+class Player {
   public:
     Player();
     Player(int y, int x);
