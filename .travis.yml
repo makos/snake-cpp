@@ -85,7 +85,3 @@ before_install:
 script:
   - mkdir build && cd build
   - cmake .. && make snake
-
-after_success:
-  - make tests
-  - $TRAVIS_BUILD_DIR/build/bin/tests
