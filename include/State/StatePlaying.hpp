@@ -18,6 +18,8 @@ class StatePlaying : public IState {
     void input();
     void render(Renderer &renderer);
 
+    bool canMove();
+
   private:
     Game &mGame;
     std::unique_ptr<Window> mGameWindow;

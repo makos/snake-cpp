@@ -49,3 +49,7 @@ int Window::erase() { return werase(mWindow.get()); }
 int Window::clear() { return wclear(mWindow.get()); }
 
 int Window::getKey() { return wgetch(mWindow.get()); }
+
+Point Window::size() {
+    return Point(getmaxy(mWindow.get()), getmaxx(mWindow.get()));
+}

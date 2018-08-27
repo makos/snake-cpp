@@ -20,7 +20,8 @@ StatePlaying::~StatePlaying() {
 }
 
 void StatePlaying::update() {
-    mPlayer.move(mPlayer.facing());
+    if (canMove())
+        mPlayer.move(mPlayer.facing());
     mGame.renderer().sleep(150);
 }
 
@@ -52,4 +53,12 @@ void StatePlaying::render(Renderer &renderer) {
     mGameWindow->print(mPlayer.getPosition().y, mPlayer.getPosition().x,
                        std::string(1, mPlayer.getChar()));
     mGameWindow->refresh();
+}
+
+bool StatePlaying::canMove() {
+    Point tmp(mPlayer.getPosition() + mPlayer.facing());
+
+    // Magic - 1 because of the border that counts to the window size.
+    return (tmp.y > 0 && tmp.y < mGameWindow->size().y - 1 && tmp.x > 0 &&
+            tmp.x < mGameWindow->size().x - 1);
 }

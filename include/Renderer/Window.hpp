@@ -5,6 +5,7 @@
  */
 #pragma once
 #include "Renderer.hpp"
+#include "Util/Point.hpp"
 #include <curses.h>
 #include <memory>
 #include <string>
@@ -26,6 +27,8 @@ class Window {
     int erase();
     int clear();
     int getKey();
+
+    Point size();
 
   private:
     std::unique_ptr<WINDOW> mWindow;
