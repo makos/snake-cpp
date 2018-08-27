@@ -4,8 +4,13 @@
 
 // Default constructor. Starts in main menu state.
 Game::Game()
-    : mRenderer(), mBoardSize(16, 30), mScore(0), mIsRunning(true),
-      mShouldPop(false), mStateStack(), mRng() {
+    : mRenderer(),
+      mBoardSize(16, 30),
+      mScore(0),
+      mIsRunning(true),
+      mShouldPop(false),
+      mStateStack(),
+      mRng() {
     mRng.seed(std::random_device()());
 }
 
@@ -30,7 +35,7 @@ bool Game::isRunning() { return mIsRunning; }
 
 void Game::setRunning(bool state) { mIsRunning = state; }
 
-Renderer &Game::renderer() { return mRenderer; }
+Renderer& Game::renderer() { return mRenderer; }
 
 // Pop all states from the stack except the first one (Main Menu).
 void Game::clearStates() {
@@ -44,8 +49,7 @@ void Game::pushState(std::unique_ptr<IState> state) {
 }
 
 void Game::popState() {
-    if (mStateStack.size() > 1)
-        mShouldPop = true;
+    if (mStateStack.size() > 1) mShouldPop = true;
 }
 
 void Game::pop() {
@@ -53,9 +57,9 @@ void Game::pop() {
     mShouldPop = false;
 }
 
-IState &Game::currentState() { return *mStateStack.top(); }
+IState& Game::currentState() { return *mStateStack.top(); }
 
-std::minstd_rand &Game::rng() { return mRng; }
+std::minstd_rand& Game::rng() { return mRng; }
 
 Point Game::getBoardSize() { return mBoardSize; }
 

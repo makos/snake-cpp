@@ -3,15 +3,15 @@
  * movement, scoring etc. happen here.
  */
 #pragma once
+#include <memory>
 #include "Entities/Apple.hpp"
 #include "Entities/Player.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
-#include <memory>
 class Game;
 
 class StatePlaying : public IState {
-  public:
+   public:
     StatePlaying(Game &game);
     ~StatePlaying();
 
@@ -21,7 +21,7 @@ class StatePlaying : public IState {
 
     bool canMove();
 
-  private:
+   private:
     Game &mGame;
     std::unique_ptr<Window> mWindow;
     std::unique_ptr<Window> mScoreWindow;

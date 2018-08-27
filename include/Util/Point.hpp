@@ -6,7 +6,7 @@
 #include <ostream>
 
 class Point {
-  public:
+   public:
     Point();
     Point(int y, int x);
     Point operator+(const Point &other);
@@ -17,7 +17,7 @@ class Point {
     bool operator!=(const Point &other) const;
     friend std::ostream &operator<<(std::ostream &out, const Point &point);
 
-  public:
+   public:
     int y;
     int x;
 };

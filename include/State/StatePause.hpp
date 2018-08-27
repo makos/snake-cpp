@@ -3,14 +3,14 @@
  * there's a way to generalize this enough to not require two classes?
  */
 #pragma once
+#include <memory>
 #include "Menu/Menu.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
-#include <memory>
 class Game;
 
 class StatePause : public IState {
-  public:
+   public:
     StatePause(Game &game);
     ~StatePause();
 
@@ -18,7 +18,7 @@ class StatePause : public IState {
     void input();
     void render(Renderer &renderer);
 
-  private:
+   private:
     Game &mGame;
     std::unique_ptr<Window> mWindow;
     std::unique_ptr<Menu> mMenu;

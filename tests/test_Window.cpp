@@ -1,6 +1,6 @@
+#include <typeinfo>
 #include "Renderer/Window.hpp"
 #include "catch.hpp"
-#include <typeinfo>
 
 TEST_CASE("Window.hpp tests", "[window]") {
     // Following call doesn't refresh the screen, while initscr() does.

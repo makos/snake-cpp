@@ -3,15 +3,15 @@
  */
 #pragma once
 
-#include "Renderer/Renderer.hpp"
-#include "State/State.hpp"
-#include "Util/Point.hpp"
 #include <memory>
 #include <random>
 #include <stack>
+#include "Renderer/Renderer.hpp"
+#include "State/State.hpp"
+#include "Util/Point.hpp"
 
 class Game {
-  public:
+   public:
     Game();
 
     void run();
@@ -31,10 +31,10 @@ class Game {
     void addScore(int n);
     int getScore();
 
-  private:
+   private:
     void pop();
 
-  private:
+   private:
     Renderer mRenderer;
     Point mBoardSize;
     int mScore;

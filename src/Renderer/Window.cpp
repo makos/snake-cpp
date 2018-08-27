@@ -55,8 +55,7 @@ int Window::setKeypad(bool state) {
 }
 
 int Window::refresh() {
-    if (mBox)
-        box(mWindow.get(), 0, 0);
+    if (mBox) box(mWindow.get(), 0, 0);
     return wrefresh(mWindow.get());
 }
 

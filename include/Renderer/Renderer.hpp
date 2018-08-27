@@ -4,15 +4,15 @@
  * stdscr which is ncurses' pointer to the whole available screen area.
  */
 #pragma once
-#include "Util/Point.hpp"
 #include <curses.h>
 #include <string>
+#include "Util/Point.hpp"
 class Window;
 
 enum Color { Black, Red, Green, Yellow, Blue, Magenta, Cyan, White };
 
 class Renderer {
-  public:
+   public:
     Renderer();
     ~Renderer();
 

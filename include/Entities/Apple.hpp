@@ -3,13 +3,13 @@
 class Game;
 
 class Apple {
-  public:
+   public:
     Apple(Game &game);
 
     Point getPosition();
     char getChar();
 
-  private:
+   private:
     Game &mGame;
     Point mPosition;
     char mChar;

@@ -9,7 +9,7 @@ class Game;
 using fpCallback = void (*)(Game &);
 
 class MenuItem {
-  public:
+   public:
     MenuItem(const char text[], fpCallback cb, unsigned int id);
 
     void click(Game &game);
@@ -17,7 +17,7 @@ class MenuItem {
     std::string text();
     unsigned int id();
 
-  private:
+   private:
     std::string mText;
     fpCallback mCallback;
     unsigned int mId;

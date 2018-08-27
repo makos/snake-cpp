@@ -7,7 +7,7 @@
 #include "Util/Point.hpp"
 
 class PlayerPart {
-  public:
+   public:
     PlayerPart(const Point &pos);
     PlayerPart(int y, int x);
 
@@ -15,7 +15,7 @@ class PlayerPart {
 
     char getChar();
 
-  private:
+   private:
     Point mPosition;
     char mChar;
 };

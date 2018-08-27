@@ -3,14 +3,14 @@
 #include "catch.hpp"
 
 class Game {
-  public:
+   public:
     Game() : mIsRunning(true) {}
     ~Game() {}
 
     bool isRunning() { return mIsRunning; }
     void setRunning(bool state) { mIsRunning = state; }
 
-  private:
+   private:
     bool mIsRunning;
 };
 

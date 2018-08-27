@@ -15,4 +15,4 @@ void exitClicked(Game &game) { game.setRunning(false); }
 
 void continueClicked(Game &game) { game.popState(); }
 
-} // namespace Callback
+}  // namespace Callback

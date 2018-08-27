@@ -1,16 +1,18 @@
 #include "State/StatePlaying.hpp"
+#include <string>
 #include "Game.hpp"
 #include "State/StatePause.hpp"
-#include <string>
 
 StatePlaying::StatePlaying(Game &game)
-    : mGame(game), mWindow(std::make_unique<Window>(
-                       game.getBoardSize().y, game.getBoardSize().x, 1,
-                       (COLS - (game.getBoardSize().x / 2)) / 2)),
+    : mGame(game),
+      mWindow(std::make_unique<Window>(
+          game.getBoardSize().y, game.getBoardSize().x, 1,
+          (COLS - (game.getBoardSize().x / 2)) / 2)),
       mScoreWindow(
           std::make_unique<Window>(1, game.getBoardSize().x, 0,
                                    (COLS - (game.getBoardSize().x / 2)) / 2)),
-      mPlayer(2, 2), mApple(std::make_unique<Apple>(game)) {
+      mPlayer(2, 2),
+      mApple(std::make_unique<Apple>(game)) {
     mWindow->setBox(true);
     mWindow->setKeypad(true);
     mWindow->clear();
@@ -24,8 +26,7 @@ StatePlaying::~StatePlaying() {
 }
 
 void StatePlaying::update() {
-    if (canMove())
-        mPlayer.move();
+    if (canMove()) mPlayer.move();
 
     if (mPlayer.getPosition() == mApple->getPosition()) {
         mGame.addScore(1);
@@ -41,21 +42,21 @@ void StatePlaying::input() {
     ch = mWindow->getKey();
 
     switch (ch) {
-    case 'q':
-        mGame.pushState(std::make_unique<StatePause>(mGame));
-        break;
-    case KEY_UP:
-        mPlayer.face(Point(-1, 0));
-        break;
-    case KEY_RIGHT:
-        mPlayer.face(Point(0, 1));
-        break;
-    case KEY_DOWN:
-        mPlayer.face(Point(1, 0));
-        break;
-    case KEY_LEFT:
-        mPlayer.face(Point(0, -1));
-        break;
+        case 'q':
+            mGame.pushState(std::make_unique<StatePause>(mGame));
+            break;
+        case KEY_UP:
+            mPlayer.face(Point(-1, 0));
+            break;
+        case KEY_RIGHT:
+            mPlayer.face(Point(0, 1));
+            break;
+        case KEY_DOWN:
+            mPlayer.face(Point(1, 0));
+            break;
+        case KEY_LEFT:
+            mPlayer.face(Point(0, -1));
+            break;
     }
 }
 

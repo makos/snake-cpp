@@ -1,6 +1,6 @@
 #include "Entities/Apple.hpp"
-#include "Game.hpp"
 #include <random>
+#include "Game.hpp"
 
 Apple::Apple(Game &game) : mGame(game), mPosition(), mChar('@') {
     std::uniform_int_distribution<int> uniY(1, game.getBoardSize().y - 1);

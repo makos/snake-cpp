@@ -1,16 +1,17 @@
 #include "State/StateMenu.hpp"
+#include <curses.h>
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
 #include "Renderer/Renderer.hpp"
 #include "State/Callback.hpp"
 #include "State/StatePlaying.hpp"
-#include <curses.h>
 
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
       mWindow(std::make_unique<Window>(5, 10, (LINES - 3) / 2, (COLS - 5) / 2)),
-      mMenu(std::make_unique<Menu>(game)), mItemSelected(0) {
+      mMenu(std::make_unique<Menu>(game)),
+      mItemSelected(0) {
     mMenu->addItem("* New  *", Callback::newClicked);
     mMenu->addItem("* Exit *", Callback::exitClicked);
     mWindow->setBox(true);
@@ -28,23 +29,23 @@ void StateMenu::input() {
     ch = mWindow->getKey();
 
     switch (ch) {
-    case 'Q':
-        mGame.setRunning(false);
-        break;
-    case KEY_UP:
-        mItemSelected =
-            (mItemSelected - 1) % (unsigned int)mMenu->items().size();
-        break;
-    case KEY_DOWN:
-        mItemSelected =
-            (mItemSelected + 1) % (unsigned int)mMenu->items().size();
-        break;
-    // KEY_ENTER in ncurses is actually the numpad Enter. So I had to use '\n'
-    // (and '\r' just in case).
-    case '\n':
-    case '\r':
-        mMenu->clickItem(mItemSelected);
-        break;
+        case 'Q':
+            mGame.setRunning(false);
+            break;
+        case KEY_UP:
+            mItemSelected =
+                (mItemSelected - 1) % (unsigned int)mMenu->items().size();
+            break;
+        case KEY_DOWN:
+            mItemSelected =
+                (mItemSelected + 1) % (unsigned int)mMenu->items().size();
+            break;
+        // KEY_ENTER in ncurses is actually the numpad Enter. So I had to use
+        // '\n' (and '\r' just in case).
+        case '\n':
+        case '\r':
+            mMenu->clickItem(mItemSelected);
+            break;
     }
 }
 

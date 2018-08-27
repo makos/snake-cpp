@@ -4,14 +4,14 @@
  * MenuItems.
  */
 #pragma once
+#include <memory>
 #include "Menu/Menu.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
-#include <memory>
 class Game;
 
 class StateMenu : public IState {
-  public:
+   public:
     StateMenu(Game &game);
     ~StateMenu();
 
@@ -19,7 +19,7 @@ class StateMenu : public IState {
     void update();
     void render(Renderer &renderer);
 
-  private:
+   private:
     Game &mGame;
     std::unique_ptr<Window> mWindow;
     std::unique_ptr<Menu> mMenu;
