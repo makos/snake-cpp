@@ -20,6 +20,7 @@ class StateMenu : public IState {
     void render(Renderer &renderer);
 
     void addItem(const char *text, fpCallback callback);
+    void addItem(const MenuItem &item);
 
    private:
     Game &mGame;
