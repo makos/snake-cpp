@@ -9,5 +9,6 @@ namespace Callback {
 void continueClicked(Game &game);
 void newClicked(Game &game);
 void exitClicked(Game &game);
+void settingsClicked(Game &game);
 
 }  // namespace Callback
