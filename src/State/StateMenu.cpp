@@ -12,8 +12,9 @@ StateMenu::StateMenu(Game &game)
       mWindow(std::make_unique<Window>(5, 10, (LINES - 3) / 2, (COLS - 5) / 2)),
       mMenu(std::make_unique<Menu>(game)),
       mItemSelected(0) {
-    mMenu->addItem("* New  *", Callback::newClicked);
-    mMenu->addItem("* Exit *", Callback::exitClicked);
+    mMenu->addItem("  New   ", Callback::newClicked);
+    mMenu->addItem("Settings", Callback::settingsClicked);
+    mMenu->addItem("  Exit  ", Callback::exitClicked);
     mWindow->setBox(true);
     mWindow->setKeypad(true);
     mWindow->setDelay(false);
@@ -56,7 +57,7 @@ void StateMenu::render(Renderer &renderer) {
         item->id() == mItemSelected
             ? mWindow->print(i, 1, item->text(), A_REVERSE)
             : mWindow->print(i, 1, item->text());
-        i += 2;
+        i++;
     }
     mWindow->refresh();
 }

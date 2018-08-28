@@ -52,7 +52,7 @@ void StatePause::render(Renderer &renderer) {
         item->id() == mItemSelected
             ? mWindow->print(i, 1, item->text(), A_REVERSE)
             : mWindow->print(i, 1, item->text());
-        i += 2;
+        i++;
     }
     mWindow->refresh();
 }
