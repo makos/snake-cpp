@@ -12,15 +12,19 @@ StateMenu::StateMenu(Game &game)
       mWindow(std::make_unique<Window>(5, 10, (LINES - 3) / 2, (COLS - 5) / 2)),
       mMenu(std::make_unique<Menu>(game)),
       mItemSelected(0) {
-    mMenu->addItem("  New   ", Callback::newClicked);
-    mMenu->addItem("Settings", Callback::settingsClicked);
-    mMenu->addItem("  Exit  ", Callback::exitClicked);
+    // mMenu->addItem("  New  ", Callback::newClicked);
+    // mMenu->addItem("Settings", Callback::settingsClicked);
+    // mMenu->addItem("  Exit  ", Callback::exitClicked);
     mWindow->setBox(true);
     mWindow->setKeypad(true);
     mWindow->setDelay(false);
 }
 
 StateMenu::~StateMenu() { mWindow->clear(); }
+
+void StateMenu::addItem(const char *text, fpCallback callback) {
+    mMenu->addItem(text, callback);
+}
 
 // Not really anything to update in a static menu.
 void StateMenu::update() {}

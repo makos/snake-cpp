@@ -8,6 +8,10 @@ void Menu::addItem(const char text[], fpCallback cb) {
         std::make_unique<MenuItem>(text, cb, (unsigned int)mItems.size()));
 }
 
+void Menu::addItem(const MenuItem &item) {
+    mItems.push_back(std::make_unique<MenuItem>(item));
+}
+
 // Get the vector of all MenuItems attached.
 std::vector<std::unique_ptr<MenuItem>> &Menu::items() { return mItems; }
 

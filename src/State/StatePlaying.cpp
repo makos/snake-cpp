@@ -1,7 +1,8 @@
 #include "State/StatePlaying.hpp"
 #include <string>
 #include "Game.hpp"
-#include "State/StatePause.hpp"
+#include "State/Callback.hpp"
+#include "State/StateMenu.hpp"
 
 StatePlaying::StatePlaying(Game &game)
     : mGame(game),
@@ -42,9 +43,15 @@ void StatePlaying::input() {
     ch = mWindow->getKey();
 
     switch (ch) {
-        case 'q':
-            mGame.pushState(std::make_unique<StatePause>(mGame));
-            break;
+        case 'q': {
+            auto pauseMenu = std::make_unique<StateMenu>(mGame);
+            pauseMenu->addItem("Continue", Callback::continueClicked);
+            pauseMenu->addItem("New", Callback::newClicked);
+            pauseMenu->addItem("Settings", Callback::settingsClicked);
+            pauseMenu->addItem("Exit", Callback::exitClicked);
+
+            mGame.pushState(std::move(pauseMenu));
+        }; break;
         case KEY_UP:
             mPlayer.face(Point(-1, 0));
             break;

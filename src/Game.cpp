@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "State/Callback.hpp"
 #include "State/StateMenu.hpp"
 #include "State/StatePlaying.hpp"
 
@@ -17,7 +18,12 @@ Game::Game()
 
 // Main loop.
 void Game::run() {
-    mStateStack.push(std::make_unique<StateMenu>(*this));
+    auto menu = std::make_unique<StateMenu>(*this);
+    menu->addItem("New", Callback::newClicked);
+    menu->addItem("Settings", Callback::settingsClicked);
+    menu->addItem("Exit", Callback::exitClicked);
+
+    mStateStack.push(std::move(menu));
 
     while (mIsRunning) {
         currentState().render(mRenderer);

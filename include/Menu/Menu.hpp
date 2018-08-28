@@ -4,7 +4,7 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include "MenuItem.hpp"
+#include "Menu/MenuItem.hpp"
 class Game;
 
 class Menu {
@@ -12,6 +12,7 @@ class Menu {
     Menu(Game &game);
 
     void addItem(const char text[], fpCallback cb);
+    void addItem(const MenuItem &item);
     std::vector<std::unique_ptr<MenuItem>> &items();
     void clickItem(unsigned int id);
 

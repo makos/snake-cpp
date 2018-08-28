@@ -19,6 +19,8 @@ class StateMenu : public IState {
     void update();
     void render(Renderer &renderer);
 
+    void addItem(const char *text, fpCallback callback);
+
    private:
     Game &mGame;
     std::unique_ptr<Window> mWindow;
