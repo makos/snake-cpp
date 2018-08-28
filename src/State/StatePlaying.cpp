@@ -34,7 +34,7 @@ void StatePlaying::update() {
         mApple = std::make_unique<Apple>(mGame);
     }
 
-    mGame.renderer().sleep(150);
+    mGame.renderer().sleep(mGame.getSpeed());
 }
 
 void StatePlaying::input() {
@@ -68,6 +68,9 @@ void StatePlaying::render(Renderer &renderer) {
 
     mWindow->print(mApple->getPosition(), std::string(1, mApple->getChar()),
                    Color::Red);
+
+    mWindow->print(1, 1, std::to_string(mApple->getPosition().y));
+    mWindow->print(1, 3, std::to_string(mApple->getPosition().x));
 
     // Color the head yellow and rest of the body green.
     for (auto &part : mPlayer.parts()) {

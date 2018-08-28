@@ -31,6 +31,9 @@ class Game {
     void addScore(int n);
     int getScore();
 
+    void setSpeed(int speed);
+    int getSpeed();
+
    private:
     void pop();
 
@@ -38,6 +41,7 @@ class Game {
     Renderer mRenderer;
     Point mBoardSize;
     int mScore;
+    int mSpeed;
     bool mIsRunning;
     bool mShouldPop;
     std::stack<std::unique_ptr<IState>> mStateStack;

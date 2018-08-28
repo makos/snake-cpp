@@ -7,6 +7,7 @@ Game::Game()
     : mRenderer(),
       mBoardSize(16, 30),
       mScore(0),
+      mSpeed(150),
       mIsRunning(true),
       mShouldPop(false),
       mStateStack(),
@@ -66,3 +67,7 @@ Point Game::getBoardSize() { return mBoardSize; }
 void Game::addScore(int n) { mScore += n; }
 
 int Game::getScore() { return mScore; }
+
+void Game::setSpeed(int speed) { mSpeed = speed; }
+
+int Game::getSpeed() { return mSpeed; }
