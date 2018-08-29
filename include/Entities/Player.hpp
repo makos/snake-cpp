@@ -3,12 +3,12 @@
  */
 #pragma once
 // #include "Entities/Entity.hpp"
+#include <vector>
 #include "Entities/PlayerPart.hpp"
 #include "Util/Point.hpp"
-#include <vector>
 
 class Player {
-  public:
+   public:
     Player();
     Player(int y, int x);
     Player(const Point &pos);
@@ -23,7 +23,7 @@ class Player {
     void pushPart();
     void insertPart();
 
-  private:
+   private:
     std::vector<PlayerPart> mParts;
     Point mPosition;
     Point mFacing;
