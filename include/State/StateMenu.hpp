@@ -15,9 +15,9 @@ class StateMenu : public IState {
     StateMenu(Game &game);
     ~StateMenu();
 
-    void input();
-    void update();
-    void render(Renderer &renderer);
+    void input() override;
+    void update() override;
+    void render(Renderer &renderer) override;
 
     void addItem(const char *text, fpCallback callback);
     void addItem(const MenuItem &item);

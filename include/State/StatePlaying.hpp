@@ -15,9 +15,9 @@ class StatePlaying : public IState {
     StatePlaying(Game &game);
     ~StatePlaying();
 
-    void update();
-    void input();
-    void render(Renderer &renderer);
+    void update() override;
+    void input() override;
+    void render(Renderer &renderer) override;
 
     bool canMove();
 
