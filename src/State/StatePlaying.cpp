@@ -54,16 +54,16 @@ void StatePlaying::input() {
             mGame.pushState(std::move(pauseMenu));
         }; break;
         case KEY_UP:
-            mPlayer.face(Point(-1, 0));
+            if (mPlayer.facing() != DIR_DOWN) mPlayer.face(DIR_UP);
             break;
         case KEY_RIGHT:
-            mPlayer.face(Point(0, 1));
+            if (mPlayer.facing() != DIR_LEFT) mPlayer.face(DIR_RIGHT);
             break;
         case KEY_DOWN:
-            mPlayer.face(Point(1, 0));
+            if (mPlayer.facing() != DIR_UP) mPlayer.face(DIR_DOWN);
             break;
         case KEY_LEFT:
-            mPlayer.face(Point(0, -1));
+            if (mPlayer.facing() != DIR_RIGHT) mPlayer.face(DIR_LEFT);
             break;
     }
 }
