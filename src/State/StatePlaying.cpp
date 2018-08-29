@@ -12,7 +12,8 @@ StatePlaying::StatePlaying(Game &game)
       mScoreWindow(
           std::make_unique<Window>(1, game.getBoardSize().x, 0,
                                    ((COLS / 2) - (game.getBoardSize().x / 2)))),
-      mPlayer(2, 2),
+      mPlayer(Point::randomPoint(mGame.rng(), 1, game.getBoardSize().y - 2, 1,
+                                 game.getBoardSize().x - 2)),
       mApple(std::make_unique<Apple>(game)) {
     mWindow->setBox(true);
     mWindow->setKeypad(true);
@@ -76,8 +77,9 @@ void StatePlaying::render(Renderer &renderer) {
     mWindow->print(mApple->getPosition(), std::string(1, mApple->getChar()),
                    Color::Red);
 
-    mWindow->print(1, 1, std::to_string(mApple->getPosition().y));
-    mWindow->print(1, 3, std::to_string(mApple->getPosition().x));
+    // DEBUG
+    // mWindow->print(1, 1, std::to_string(mApple->getPosition().y));
+    // mWindow->print(1, 3, std::to_string(mApple->getPosition().x));
 
     // Color the head yellow and rest of the body green.
     for (auto &part : mPlayer.parts()) {
