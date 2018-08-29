@@ -4,6 +4,7 @@
  */
 #pragma once
 #include <ostream>
+#include <random>
 
 class Point {
    public:
@@ -16,6 +17,9 @@ class Point {
     bool operator==(const Point &other) const;
     bool operator!=(const Point &other) const;
     friend std::ostream &operator<<(std::ostream &out, const Point &point);
+
+    static Point randomPoint(std::minstd_rand &rng, int miny, int maxy,
+                             int minx, int maxx);
 
    public:
     int y;

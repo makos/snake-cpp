@@ -40,3 +40,11 @@ std::ostream &operator<<(std::ostream &out, const Point &point) {
 }
 
 bool Point::operator!=(const Point &other) const { return !(*this == other); }
+
+Point Point::randomPoint(std::minstd_rand &rng, int miny, int maxy, int minx,
+                         int maxx) {
+    std::uniform_int_distribution<int> uniY(miny, maxy);
+    std::uniform_int_distribution<int> uniX(minx, maxx);
+
+    return Point(uniY(rng), uniX(rng));
+}
