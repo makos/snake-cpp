@@ -4,14 +4,14 @@
  * by w- prefix).
  */
 #pragma once
-#include "Renderer.hpp"
-#include "Util/Point.hpp"
 #include <curses.h>
 #include <memory>
 #include <string>
+#include "Renderer.hpp"
+#include "Util/Point.hpp"
 
 class Window {
-  public:
+   public:
     Window(int height, int width, int posy, int posx);
 
     WINDOW *get();
@@ -33,7 +33,7 @@ class Window {
 
     Point size();
 
-  private:
+   private:
     std::unique_ptr<WINDOW> mWindow;
     bool mBox;
 };
