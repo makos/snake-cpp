@@ -8,10 +8,10 @@ StatePlaying::StatePlaying(Game &game)
     : mGame(game),
       mWindow(std::make_unique<Window>(
           game.getBoardSize().y, game.getBoardSize().x, 1,
-          (COLS - (game.getBoardSize().x / 2)) / 2)),
+          ((COLS / 2) - (game.getBoardSize().x / 2)))),
       mScoreWindow(
           std::make_unique<Window>(1, game.getBoardSize().x, 0,
-                                   (COLS - (game.getBoardSize().x / 2)) / 2)),
+                                   ((COLS / 2) - (game.getBoardSize().x / 2)))),
       mPlayer(2, 2),
       mApple(std::make_unique<Apple>(game)) {
     mWindow->setBox(true);

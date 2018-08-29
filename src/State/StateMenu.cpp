@@ -9,7 +9,8 @@
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
-      mWindow(std::make_unique<Window>(5, 10, (LINES - 3) / 2, (COLS - 5) / 2)),
+      mWindow(
+          std::make_unique<Window>(10, 16, (LINES / 2) - 5, (COLS / 2) - 8)),
       mMenu(std::make_unique<Menu>(game)),
       mItemSelected(0) {
     // mMenu->addItem("  New  ", Callback::newClicked);
@@ -56,12 +57,16 @@ void StateMenu::input() {
 
 void StateMenu::render(Renderer &renderer) {
     mWindow->erase();
-    int i = 1;
+    // int i = 1;
+    int y = (mWindow->size().y / 2) - (mMenu->items().size() / 2);
+    // - 4 because "Settings" (longest item in the menu) is 8 characters long,
+    // so half of that.
+    int x = (mWindow->size().x / 2) - 4;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? mWindow->print(i, 1, item->text(), A_REVERSE)
-            : mWindow->print(i, 1, item->text());
-        i++;
+            ? mWindow->print(y, x, item->text(), A_REVERSE)
+            : mWindow->print(y, x, item->text());
+        y++;
     }
     mWindow->refresh();
 }
