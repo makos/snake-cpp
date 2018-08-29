@@ -8,6 +8,12 @@
 #include "Entities/Player.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
+
+#define DIR_UP Point(-1, 0)
+#define DIR_DOWN Point(1, 0)
+#define DIR_LEFT Point(0, -1)
+#define DIR_RIGHT Point(0, 1)
+
 class Game;
 
 class StatePlaying : public IState {
