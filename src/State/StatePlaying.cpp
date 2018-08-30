@@ -12,8 +12,8 @@ StatePlaying::StatePlaying(Game &game)
       mScoreWindow(
           std::make_unique<Window>(1, game.getBoardSize().x, 0,
                                    ((COLS / 2) - (game.getBoardSize().x / 2)))),
-      mPlayer(Point::randomPoint(mGame.rng(), 1, game.getBoardSize().y - 2, 1,
-                                 game.getBoardSize().x - 2)),
+      mPlayer(Point::randomPoint(mGame.rng(), 3, game.getBoardSize().y - 4, 3,
+                                 game.getBoardSize().x - 4)),
       mApple(std::make_unique<Apple>(game)) {
     mWindow->setBox(true);
     mWindow->setKeypad(true);
