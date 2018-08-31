@@ -4,21 +4,28 @@
  */
 #pragma once
 #include <string>
+// #include "MenuEvent.hpp"
+#include "State/Subject.hpp"
 class Game;
+enum MenuEvent;
 
-using fpCallback = void (*)(Game &);
+// using fpCallback = void (*)(Game &);
 
 class MenuItem {
    public:
-    MenuItem(const char text[], fpCallback cb, unsigned int id);
+    MenuItem(const char text[], MenuEvent event, Observer &observer,
+             unsigned int id);
 
     void click(Game &game);
+    Subject &onClick();
 
     std::string text();
     unsigned int id();
 
    private:
     std::string mText;
-    fpCallback mCallback;
+    MenuEvent mEvent;
+    Subject mOnClick;
+    // fpCallback mCallback;
     unsigned int mId;
 };

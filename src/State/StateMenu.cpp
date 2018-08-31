@@ -2,6 +2,7 @@
 #include <curses.h>
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
+#include "Menu/MenuEvent.hpp"
 #include "Renderer/Renderer.hpp"
 #include "State/Callback.hpp"
 #include "State/StatePlaying.hpp"
@@ -25,9 +26,13 @@ StateMenu::~StateMenu() {
     }
 }
 
-void StateMenu::addItem(const char *text, fpCallback callback) {
-    mMenu->addItem(text, callback);
+void StateMenu::addItem(const char *text, MenuEvent event, Observer observer) {
+    // MenuItem temp(text, event, mMenu->items().size());
+    // temp.onClick().addObserver(this);
+    mMenu->addItem(text, event, this);
 }
+
+void StateMenu::addItem(const MenuItem &item) { mMenu->addItem(item); }
 
 // Not really anything to update in a static menu.
 void StateMenu::update() {}
@@ -71,4 +76,21 @@ void StateMenu::render(Renderer &renderer) {
         y++;
     }
     mWindowStack.top()->refresh();
+}
+
+void StateMenu::onNotify(MenuEvent event) {
+    switch (event) {
+        case MenuEvent::Exit:
+            mGame.setRunning(false);
+            break;
+        case MenuEvent::Continue:
+            mGame.popState();
+            break;
+        case MenuEvent::NewGame:
+            mGame.pushState(std::make_unique<StatePlaying>(mGame));
+            mGame.clearStates();
+            mGame.renderer().clearAll();
+            mGame.renderer().refreshAll();
+            break;
+    }
 }

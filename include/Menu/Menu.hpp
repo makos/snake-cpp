@@ -6,12 +6,13 @@
 #include <vector>
 #include "Menu/MenuItem.hpp"
 class Game;
+class Observer;
 
 class Menu {
    public:
     Menu(Game &game);
 
-    void addItem(const char text[], fpCallback cb);
+    void addItem(const char text[], MenuEvent event, Observer &observer);
     void addItem(const MenuItem &item);
     std::vector<std::unique_ptr<MenuItem>> &items();
     void clickItem(unsigned int id);

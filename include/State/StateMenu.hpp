@@ -7,27 +7,28 @@
 #include <memory>
 #include <stack>
 #include "Menu/Menu.hpp"
+#include "Observer.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
 class Game;
 
-class StateMenu : public IState
-{
-public:
-  StateMenu(Game &game);
-  ~StateMenu();
+class StateMenu : public IState, public Observer {
+   public:
+    StateMenu(Game &game);
+    ~StateMenu();
 
-  void input() override;
-  void update() override;
-  void render(Renderer &renderer) override;
+    void input() override;
+    void update() override;
+    void render(Renderer &renderer) override;
 
-  void addItem(const char *text, fpCallback callback);
-  void addItem(const MenuItem &item);
+    void addItem(const char *text, MenuEvent event, Observer observer);
+    void addItem(const MenuItem &item);
 
-private:
-  Game &mGame;
-  // std::unique_ptr<Window> mWindow;
-  std::stack<std::unique_ptr<Window>> mWindowStack;
-  std::unique_ptr<Menu> mMenu;
-  unsigned int mItemSelected;
+    void onNotify(MenuEvent event) override;
+
+   private:
+    Game &mGame;
+    std::stack<std::unique_ptr<Window>> mWindowStack;
+    std::unique_ptr<Menu> mMenu;
+    unsigned int mItemSelected;
 };
