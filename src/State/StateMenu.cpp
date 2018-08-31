@@ -1,8 +1,8 @@
 #include "State/StateMenu.hpp"
 #include <curses.h>
+#include "Event/Event.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
-#include "Menu/MenuEvent.hpp"
 #include "Renderer/Renderer.hpp"
 #include "State/Callback.hpp"
 #include "State/StatePlaying.hpp"
@@ -26,7 +26,7 @@ StateMenu::~StateMenu() {
     }
 }
 
-void StateMenu::addItem(const char *text, MenuEvent event) {
+void StateMenu::addItem(const char *text, Event event) {
     mMenu->addItem(text, event, this);
 }
 
@@ -76,15 +76,15 @@ void StateMenu::render(Renderer &renderer) {
     mWindowStack.top()->refresh();
 }
 
-void StateMenu::onNotify(MenuEvent event) {
+void StateMenu::onNotify(Event event) {
     switch (event) {
-        case MenuEvent::Exit:
+        case Event::ClickExit:
             mGame.setRunning(false);
             break;
-        case MenuEvent::Continue:
+        case Event::ClickContinue:
             mGame.popState();
             break;
-        case MenuEvent::NewGame:
+        case Event::ClickNew:
             mGame.clearStates();
             mGame.pushState(std::make_unique<StatePlaying>(mGame));
             mGame.renderer().clearAll();

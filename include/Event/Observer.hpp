@@ -1,8 +1,8 @@
 #pragma once
-#include "Menu/MenuEvent.hpp"
+enum class Event;
 
 class Observer {
    public:
     virtual ~Observer() = default;
-    virtual void onNotify(MenuEvent event) = 0;
+    virtual void onNotify(Event event) = 0;
 };

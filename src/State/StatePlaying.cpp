@@ -1,7 +1,7 @@
 #include "State/StatePlaying.hpp"
 #include <string>
+#include "Event/Event.hpp"
 #include "Game.hpp"
-#include "Menu/MenuEvent.hpp"
 #include "State/Callback.hpp"
 #include "State/StateMenu.hpp"
 
@@ -47,10 +47,10 @@ void StatePlaying::input() {
     switch (ch) {
         case 'q': {
             auto pauseMenu = std::make_unique<StateMenu>(mGame);
-            pauseMenu->addItem("Continue", MenuEvent::Continue);
-            pauseMenu->addItem("New", MenuEvent::NewGame);
-            pauseMenu->addItem("Settings", MenuEvent::Settings);
-            pauseMenu->addItem("Exit", MenuEvent::Exit);
+            pauseMenu->addItem("Continue", Event::ClickContinue);
+            pauseMenu->addItem("New", Event::ClickNew);
+            pauseMenu->addItem("Settings", Event::ClickSettings);
+            pauseMenu->addItem("Exit", Event::ClickExit);
 
             mGame.pushState(std::move(pauseMenu));
         }; break;

@@ -6,8 +6,8 @@
 #pragma once
 #include <memory>
 #include <stack>
+#include "Event/Observer.hpp"
 #include "Menu/Menu.hpp"
-#include "Observer.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
 class Game;
@@ -21,10 +21,10 @@ class StateMenu : public IState, public Observer {
     void update() override;
     void render(Renderer &renderer) override;
 
-    void addItem(const char *text, MenuEvent event);
+    void addItem(const char *text, Event event);
     void addItem(const MenuItem &item);
 
-    void onNotify(MenuEvent event) override;
+    void onNotify(Event event) override;
 
    private:
     Game &mGame;

@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "Menu/MenuEvent.hpp"
+#include "Event/Event.hpp"
 #include "State/Callback.hpp"
 #include "State/StateMenu.hpp"
 #include "State/StatePlaying.hpp"
@@ -20,9 +20,9 @@ Game::Game()
 // Main loop.
 void Game::run() {
     auto menu = std::make_unique<StateMenu>(*this);
-    menu->addItem("New", MenuEvent::NewGame);
-    menu->addItem("Settings", MenuEvent::Settings);
-    menu->addItem("Exit", MenuEvent::Exit);
+    menu->addItem("New", Event::ClickNew);
+    menu->addItem("Settings", Event::ClickSettings);
+    menu->addItem("Exit", Event::ClickExit);
     Window debug(5, 10, 0, 0);
 
     mStateStack.push(std::move(menu));
@@ -82,3 +82,5 @@ int Game::getScore() { return mScore; }
 void Game::setSpeed(int speed) { mSpeed = speed; }
 
 int Game::getSpeed() { return mSpeed; }
+
+void Game::onNotify(Event event) {}

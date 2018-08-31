@@ -1,11 +1,11 @@
 #include "Menu/Menu.hpp"
-#include "Menu/MenuEvent.hpp"
-#include "State/Observer.hpp"
+#include "Event/Observer.hpp"
+#include "Event/Event.hpp"
 
 Menu::Menu() : mItems() {}
 
 // Add a menu item and connect it to a callback.
-void Menu::addItem(const char text[], MenuEvent event, Observer *observer) {
+void Menu::addItem(const char text[], Event event, Observer *observer) {
     mItems.push_back(std::make_unique<MenuItem>(text, event, observer,
                                                 (unsigned int)mItems.size()));
 }

@@ -6,11 +6,12 @@
 #include <memory>
 #include <random>
 #include <stack>
+#include "Event/Observer.hpp"
 #include "Renderer/Renderer.hpp"
 #include "State/State.hpp"
 #include "Util/Point.hpp"
 
-class Game {
+class Game : public Observer {
    public:
     Game();
 
@@ -33,6 +34,8 @@ class Game {
 
     void setSpeed(int speed);
     int getSpeed();
+
+    void onNotify(Event event) override;
 
    private:
     void pop();

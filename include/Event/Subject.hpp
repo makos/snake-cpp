@@ -7,7 +7,7 @@ class Subject {
     Subject();
     void addObserver(Observer *observer);
     void removeObserver(Observer *observer);
-    void notify(MenuEvent event);
+    void notify(Event event);
 
    private:
     std::vector<Observer *> mObservers;

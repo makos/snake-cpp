@@ -5,15 +5,16 @@
 #pragma once
 #include <string>
 // #include "MenuEvent.hpp"
-#include "State/Subject.hpp"
+#include "Event/Subject.hpp"
 class Game;
-enum MenuEvent;
+// class MenuEvent;
+enum class Event;
 
 // using fpCallback = void (*)(Game &);
 
 class MenuItem {
    public:
-    MenuItem(const char text[], MenuEvent event, Observer *observer,
+    MenuItem(const char text[], Event event, Observer *observer,
              unsigned int id);
 
     void click();
@@ -24,7 +25,7 @@ class MenuItem {
 
    private:
     std::string mText;
-    MenuEvent mEvent;
+    Event mEvent;
     Subject mOnClick;
     // fpCallback mCallback;
     unsigned int mId;
