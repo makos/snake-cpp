@@ -21,7 +21,7 @@ class StateMenu : public IState, public Observer {
     void update() override;
     void render(Renderer &renderer) override;
 
-    void addItem(const char *text, MenuEvent event, Observer observer);
+    void addItem(const char *text, MenuEvent event);
     void addItem(const MenuItem &item);
 
     void onNotify(MenuEvent event) override;

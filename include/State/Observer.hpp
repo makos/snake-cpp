@@ -1,5 +1,5 @@
 #pragma once
-enum MenuEvent;
+#include "Menu/MenuEvent.hpp"
 
 class Observer {
    public:

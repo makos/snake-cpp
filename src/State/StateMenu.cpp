@@ -11,7 +11,7 @@
 StateMenu::StateMenu(Game &game)
     : mGame(game),
       mWindowStack(),
-      mMenu(std::make_unique<Menu>(game)),
+      mMenu(std::make_unique<Menu>()),
       mItemSelected(0) {
     mWindowStack.push(
         std::make_unique<Window>(10, 16, (LINES / 2) - 5, (COLS / 2) - 8));
@@ -26,9 +26,7 @@ StateMenu::~StateMenu() {
     }
 }
 
-void StateMenu::addItem(const char *text, MenuEvent event, Observer observer) {
-    // MenuItem temp(text, event, mMenu->items().size());
-    // temp.onClick().addObserver(this);
+void StateMenu::addItem(const char *text, MenuEvent event) {
     mMenu->addItem(text, event, this);
 }
 
@@ -87,8 +85,8 @@ void StateMenu::onNotify(MenuEvent event) {
             mGame.popState();
             break;
         case MenuEvent::NewGame:
-            mGame.pushState(std::make_unique<StatePlaying>(mGame));
             mGame.clearStates();
+            mGame.pushState(std::make_unique<StatePlaying>(mGame));
             mGame.renderer().clearAll();
             mGame.renderer().refreshAll();
             break;

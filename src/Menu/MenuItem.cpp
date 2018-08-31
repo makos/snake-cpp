@@ -2,14 +2,14 @@
 #include "Menu/MenuEvent.hpp"
 #include "State/Observer.hpp"
 
-MenuItem::MenuItem(const char text[], MenuEvent event, Observer &observer,
+MenuItem::MenuItem(const char text[], MenuEvent event, Observer *observer,
                    unsigned int id)
     : mText(std::string(text)), mEvent(event), mOnClick(), mId(id) {
     mOnClick.addObserver(observer);
 }
 
 // Fire the callback.
-void MenuItem::click(Game &game) { mOnClick.notify(mEvent); }
+void MenuItem::click() { mOnClick.notify(mEvent); }
 
 Subject &MenuItem::onClick() { return mOnClick; }
 

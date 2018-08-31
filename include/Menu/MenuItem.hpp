@@ -13,10 +13,10 @@ enum MenuEvent;
 
 class MenuItem {
    public:
-    MenuItem(const char text[], MenuEvent event, Observer &observer,
+    MenuItem(const char text[], MenuEvent event, Observer *observer,
              unsigned int id);
 
-    void click(Game &game);
+    void click();
     Subject &onClick();
 
     std::string text();

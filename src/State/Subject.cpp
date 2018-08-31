@@ -3,11 +3,11 @@
 
 Subject::Subject() : mObservers() {}
 
-void Subject::addObserver(Observer &observer) {
+void Subject::addObserver(Observer *observer) {
     mObservers.push_back(observer);
 }
 
-void Subject::removeObserver(Observer &observer) {
+void Subject::removeObserver(Observer *observer) {
     for (auto it = mObservers.begin(); it != mObservers.end();) {
         if (*it == observer) {
             mObservers.erase(it);
@@ -18,7 +18,7 @@ void Subject::removeObserver(Observer &observer) {
 }
 
 void Subject::notify(MenuEvent event) {
-    for (auto &observer : mObservers) {
-        observer.onNotify(event);
+    for (auto observer : mObservers) {
+        observer->onNotify(event);
     }
 }
