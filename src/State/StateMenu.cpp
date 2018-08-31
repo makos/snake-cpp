@@ -9,19 +9,21 @@
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
-      mWindow(
-          std::make_unique<Window>(10, 16, (LINES / 2) - 5, (COLS / 2) - 8)),
+      mWindowStack(),
       mMenu(std::make_unique<Menu>(game)),
       mItemSelected(0) {
-    // mMenu->addItem("  New  ", Callback::newClicked);
-    // mMenu->addItem("Settings", Callback::settingsClicked);
-    // mMenu->addItem("  Exit  ", Callback::exitClicked);
-    mWindow->setBox(true);
-    mWindow->setKeypad(true);
-    mWindow->setDelay(false);
+    mWindowStack.push(
+        std::make_unique<Window>(10, 16, (LINES / 2) - 5, (COLS / 2) - 8));
+    mWindowStack.top()->setBox(true);
+    mWindowStack.top()->setKeypad(true);
+    mWindowStack.top()->setDelay(false);
 }
 
-StateMenu::~StateMenu() { mWindow->clear(); }
+StateMenu::~StateMenu() {
+    while (!mWindowStack.empty()) {
+        mWindowStack.pop();
+    }
+}
 
 void StateMenu::addItem(const char *text, fpCallback callback) {
     mMenu->addItem(text, callback);
@@ -32,7 +34,7 @@ void StateMenu::update() {}
 
 void StateMenu::input() {
     int ch;
-    ch = mWindow->getKey();
+    ch = mWindowStack.top()->getKey();
 
     switch (ch) {
         case 'Q':
@@ -56,17 +58,17 @@ void StateMenu::input() {
 }
 
 void StateMenu::render(Renderer &renderer) {
-    mWindow->erase();
+    mWindowStack.top()->erase();
     // int i = 1;
-    int y = (mWindow->size().y / 2) - (mMenu->items().size() / 2);
+    int y = (mWindowStack.top()->size().y / 2) - (mMenu->items().size() / 2);
     // - 4 because "Settings" (longest item in the menu) is 8 characters long,
     // so half of that.
-    int x = (mWindow->size().x / 2) - 4;
+    int x = (mWindowStack.top()->size().x / 2) - 4;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? mWindow->print(y, x, item->text(), A_REVERSE)
-            : mWindow->print(y, x, item->text());
+            ? mWindowStack.top()->print(y, x, item->text(), A_REVERSE)
+            : mWindowStack.top()->print(y, x, item->text());
         y++;
     }
-    mWindow->refresh();
+    mWindowStack.top()->refresh();
 }
