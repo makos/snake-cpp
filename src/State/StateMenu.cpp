@@ -40,9 +40,6 @@ void StateMenu::input() {
     ch = mWindowStack.top()->getKey();
 
     switch (ch) {
-        case 'Q':
-            mGame.setRunning(false);
-            break;
         case KEY_UP:
             mItemSelected =
                 (mItemSelected - 1) % (unsigned int)mMenu->items().size();
@@ -62,7 +59,6 @@ void StateMenu::input() {
 
 void StateMenu::render(Renderer &renderer) {
     mWindowStack.top()->erase();
-    // int i = 1;
     int y = (mWindowStack.top()->size().y / 2) - (mMenu->items().size() / 2);
     // - 4 because "Settings" (longest item in the menu) is 8 characters long,
     // so half of that.

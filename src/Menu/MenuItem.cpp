@@ -4,14 +4,12 @@
 
 MenuItem::MenuItem(const char text[], Event event, Observer *observer,
                    unsigned int id)
-    : mText(std::string(text)), mEvent(event), mOnClick(), mId(id) {
-    mOnClick.addObserver(observer);
+    : mText(std::string(text)), mEvent(event), mSubjectOnClick(), mId(id) {
+    mSubjectOnClick.addObserver(observer);
 }
 
 // Fire the callback.
-void MenuItem::click() { mOnClick.notify(mEvent); }
-
-Subject &MenuItem::onClick() { return mOnClick; }
+void MenuItem::click() { mSubjectOnClick.notify(mEvent); }
 
 // Displayed text in the menu.
 std::string MenuItem::text() { return mText; }
