@@ -3,6 +3,8 @@
 
 Subject::Subject() : mObservers() {}
 
+Subject::Subject(Observer *observer) : mObservers(1, observer) {}
+
 void Subject::addObserver(Observer *observer) {
     mObservers.push_back(observer);
 }
