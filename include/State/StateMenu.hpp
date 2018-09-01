@@ -7,6 +7,7 @@
 #include <memory>
 #include <stack>
 #include "Event/Observer.hpp"
+#include "Event/Subject.hpp"
 #include "Menu/Menu.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
@@ -25,10 +26,12 @@ class StateMenu : public IState, public Observer {
     void addItem(const MenuItem &item);
 
     void onNotify(Event event) override;
+    void registerObserver(Observer *observer);
 
    private:
     Game &mGame;
     std::stack<std::unique_ptr<Window>> mWindowStack;
     std::unique_ptr<Menu> mMenu;
+    Subject mEventSubject;
     unsigned int mItemSelected;
 };

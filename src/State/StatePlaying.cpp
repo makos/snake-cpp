@@ -2,7 +2,6 @@
 #include <string>
 #include "Event/Event.hpp"
 #include "Game.hpp"
-#include "State/Callback.hpp"
 #include "State/StateMenu.hpp"
 
 StatePlaying::StatePlaying(Game &game)
@@ -104,3 +103,5 @@ bool StatePlaying::canMove() {
     return (tmp.y > 0 && tmp.y < mWindow->size().y - 1 && tmp.x > 0 &&
             tmp.x < mWindow->size().x - 1);
 }
+
+void StatePlaying::onNotify(Event event) {}

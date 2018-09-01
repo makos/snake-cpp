@@ -4,14 +4,13 @@
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
 #include "Renderer/Renderer.hpp"
-#include "State/Callback.hpp"
 #include "State/StatePlaying.hpp"
 
-// Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
       mWindowStack(),
       mMenu(std::make_unique<Menu>()),
+      mEventSubject(),
       mItemSelected(0) {
     mWindowStack.push(
         std::make_unique<Window>(10, 16, (LINES / 2) - 5, (COLS / 2) - 8));
@@ -75,16 +74,23 @@ void StateMenu::render(Renderer &renderer) {
 void StateMenu::onNotify(Event event) {
     switch (event) {
         case Event::ClickExit:
-            mGame.setRunning(false);
+            // mGame.setRunning(false);
+            mEventSubject.notify(Event::Exit);
             break;
         case Event::ClickContinue:
-            mGame.popState();
+            // mGame.popState();
+            mEventSubject.notify(Event::PopState);
             break;
         case Event::ClickNew:
-            mGame.clearStates();
-            mGame.pushState(std::make_unique<StatePlaying>(mGame));
-            mGame.renderer().clearAll();
-            mGame.renderer().refreshAll();
+            mEventSubject.notify(Event::StartNewGame);
+            // mGame.clearStates();
+            // mGame.pushState(std::make_unique<StatePlaying>(mGame));
+            // mGame.renderer().clearAll();
+            // mGame.renderer().refreshAll();
             break;
     }
 }
+
+// void StateMenu::registerObserver(Observer *observer) {
+//     mEventSubject.addObserver(observer);
+// }
