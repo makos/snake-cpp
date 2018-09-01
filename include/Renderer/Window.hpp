@@ -7,31 +7,32 @@
 #include <curses.h>
 #include <memory>
 #include <string>
+#include "IWindow.hpp"
 #include "Renderer.hpp"
 #include "Util/Point.hpp"
 
-class Window {
+class Window : public IWindow {
    public:
     Window(int height, int width, int posy, int posx);
 
-    WINDOW *get();
+    WINDOW *get() override;
 
-    void print(int y, int x, std::string msg);
-    void print(int y, int x, std::string msg, Color color);
-    void print(int y, int x, std::string msg, chtype attr);
-    void print(Point pos, std::string msg);
-    void print(Point pos, std::string msg, Color color);
-    void print(Point pos, std::string msg, chtype attr);
+    void print(int y, int x, std::string msg) override;
+    void print(int y, int x, std::string msg, Color color) override;
+    void print(int y, int x, std::string msg, chtype attr) override;
+    void print(Point pos, std::string msg) override;
+    void print(Point pos, std::string msg, Color color) override;
+    void print(Point pos, std::string msg, chtype attr) override;
 
-    void setBox(bool state);
-    int setDelay(bool state);
-    int setKeypad(bool state);
-    int refresh();
-    int erase();
-    int clear();
-    int getKey();
+    void setBox(bool state) override;
+    int setDelay(bool state) override;
+    int setKeypad(bool state) override;
+    int refresh() override;
+    int erase() override;
+    int clear() override;
+    int getKey() override;
 
-    Point size();
+    Point size() override;
 
    private:
     std::unique_ptr<WINDOW> mWindow;
