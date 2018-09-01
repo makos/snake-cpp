@@ -103,5 +103,3 @@ bool StatePlaying::canMove() {
     return (tmp.y > 0 && tmp.y < mWindow->size().y - 1 && tmp.x > 0 &&
             tmp.x < mWindow->size().x - 1);
 }
-
-void StatePlaying::onNotify(Event event) {}

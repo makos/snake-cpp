@@ -11,7 +11,7 @@
 #include "State/State.hpp"
 #include "Util/Point.hpp"
 
-class Game : public Observer {
+class Game {
    public:
     Game();
 
@@ -34,8 +34,6 @@ class Game : public Observer {
 
     void setSpeed(int speed);
     int getSpeed();
-
-    void onNotify(Event event) override;
 
    private:
     void pop();

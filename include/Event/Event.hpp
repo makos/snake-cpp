@@ -5,8 +5,4 @@ enum class Event {
     ClickNew,
     ClickContinue,
     ClickExit,
-    Exit,
-    PopState,
-    StartNewGame,
-    AddScore
 };

@@ -74,23 +74,23 @@ void StateMenu::render(Renderer &renderer) {
 void StateMenu::onNotify(Event event) {
     switch (event) {
         case Event::ClickExit:
-            // mGame.setRunning(false);
-            mEventSubject.notify(Event::Exit);
+            mGame.setRunning(false);
             break;
         case Event::ClickContinue:
-            // mGame.popState();
-            mEventSubject.notify(Event::PopState);
+            while (mWindowStack.size() > 0) {
+                mWindowStack.top()->clear();
+                mWindowStack.top()->refresh();
+                mWindowStack.pop();
+            }
+            mGame.renderer().clearAll();
+            mGame.renderer().refreshAll();
+            mGame.popState();
             break;
         case Event::ClickNew:
-            mEventSubject.notify(Event::StartNewGame);
-            // mGame.clearStates();
-            // mGame.pushState(std::make_unique<StatePlaying>(mGame));
-            // mGame.renderer().clearAll();
-            // mGame.renderer().refreshAll();
+            mGame.clearStates();
+            mGame.pushState(std::make_unique<StatePlaying>(mGame));
+            mGame.renderer().clearAll();
+            mGame.renderer().refreshAll();
             break;
     }
 }
-
-// void StateMenu::registerObserver(Observer *observer) {
-//     mEventSubject.addObserver(observer);
-// }

@@ -22,6 +22,7 @@ void Game::run() {
     menu->addItem("New", Event::ClickNew);
     menu->addItem("Settings", Event::ClickSettings);
     menu->addItem("Exit", Event::ClickExit);
+    // DEBUG
     Window debug(5, 10, 0, 0);
 
     mStateStack.push(std::move(menu));
@@ -81,5 +82,3 @@ int Game::getScore() { return mScore; }
 void Game::setSpeed(int speed) { mSpeed = speed; }
 
 int Game::getSpeed() { return mSpeed; }
-
-void Game::onNotify(Event event) {}
