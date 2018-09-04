@@ -2,10 +2,6 @@
 #include "Event/Event.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
-<<<<<<< HEAD
-#include "Renderer/Renderer.hpp"
-=======
->>>>>>> 54d07c734ba041957d69638ce6480a413a78fdb8
 #include "State/StatePlaying.hpp"
 
 StateMenu::StateMenu(Game &game)
