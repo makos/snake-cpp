@@ -12,6 +12,8 @@ Game::Game()
       mSpeed(150),
       mIsRunning(true),
       mShouldPop(false),
+      mShouldPush(false),
+      mToPush(),
       mStateStack(),
       mRng(std::chrono::system_clock::to_time_t(
           std::chrono::system_clock::now())) {
@@ -43,6 +45,9 @@ void Game::run() {
         if (mShouldPop) {
             pop();
         }
+        if (mShouldPush) {
+            push();
+        }
     }
 }
 
@@ -60,7 +65,9 @@ void Game::clearStates() {
 }
 
 void Game::pushState(std::unique_ptr<IState> state) {
-    mStateStack.push(std::move(state));
+    // mStateStack.push(std::move(state));
+    mToPush = std::move(state);
+    mShouldPush = true;
 }
 
 void Game::popState() {
@@ -70,6 +77,13 @@ void Game::popState() {
 void Game::pop() {
     mStateStack.pop();
     mShouldPop = false;
+}
+
+void Game::push() {
+    if (mToPush != nullptr) {
+        mStateStack.push(std::move(mToPush));
+        mShouldPush = false;
+    }
 }
 
 void Game::gameOver() {}

@@ -24,9 +24,6 @@ class Game {
     Renderer &renderer();
     Point getBoardSize();
 
-    void clearStates();
-    void pushState(std::unique_ptr<IState> state);
-    void popState();
     IState &currentState();
     std::minstd_rand &rng();
 
@@ -41,10 +38,12 @@ class Game {
     void continueGame();
     void gameOver();
 
-    // void onNotify(Event event) override;
-
    private:
+    void clearStates();
+    void pushState(std::unique_ptr<IState> state);
+    void popState();
     void pop();
+    void push();
 
    private:
     Renderer mRenderer;
@@ -53,6 +52,8 @@ class Game {
     int mSpeed;
     bool mIsRunning;
     bool mShouldPop;
+    bool mShouldPush;
+    std::unique_ptr<IState> mToPush;
     std::stack<std::unique_ptr<IState>> mStateStack;
     std::minstd_rand mRng;
 };
