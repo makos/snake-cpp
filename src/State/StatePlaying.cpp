@@ -2,7 +2,6 @@
 #include <string>
 #include "Event/Event.hpp"
 #include "Game.hpp"
-#include "State/Callback.hpp"
 #include "State/StateMenu.hpp"
 
 StatePlaying::StatePlaying(Game &game)

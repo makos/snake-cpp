@@ -1,10 +1,7 @@
 #include "State/StateMenu.hpp"
-#include <curses.h>
 #include "Event/Event.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
-#include "Renderer/Renderer.hpp"
-#include "State/Callback.hpp"
 #include "State/StatePlaying.hpp"
 
 // Create two default menu items when the state is instantiated.
