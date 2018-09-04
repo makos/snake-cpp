@@ -2,6 +2,8 @@
 #include "Event/Event.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
+#include "Renderer/Subwindow.hpp"
+#include "Renderer/Window.hpp"
 #include "State/StatePlaying.hpp"
 
 StateMenu::StateMenu(Game &game)
@@ -54,11 +56,13 @@ void StateMenu::input() {
     }
 }
 
+// TODO: render contents based on which Window is visible (another State?)
 void StateMenu::render(Renderer &renderer) {
     mWindowStack.top()->erase();
     int y = (mWindowStack.top()->size().y / 2) - (mMenu->items().size() / 2);
     // - 4 because "Settings" (longest item in the menu) is 8 characters long,
     // so half of that.
+    // TODO: make so the "- 4" is dynamically calculated.
     int x = (mWindowStack.top()->size().x / 2) - 4;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
@@ -69,6 +73,16 @@ void StateMenu::render(Renderer &renderer) {
     mWindowStack.top()->refresh();
 }
 
+// FIXME: use a new Window rather than Subwindow because of how ncurses treats
+// it. ncurses needs to call touchwin() on original window before refreshing
+// subwindow, which is impossible with the stack.
+void StateMenu::openSettings() {
+    auto settingsWin =
+        std::make_unique<Subwindow>(mWindowStack.top().get(), 5, 5, 1, 1);
+    settingsWin->setBox(true);
+    mWindowStack.push(std::move(settingsWin));
+}
+
 void StateMenu::onNotify(Event event) {
     switch (event) {
         case Event::ClickExit:
@@ -76,7 +90,7 @@ void StateMenu::onNotify(Event event) {
             break;
         case Event::ClickContinue:
             // Clear the window stack
-            while (mWindowStack.size() > 0) {
+            while (!mWindowStack.empty()) {
                 mWindowStack.top()->clear();
                 mWindowStack.top()->refresh();
                 mWindowStack.pop();
@@ -85,6 +99,9 @@ void StateMenu::onNotify(Event event) {
             break;
         case Event::ClickNew:
             mGame.newGame();
+            break;
+        case Event::ClickSettings:
+            openSettings();
             break;
     }
 }

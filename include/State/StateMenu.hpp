@@ -9,7 +9,7 @@
 #include "Event/Observer.hpp"
 #include "Event/Subject.hpp"
 #include "Menu/Menu.hpp"
-#include "Renderer/Window.hpp"
+#include "Renderer/IWindow.hpp"
 #include "State.hpp"
 class Game;
 
@@ -25,12 +25,14 @@ class StateMenu : public IState, public Observer {
     void addItem(const char *text, Event event);
     void addItem(const MenuItem &item);
 
+    void openSettings();
+
     void onNotify(Event event) override;
     void registerObserver(Observer *observer);
 
    private:
     Game &mGame;
-    std::stack<std::unique_ptr<Window>> mWindowStack;
+    std::stack<std::unique_ptr<IWindow>> mWindowStack;
     std::unique_ptr<Menu> mMenu;
     Subject mEventSubject;
     unsigned int mItemSelected;
