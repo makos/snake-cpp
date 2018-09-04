@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include <chrono>
 #include "Event/Event.hpp"
 #include "State/StateMenu.hpp"
 #include "State/StatePlaying.hpp"
@@ -12,8 +13,10 @@ Game::Game()
       mIsRunning(true),
       mShouldPop(false),
       mStateStack(),
-      mRng() {
-    mRng.seed(std::random_device()());
+      mRng(std::chrono::system_clock::to_time_t(
+          std::chrono::system_clock::now())) {
+    // mRng.seed(
+    //     std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
 }
 
 // Main loop.
