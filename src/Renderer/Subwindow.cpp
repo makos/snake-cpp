@@ -2,7 +2,7 @@
 #include "Renderer/Window.hpp"
 
 Subwindow::Subwindow(IWindow *win, int height, int width, int posy, int posx)
-    : mWindow(subwin(win->get(), height, width, posy, posx)), mBox(false) {}
+    : mWindow(derwin(win->get(), height, width, posy, posx)), mBox(false) {}
 
 void Subwindow::print(int y, int x, std::string msg) {
     mvwprintw(mWindow.get(), y, x, msg.c_str());
