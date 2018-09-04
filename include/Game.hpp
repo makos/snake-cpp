@@ -2,6 +2,7 @@
  * Game.hpp - high-level game logic handling. States and main loop.
  */
 #pragma once
+// TODO: look at StatePlaying.cpp, line 48
 
 #include <memory>
 #include <random>
@@ -34,6 +35,8 @@ class Game : public Observer {
 
     void setSpeed(int speed);
     int getSpeed();
+
+    void game_over();
 
     void onNotify(Event event) override;
 
