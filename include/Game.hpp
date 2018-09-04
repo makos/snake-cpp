@@ -27,10 +27,10 @@ class Game {
     IState &currentState();
     std::minstd_rand &rng();
 
-    void addScore(int n);
+    void addScore(const int n);
     int getScore();
 
-    void setSpeed(int speed);
+    void setSpeed(const int speed);
     int getSpeed();
 
     void pauseMenu();

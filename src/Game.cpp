@@ -16,10 +16,7 @@ Game::Game()
       mToPush(),
       mStateStack(),
       mRng(std::chrono::system_clock::to_time_t(
-          std::chrono::system_clock::now())) {
-    // mRng.seed(
-    //     std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
-}
+          std::chrono::system_clock::now())) {}
 
 // Main loop.
 void Game::run() {
@@ -65,7 +62,6 @@ void Game::clearStates() {
 }
 
 void Game::pushState(std::unique_ptr<IState> state) {
-    // mStateStack.push(std::move(state));
     mToPush = std::move(state);
     mShouldPush = true;
 }
@@ -118,10 +114,10 @@ std::minstd_rand& Game::rng() { return mRng; }
 
 Point Game::getBoardSize() { return mBoardSize; }
 
-void Game::addScore(int n) { mScore += n; }
+void Game::addScore(const int n) { mScore += n; }
 
 int Game::getScore() { return mScore; }
 
-void Game::setSpeed(int speed) { mSpeed = speed; }
+void Game::setSpeed(const int speed) { mSpeed = speed; }
 
 int Game::getSpeed() { return mSpeed; }
