@@ -36,7 +36,10 @@ class Game {
     void setSpeed(int speed);
     int getSpeed();
 
-    void game_over();
+    void pauseMenu();
+    void newGame();
+    void continueGame();
+    void gameOver();
 
     // void onNotify(Event event) override;
 

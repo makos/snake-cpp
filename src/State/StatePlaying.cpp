@@ -44,18 +44,9 @@ void StatePlaying::input() {
     ch = mWindow->getKey();
 
     switch (ch) {
-        case 'q': {
-            // TODO: move this to Game; in fact, only Game should be responsible
-            // for creating states; remove pushState and popState from public
-            // methods
-            auto pauseMenu = std::make_unique<StateMenu>(mGame);
-            pauseMenu->addItem("Continue", Event::ClickContinue);
-            pauseMenu->addItem("New", Event::ClickNew);
-            pauseMenu->addItem("Settings", Event::ClickSettings);
-            pauseMenu->addItem("Exit", Event::ClickExit);
-
-            mGame.pushState(std::move(pauseMenu));
-        }; break;
+        case 'q':
+            mGame.pauseMenu();
+            break;
         case KEY_UP:
             if (mPlayer.facing() != DIR_DOWN) mPlayer.face(DIR_UP);
             break;
@@ -104,7 +95,7 @@ bool StatePlaying::canMove() {
 
     for (auto &part : mPlayer.parts()) {
         if (part.getPosition() == mPlayer.getPosition()) {
-            mGame.game_over();
+            mGame.gameOver();
         }
     }
 

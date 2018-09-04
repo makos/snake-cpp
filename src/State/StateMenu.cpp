@@ -75,20 +75,16 @@ void StateMenu::onNotify(Event event) {
             mGame.setRunning(false);
             break;
         case Event::ClickContinue:
+            // Clear the window stack
             while (mWindowStack.size() > 0) {
                 mWindowStack.top()->clear();
                 mWindowStack.top()->refresh();
                 mWindowStack.pop();
             }
-            mGame.renderer().clearAll();
-            mGame.renderer().refreshAll();
-            mGame.popState();
+            mGame.continueGame();
             break;
         case Event::ClickNew:
-            mGame.clearStates();
-            mGame.pushState(std::make_unique<StatePlaying>(mGame));
-            mGame.renderer().clearAll();
-            mGame.renderer().refreshAll();
+            mGame.newGame();
             break;
     }
 }

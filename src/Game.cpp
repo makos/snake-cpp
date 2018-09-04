@@ -72,7 +72,31 @@ void Game::pop() {
     mShouldPop = false;
 }
 
-void Game::game_over() {}
+void Game::gameOver() {}
+
+void Game::continueGame() {
+    mRenderer.clearAll();
+    mRenderer.refreshAll();
+    popState();
+}
+
+void Game::pauseMenu() {
+    auto pauseMenu = std::make_unique<StateMenu>(*this);
+    pauseMenu->addItem("Continue", Event::ClickContinue);
+    pauseMenu->addItem("New", Event::ClickNew);
+    pauseMenu->addItem("Settings", Event::ClickSettings);
+    pauseMenu->addItem("Exit", Event::ClickExit);
+
+    pushState(std::move(pauseMenu));
+}
+
+void Game::newGame() {
+    mScore = 0;
+    clearStates();
+    pushState(std::make_unique<StatePlaying>(*this));
+    mRenderer.clearAll();
+    mRenderer.refreshAll();
+}
 
 IState& Game::currentState() { return *mStateStack.top(); }
 
