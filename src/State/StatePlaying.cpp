@@ -45,6 +45,9 @@ void StatePlaying::input() {
 
     switch (ch) {
         case 'q': {
+            // TODO: move this to Game; in fact, only Game should be responsible
+            // for creating states; remove pushState and popState from public
+            // methods
             auto pauseMenu = std::make_unique<StateMenu>(mGame);
             pauseMenu->addItem("Continue", Event::ClickContinue);
             pauseMenu->addItem("New", Event::ClickNew);
@@ -98,6 +101,12 @@ void StatePlaying::render(Renderer &renderer) {
 
 bool StatePlaying::canMove() {
     Point tmp(mPlayer.getPosition() + mPlayer.facing());
+
+    for (auto &part : mPlayer.parts()) {
+        if (part.getPosition() == mPlayer.getPosition()) {
+            mGame.game_over();
+        }
+    }
 
     // Magic - 1 because of the border that counts to the window size.
     return (tmp.y > 0 && tmp.y < mWindow->size().y - 1 && tmp.x > 0 &&

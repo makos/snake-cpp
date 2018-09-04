@@ -69,6 +69,8 @@ void Game::pop() {
     mShouldPop = false;
 }
 
+void Game::game_over() {}
+
 IState& Game::currentState() { return *mStateStack.top(); }
 
 std::minstd_rand& Game::rng() { return mRng; }
