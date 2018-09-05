@@ -33,6 +33,7 @@ class Window : public IWindow {
     int getKey() override;
 
     Point size() override;
+    Point position() override;
 
    private:
     std::unique_ptr<WINDOW> mWindow;

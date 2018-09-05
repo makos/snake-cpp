@@ -68,3 +68,7 @@ int Window::getKey() { return wgetch(mWindow.get()); }
 Point Window::size() {
     return Point(getmaxy(mWindow.get()), getmaxx(mWindow.get()));
 }
+
+Point Window::position() {
+    return Point(getbegy(mWindow.get()), getbegx(mWindow.get()));
+}

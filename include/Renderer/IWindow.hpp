@@ -23,6 +23,7 @@ class IWindow {
     virtual int getKey() = 0;
 
     virtual Point size() = 0;
+    virtual Point position() = 0;
 
     virtual WINDOW* get() = 0;
 };
