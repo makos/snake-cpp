@@ -10,7 +10,7 @@ enum class Event;
 class MainMenu : public IState, public Observer {
    public:
     MainMenu();
-    ~MainMenu();
+    // ~MainMenu();
 
     void update() final;
     void input() final;

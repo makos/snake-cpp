@@ -5,6 +5,7 @@
 #include "Renderer/Subwindow.hpp"
 #include "Renderer/Window.hpp"
 #include "State/Menu/MainMenu.hpp"
+#include "State/Menu/SettingsDialog.hpp"
 #include "State/StatePlaying.hpp"
 
 StateMenu::StateMenu(Game &game)
@@ -15,7 +16,7 @@ StateMenu::StateMenu(Game &game)
         dynamic_cast<Observer *>(mInternalState.get()));
 }
 
-StateMenu::~StateMenu() {}
+// StateMenu::~StateMenu() {}
 
 void StateMenu::addItem(const char *text, Event event) {
     mInternalStateNotifier.notify(Event::AddMenuItem,
@@ -42,6 +43,7 @@ void StateMenu::onNotify(Event event) {
             mGame.newGame();
             break;
         case Event::ClickSettings:
+            mInternalState = std::make_unique<SettingsDialog>();
             break;
     }
 }

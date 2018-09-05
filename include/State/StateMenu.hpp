@@ -18,7 +18,7 @@ enum class InternalState { Main, Settings };
 class StateMenu : public IState, public Observer {
    public:
     StateMenu(Game &game);
-    ~StateMenu();
+    // ~StateMenu();
 
     void input() final;
     void update() final;
