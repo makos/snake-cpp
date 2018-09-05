@@ -7,6 +7,7 @@
 #include <memory>
 #include <stack>
 #include "Event/Observer.hpp"
+#include "Event/Subject.hpp"
 #include "Menu/Menu.hpp"
 #include "Renderer/IWindow.hpp"
 #include "State.hpp"
@@ -19,27 +20,16 @@ class StateMenu : public IState, public Observer {
     StateMenu(Game &game);
     ~StateMenu();
 
-    void input() override;
-    void update() override;
-    void render(Renderer &renderer) override;
+    void input() final;
+    void update() final;
+    void render(Renderer &renderer) final;
 
     void addItem(const char *text, Event event);
-    void addItem(const MenuItem &item);
 
-    void onNotify(Event event) override;
-    void registerObserver(Observer *observer);
-
-   private:
-    IWindow &topWindow();
-    void openSettings();
-    void renderMain();
-    void renderSettings();
+    void onNotify(Event event) final;
 
    private:
     Game &mGame;
-    // std::unique_ptr<IState> mInternalState;
-    std::stack<std::unique_ptr<IWindow>> mWindowStack;
-    std::unique_ptr<Menu> mMenu;
-    unsigned int mItemSelected;
-    InternalState mInternalState;
+    std::unique_ptr<IState> mInternalState;
+    Subject mInternalStateNotifier;
 };

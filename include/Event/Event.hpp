@@ -5,4 +5,5 @@ enum class Event {
     ClickNew,
     ClickContinue,
     ClickExit,
+    AddMenuItem
 };

@@ -6,7 +6,6 @@
 #include <vector>
 #include "Menu/MenuItem.hpp"
 class Game;
-class Observer;
 
 class Menu {
    public:

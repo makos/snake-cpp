@@ -1,5 +1,6 @@
 #include "Event/Subject.hpp"
 #include "Event/Event.hpp"
+#include "Event/MenuEventArgs.hpp"
 
 Subject::Subject() : mObservers() {}
 
@@ -22,5 +23,11 @@ void Subject::removeObserver(Observer *observer) {
 void Subject::notify(Event event) {
     for (auto observer : mObservers) {
         observer->onNotify(event);
+    }
+}
+
+void Subject::notify(Event event, MenuEventArgs args) {
+    for (auto observer : mObservers) {
+        observer->onNotify(event, args);
     }
 }

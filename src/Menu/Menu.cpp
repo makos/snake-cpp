@@ -1,6 +1,7 @@
 #include "Menu/Menu.hpp"
-#include "Event/Observer.hpp"
 #include "Event/Event.hpp"
+#include "Event/MenuEventArgs.hpp"
+#include "Event/Observer.hpp"
 
 Menu::Menu() : mItems() {}
 
