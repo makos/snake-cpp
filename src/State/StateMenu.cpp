@@ -10,13 +10,13 @@ StateMenu::StateMenu(Game &game)
     : mGame(game),
       mWindowStack(),
       mMenu(std::make_unique<Menu>()),
-      mEventSubject(),
-      mItemSelected(0) {
+      mItemSelected(0),
+      mInternalState(InternalState::Main) {
     mWindowStack.push(
         std::make_unique<Window>(10, 16, (LINES / 2) - 5, (COLS / 2) - 8));
-    mWindowStack.top()->setBox(true);
-    mWindowStack.top()->setKeypad(true);
-    mWindowStack.top()->setDelay(false);
+    topWindow().setBox(true);
+    topWindow().setKeypad(true);
+    topWindow().setDelay(false);
 }
 
 StateMenu::~StateMenu() {
@@ -36,9 +36,16 @@ void StateMenu::update() {}
 
 void StateMenu::input() {
     int ch;
-    ch = mWindowStack.top()->getKey();
+    ch = topWindow().getKey();
 
     switch (ch) {
+        case 'q':
+            if (mWindowStack.size() > 1) {
+                mWindowStack.pop();
+                mInternalState = InternalState::Main;
+            } else {
+                mGame.continueGame();
+            }
         case KEY_UP:
             mItemSelected =
                 (mItemSelected - 1) % (unsigned int)mMenu->items().size();
@@ -58,29 +65,50 @@ void StateMenu::input() {
 
 // TODO: render contents based on which Window is visible (another State?)
 void StateMenu::render(Renderer &renderer) {
-    mWindowStack.top()->erase();
-    int y = (mWindowStack.top()->size().y / 2) - (mMenu->items().size() / 2);
+    switch (mInternalState) {
+        case InternalState::Main:
+            renderMain();
+            break;
+        case InternalState::Settings:
+            renderSettings();
+            break;
+    }
+}
+
+void StateMenu::renderMain() {
+    topWindow().erase();
+    int y = (topWindow().size().y / 2) - (mMenu->items().size() / 2);
     // - 4 because "Settings" (longest item in the menu) is 8 characters long,
     // so half of that.
     // TODO: make so the "- 4" is dynamically calculated.
-    int x = (mWindowStack.top()->size().x / 2) - 4;
+    int x = (topWindow().size().x / 2) - 4;
     for (auto const &item : mMenu->items()) {
         item->id() == mItemSelected
-            ? mWindowStack.top()->print(y, x, item->text(), A_REVERSE)
-            : mWindowStack.top()->print(y, x, item->text());
+            ? topWindow().print(y, x, item->text(), A_REVERSE)
+            : topWindow().print(y, x, item->text());
         y++;
     }
-    mWindowStack.top()->refresh();
+    topWindow().refresh();
+}
+
+void StateMenu::renderSettings() {
+    topWindow().erase();
+
+    topWindow().print(1, 1, "settings");
+
+    topWindow().refresh();
 }
 
 // FIXME: use a new Window rather than Subwindow because of how ncurses treats
 // it. ncurses needs to call touchwin() on original window before refreshing
 // subwindow, which is impossible with the stack.
 void StateMenu::openSettings() {
+    auto topWinPos = topWindow().position();
     auto settingsWin =
-        std::make_unique<Subwindow>(mWindowStack.top().get(), 5, 5, 1, 1);
+        std::make_unique<Window>(5, 10, topWinPos.y, topWinPos.x);
     settingsWin->setBox(true);
     mWindowStack.push(std::move(settingsWin));
+    mInternalState = InternalState::Settings;
 }
 
 void StateMenu::onNotify(Event event) {
@@ -91,8 +119,8 @@ void StateMenu::onNotify(Event event) {
         case Event::ClickContinue:
             // Clear the window stack
             while (!mWindowStack.empty()) {
-                mWindowStack.top()->clear();
-                mWindowStack.top()->refresh();
+                topWindow().clear();
+                topWindow().refresh();
                 mWindowStack.pop();
             }
             mGame.continueGame();
@@ -105,3 +133,5 @@ void StateMenu::onNotify(Event event) {
             break;
     }
 }
+
+IWindow &StateMenu::topWindow() { return *mWindowStack.top(); }
