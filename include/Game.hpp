@@ -2,7 +2,6 @@
  * Game.hpp - high-level game logic handling. States and main loop.
  */
 #pragma once
-// TODO: look at StatePlaying.cpp, line 48
 
 #include <memory>
 #include <random>
