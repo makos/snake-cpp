@@ -7,6 +7,7 @@
 #include <memory>
 #include <stack>
 #include "Event/Observer.hpp"
+#include "Event/Subject.hpp"
 #include "Menu/Menu.hpp"
 #include "Renderer/Window.hpp"
 #include "State.hpp"
@@ -17,11 +18,12 @@ class StateMenu : public IState, public Observer {
     StateMenu(Game &game);
     ~StateMenu();
 
-    void input() override;
-    void update() override;
-    void render(Renderer &renderer) override;
+    void input() final;
+    void update() final;
+    void render(Renderer &renderer) final;
 
     void addItem(const char *text, Event event);
+<<<<<<< Updated upstream
     void addItem(const MenuItem &item);
 
     void onNotify(Event event) override;
@@ -31,4 +33,13 @@ class StateMenu : public IState, public Observer {
     std::stack<std::unique_ptr<Window>> mWindowStack;
     std::unique_ptr<Menu> mMenu;
     unsigned int mItemSelected;
+=======
+
+    void onNotify(Event event) final;
+
+   private:
+    Game &mGame;
+    std::unique_ptr<IState> mInternalState;
+    Subject mInternalStateNotifier;
+>>>>>>> Stashed changes
 };

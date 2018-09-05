@@ -2,11 +2,18 @@
 #include "Event/Event.hpp"
 #include "Game.hpp"
 #include "Menu/Menu.hpp"
+<<<<<<< Updated upstream
+=======
+#include "Renderer/Subwindow.hpp"
+#include "Renderer/Window.hpp"
+#include "State/Menu/MainMenu.hpp"
+>>>>>>> Stashed changes
 #include "State/StatePlaying.hpp"
 
 // Create two default menu items when the state is instantiated.
 StateMenu::StateMenu(Game &game)
     : mGame(game),
+<<<<<<< Updated upstream
       mWindowStack(),
       mMenu(std::make_unique<Menu>()),
       mItemSelected(0) {
@@ -15,23 +22,25 @@ StateMenu::StateMenu(Game &game)
     mWindowStack.top()->setBox(true);
     mWindowStack.top()->setKeypad(true);
     mWindowStack.top()->setDelay(false);
+=======
+      mInternalState(std::make_unique<MainMenu>()),
+      mInternalStateNotifier() {
+    mInternalStateNotifier.addObserver(
+        dynamic_cast<Observer *>(mInternalState.get()));
+>>>>>>> Stashed changes
 }
 
-StateMenu::~StateMenu() {
-    while (!mWindowStack.empty()) {
-        mWindowStack.pop();
-    }
-}
+StateMenu::~StateMenu() {}
 
 void StateMenu::addItem(const char *text, Event event) {
-    mMenu->addItem(text, event, this);
+    mInternalStateNotifier.notify(Event::AddMenuItem,
+                                  MenuEventArgs(text, event, this));
 }
-
-void StateMenu::addItem(const MenuItem &item) { mMenu->addItem(item); }
 
 // Not really anything to update in a static menu.
 void StateMenu::update() {}
 
+<<<<<<< Updated upstream
 void StateMenu::input() {
     int ch;
     ch = mWindowStack.top()->getKey();
@@ -72,6 +81,12 @@ void StateMenu::render(Renderer &renderer) {
     }
     mWindowStack.top()->refresh();
 }
+=======
+void StateMenu::input() { mInternalState->input(); }
+
+// TODO: render contents based on which Window is visible (another State?)
+void StateMenu::render(Renderer &renderer) { mInternalState->render(renderer); }
+>>>>>>> Stashed changes
 
 void StateMenu::onNotify(Event event) {
     switch (event) {
@@ -79,6 +94,7 @@ void StateMenu::onNotify(Event event) {
             mGame.setRunning(false);
             break;
         case Event::ClickContinue:
+<<<<<<< Updated upstream
             mGame.popState();
             break;
         case Event::ClickNew:
@@ -86,6 +102,14 @@ void StateMenu::onNotify(Event event) {
             mGame.pushState(std::make_unique<StatePlaying>(mGame));
             mGame.renderer().clearAll();
             mGame.renderer().refreshAll();
+=======
+            mGame.continueGame();
+            break;
+        case Event::ClickNew:
+            mGame.newGame();
+            break;
+        case Event::ClickSettings:
+>>>>>>> Stashed changes
             break;
     }
 }
