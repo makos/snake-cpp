@@ -9,10 +9,10 @@ MainMenu::MainMenu()
       mItemSelected(0) {
     mWindow->setBox(true);
     mWindow->setKeypad(true);
-    mWindow->setDelay(false);
+    mWindow->setDelay(true);
 }
 
-MainMenu::~MainMenu() {}
+// MainMenu::~MainMenu() {}
 
 void MainMenu::update() {}
 
